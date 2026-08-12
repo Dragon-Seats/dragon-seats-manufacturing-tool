@@ -1,0 +1,5 @@
+name = "dragon-seats-manufacturing-tool"
+compatibility_date = "2026-08-12"
+
+[assets]
+directory = "."
