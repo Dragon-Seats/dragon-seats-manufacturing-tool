@@ -604,6 +604,139 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .inv-bar-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
   .inv-legend-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-soft)}
 
+  /* ---- grouped sections (POs / teams / equipment locations) ---- */
+  .sec-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .sec-toolbar .spacer{flex:1}
+  .sec-toolbar .ref-input{flex:0 1 260px;min-width:0}
+  .grp{background:var(--card);border:1px solid var(--line-soft);border-radius:12px;box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden;position:relative}
+  .grp::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--line)}
+  .grp.g-active::before{background:#C98A1E}
+  .grp.g-done::before{background:var(--good)}
+  .grp.g-alert::before{background:var(--accent)}
+  .grp-head{display:flex;align-items:center;gap:16px;padding:12px 18px 12px 14px;cursor:pointer;background:linear-gradient(180deg,#fff,var(--card));flex-wrap:wrap}
+  .grp-head:hover{background:#F6F6F7}
+  .grp.open .grp-head{border-bottom:1px solid var(--line-soft)}
+  .grp-caret{width:22px;height:22px;display:grid;place-items:center;color:var(--ink-soft);font-size:10px;transition:transform .15s ease;flex:none;border-radius:5px}
+  .grp.open .grp-caret{transform:rotate(90deg)}
+  .grp-title{display:flex;flex-direction:column;min-width:150px;flex:1 1 200px;gap:1px}
+  .grp-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .grp-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--ink);line-height:1.25}
+  .grp-in{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--ink);border:1px solid transparent;background:none;border-radius:6px;padding:1px 5px;margin-left:-6px;width:100%;max-width:280px}
+  .grp-in.sub{font-family:'Inter',sans-serif;font-weight:500;font-size:12.5px;color:var(--ink-soft);max-width:240px}
+  .grp-in:hover{border-color:var(--line);background:#fff}
+  .grp-in:focus-visible{outline:2px solid var(--steel);border-color:var(--steel);background:#fff}
+  .grp-stats{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .grp-stat{display:flex;flex-direction:column;align-items:flex-end;min-width:54px}
+  .grp-stat b{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--ink);line-height:1.15}
+  .grp-stat b.acc{color:var(--accent)}
+  .grp-stat b.good{color:var(--good)}
+  .grp-stat b.amber{color:#9A6512}
+  .grp-stat span{font-size:9.5px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;white-space:nowrap}
+  .grp-stat input.num-in{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;width:76px;text-align:right;border:1px dashed var(--line);border-radius:6px;padding:0 6px;background:#fff;color:var(--ink)}
+  .grp-stat input.num-in:focus-visible{outline:2px solid var(--steel);border-style:solid}
+  .grp-prog{flex:0 1 210px;min-width:140px;display:flex;flex-direction:column;gap:5px}
+  .prog-track{height:8px;background:var(--steel-soft);border-radius:5px;overflow:hidden;display:flex}
+  .prog-fill{height:100%;background:var(--steel)}
+  .prog-fill.done{background:var(--good)}
+  .prog-fill.amber{background:#C98A1E}
+  .prog-fill.over{background:var(--accent)}
+  .prog-lbl{font-size:11px;color:var(--ink-soft);font-family:'JetBrains Mono',monospace;white-space:nowrap}
+  .grp-body{display:none}
+  .grp.open .grp-body{display:block}
+  .grp-body .ops-table th{background:#F3F4F5}
+  .grp-actions{display:flex;gap:8px;align-items:center;padding:10px 16px 12px;flex-wrap:wrap;border-top:1px solid var(--line-soft);background:#FAFAFB}
+  .grp-actions .spacer{flex:1}
+  .grp-actions .hint{font-size:11.5px;color:var(--ink-soft)}
+  .tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:5px;background:var(--steel-soft);color:var(--steel);font-family:'JetBrains Mono',monospace;white-space:nowrap;margin:1px 4px 1px 0;line-height:1.5}
+  .tag.red{background:#F6E1E1;color:var(--accent-deep)}
+  .tag.amber{background:#FDF3E2;color:#9A6512}
+  .tag.green{background:#E7F1EC;color:var(--good)}
+  .tag b{font-weight:700}
+  .idx{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);width:28px}
+  .newpo{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;background:var(--card);border:1px solid var(--line-soft);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:16px}
+  .newpo .tf-field{flex:1 1 130px}
+  .newpo .newpo-title{flex:1 1 100%;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px}
+  .newpo .newpo-title::before{content:"";width:4px;height:14px;background:var(--accent);border-radius:2px}
+  .field-box{border:1px solid var(--line)!important;background:#fff}
+  .page-note{font-size:12px;color:var(--ink-soft);margin:6px 2px 0}
+  .page-note b{color:var(--steel)}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+  .seg button{appearance:none;border:none;background:none;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:var(--ink-soft);padding:6px 12px}
+  .seg button+button{border-left:1px solid var(--line)}
+  .seg button.on{background:var(--ink);color:#fff}
+  .seg button:focus-visible{outline:2px solid var(--steel);outline-offset:-2px}
+  /* condition colors */
+  .cond-sel{font-weight:600}
+  .cond-sel.c-ok{background:#E7F1EC;color:var(--good);border-color:#BCDFCD}
+  .cond-sel.c-rep{background:#FDF3E2;color:#9A6512;border-color:#E6CF9E}
+  .cond-sel.c-out{background:#F6E1E1;color:var(--accent-deep);border-color:#E9C4C4}
+  .stale{color:var(--accent-deep);font-size:10.5px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
+  .chk-wrap{display:flex;align-items:center;gap:6px}
+  .chk-wrap .ops-input{min-width:128px}
+  .mini-btn{appearance:none;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--steel);border-radius:6px;padding:4px 8px;white-space:nowrap}
+  .mini-btn:hover{border-color:var(--steel);background:var(--steel-soft)}
+  /* equipment type cards */
+  .eq-types{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:16px}
+  .eq-type{background:var(--card);border:1px solid var(--line-soft);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+  .eq-type::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--swatch,var(--steel))}
+  .eq-type-head{display:flex;align-items:center;gap:4px}
+  .eq-type-head .grp-in{font-size:14px;margin-left:-5px}
+  .eq-type-num{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;line-height:1}
+  .eq-type-num small{font-size:11px;font-weight:500;color:var(--ink-soft);margin-left:4px}
+  .eq-type-locs{font-size:11.5px;color:var(--ink-soft);line-height:1.6}
+  .eq-type-locs .mono{color:var(--ink)}
+  .eq-type.add{border:1px dashed var(--line);box-shadow:none;background:transparent;align-items:center;justify-content:center;cursor:pointer;color:var(--steel);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;min-height:96px}
+  .eq-type.add::after{display:none}
+  .eq-type.add:hover{background:var(--steel-soft);border-color:var(--steel)}
+  /* transfers */
+  .tf-route{display:grid;grid-template-columns:150px 1fr 40px 1fr 1.4fr;gap:12px;align-items:end;padding:16px 18px 6px}
+  .tf-route .tf-field{flex:none}
+  .tf-swap{appearance:none;cursor:pointer;height:38px;width:40px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--steel);font-size:16px}
+  .tf-swap:hover{border-color:var(--steel);background:var(--steel-soft)}
+  .tf-route .ops-input,.tf-route .ops-sel{border-color:var(--line);height:38px}
+  .tf-items-grid{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:12px;padding:10px 18px 4px}
+  .tf-box{border:1px solid var(--line-soft);border-radius:10px;padding:12px 14px;background:#FAFAFB;min-width:0}
+  .tf-box h4{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--steel);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .tf-box .eq-move-row .ops-input{border-color:var(--line)}
+  .tf-type{margin-bottom:10px}
+  .tf-type:last-child{margin-bottom:0}
+  .tf-type-name{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:5px;display:flex;justify-content:space-between;gap:8px}
+  .tf-type-name span{font-weight:400;color:var(--ink-soft);font-size:11.5px}
+  .unit-chips{display:flex;flex-wrap:wrap;gap:5px}
+  .unit-chip{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:11px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:3px 7px;cursor:pointer;user-select:none}
+  .unit-chip input{accent-color:var(--accent);margin:0}
+  .unit-chip:has(input:checked){border-color:var(--accent);background:#FBEDED;color:var(--accent-deep)}
+  .unit-chip.rep{border-style:dashed}
+  .tf-none{font-size:12px;color:var(--ink-soft)}
+  .tf-foot{display:flex;align-items:center;gap:12px;padding:12px 18px 16px;flex-wrap:wrap}
+  .tf-summary{font-size:12.5px;color:var(--ink-soft);flex:1}
+  .tf-summary b{color:var(--ink);font-family:'JetBrains Mono',monospace}
+  .tf-month td{background:#fff!important;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--ink);padding:14px 10px 6px!important;border-bottom:1.5px solid var(--line)!important;letter-spacing:.02em}
+  .tf-month td span{font-family:'Inter',sans-serif;font-weight:500;color:var(--ink-soft);margin-left:6px}
+  .tf-route-cell{white-space:nowrap;font-size:12.5px}
+  .tf-route-cell .arr{color:var(--ink-soft);margin:0 5px}
+  @media(max-width:900px){
+    .tf-route{grid-template-columns:1fr 1fr}
+    .tf-swap{display:none}
+    .tf-items-grid{grid-template-columns:1fr}
+  }
+  /* bench counts */
+  .type-bars .type-row{display:grid;grid-template-columns:90px 1fr 56px 44px;gap:10px;align-items:center;padding:6px 0}
+  .type-bars .type-name{font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:7px}
+  .type-bars .type-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-align:right}
+  .type-bars .type-pct{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);text-align:right}
+  .bc-loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+  .bc-loc{background:var(--card);border:1px solid var(--line-soft);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px}
+  .bc-loc-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .bc-loc-name .mono{font-size:22px}
+  .bc-loc-share{font-size:11px;color:var(--ink-soft);margin-bottom:8px}
+  .bc-loc-row{display:flex;justify-content:space-between;font-size:12.5px;padding:3px 0;border-top:1px solid var(--line-soft);color:var(--ink-soft)}
+  .bc-loc-row .mono{color:var(--ink);font-weight:600}
+  .card-pad{padding:16px 18px}
+  .tab .count:empty{display:none}
+  .grp-stat.wide{min-width:112px}
+  .ops-table .status-sel,.ops-table .cond-sel{min-width:128px}
+
   .panel{display:none;animation:fade .25s ease}
   .panel.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -1017,57 +1150,65 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 
   <!-- ===================== NEW BUILDS ===================== -->
   <section class="panel" id="panel-builds" role="tabpanel" aria-labelledby="tab-builds">
-    <div class="card">
-      <div class="card-head"><span class="name">New builds received</span><span class="meta" id="builds-meta"></span></div>
-      <div id="builds-body"></div>
-      <div class="add-line" style="padding:12px 16px 16px">
-        <button class="ghost-btn" id="add-build">+ Add build</button>
-      </div>
-      <div class="order-actions">
-        <div class="spacer"></div>
-        <button class="btn outline" id="export-builds">Export PDF</button>
-      </div>
-      <div class="note">Each row is one pickup/release of finished benches from a manufacturer. Totals update the Dashboard automatically.</div>
+    <div id="builds-kpi" class="kpi-strip"></div>
+    <div class="newpo">
+      <div class="newpo-title">Start a new PO</div>
+      <label class="tf-field"><span>PO #</span><input id="np-po" class="ops-input field-box" autocomplete="off"></label>
+      <label class="tf-field"><span>Manufacturer</span><input id="np-man" class="ops-input field-box" autocomplete="off"></label>
+      <label class="tf-field" style="flex:0 1 130px"><span>Qty ordered</span><input id="np-ord" type="number" min="0" class="ops-input num field-box" autocomplete="off"></label>
+      <button class="btn accent" id="add-build" style="height:38px">+ Add PO</button>
     </div>
+    <div class="sec-toolbar">
+      <div class="dash-section-title" style="margin:0">Purchase orders <span class="meta mono" id="builds-meta" style="font-weight:400;font-size:11.5px;color:var(--ink-soft);margin-left:4px"></span></div>
+      <div class="spacer"></div>
+      <div class="seg"><button id="builds-expand">Expand all</button><button id="builds-collapse">Collapse all</button></div>
+      <button class="btn outline btn-sm" id="export-builds">Export PDF</button>
+    </div>
+    <div id="builds-body"></div>
+    <div class="page-note">Each PO is its own section. Log every pickup/release of finished benches under its PO with <b>+ Add pickup</b>. Set <b>Ordered</b> on a PO to track how many are still to come. Totals update the Dashboard automatically.</div>
   </section>
 
   <!-- ===================== REFURB JOBS ===================== -->
   <section class="panel" id="panel-refurb" role="tabpanel" aria-labelledby="tab-refurb">
     <div id="refurb-kpi" class="kpi-strip"></div>
-    <div class="card">
-      <div class="card-head"><span class="name">Refurb jobs</span><span class="meta" id="refurb-meta"></span></div>
-      <div class="ops-filter">
-        <input id="refurb-search" class="ref-input" placeholder="Search bench ID, team, notes\u2026" aria-label="Search refurb jobs" style="flex:0 1 260px;min-width:0">
-        <select id="refurb-filter" class="ops-sel" style="max-width:180px" aria-label="Filter by status"></select>
-        <div class="spacer"></div>
-        <button class="btn outline" id="export-refurb">Export PDF</button>
-      </div>
-      <div id="refurb-body"></div>
-      <div class="add-line" style="padding:12px 16px 16px">
-        <button class="ghost-btn" id="add-refurb">+ Add job</button>
-      </div>
+    <div class="sec-toolbar">
+      <input id="refurb-search" class="ref-input" placeholder="Search bench ID, team, notes&hellip;" aria-label="Search refurb jobs" autocomplete="off">
+      <select id="refurb-filter" class="ops-sel field-box" style="max-width:170px" aria-label="Filter by status"></select>
+      <span class="meta mono" id="refurb-meta" style="font-size:11.5px;color:var(--ink-soft)"></span>
+      <div class="spacer"></div>
+      <div class="seg"><button id="refurb-expand">Expand all</button><button id="refurb-collapse">Collapse all</button></div>
+      <button class="btn outline btn-sm" id="export-refurb">Export PDF</button>
+      <button class="btn btn-sm" id="add-refurb">+ Add job</button>
     </div>
+    <div id="refurb-body"></div>
+    <div class="page-note">Jobs are grouped by team. Rename a team in its header to fix a typo or merge two groups (e.g. type the same name into both). Teams with work in progress sort to the top; fully completed teams stay collapsed.</div>
   </section>
 
   <!-- ===================== TRANSFERS ===================== -->
   <section class="panel" id="panel-transfers" role="tabpanel" aria-labelledby="tab-transfers">
+    <div id="tf-kpi" class="kpi-strip"></div>
     <div class="card">
       <div class="card-head"><span class="name">Log a transfer</span></div>
-      <div class="tf-form" style="padding-bottom:6px">
+      <div class="tf-route">
         <label class="tf-field"><span>Date</span><input type="date" id="tf-date" class="ops-input"></label>
         <label class="tf-field"><span>From</span><select id="tf-from" class="ops-sel"></select></label>
+        <button class="tf-swap" id="tf-swap" title="Swap From / To" aria-label="Swap From and To">&#8644;</button>
         <label class="tf-field"><span>To</span><select id="tf-to" class="ops-sel"></select></label>
-        <label class="tf-field tf-grow"><span>Notes</span><input id="tf-notes" class="ops-input" placeholder="Optional"></label>
+        <label class="tf-field"><span>Notes</span><input id="tf-notes" class="ops-input" placeholder="Optional" autocomplete="off"></label>
       </div>
-      <div id="tf-items-wrap" style="padding:0 16px 4px"></div>
-      <div class="add-line" style="padding:0 16px 16px">
+      <div id="tf-items-wrap"></div>
+      <div class="tf-foot">
+        <div class="tf-summary" id="tf-summary">Nothing selected yet.</div>
         <button class="btn accent" id="tf-log">Log transfer</button>
       </div>
-      <div class="note">Enter a quantity for each item you're moving — benches and equipment can go in the same transfer. Quantities adjust the matching grid automatically (subtracted from "From", added to "To"). Use <b>External</b> for items coming in from or going out to outside your locations. The <b>Other</b> row logs a custom item as a paper trail with no grid change.</div>
+      <div class="note">Benches: enter a quantity per type. Equipment: tick the exact units leaving the <b>From</b> location (when receiving from <b>External</b>, enter how many new units arrive and they're created automatically). Counts and unit locations update automatically; deleting a transfer reverses it. <b>Other</b> logs a paper-trail item with no count change.</div>
     </div>
     <div class="card">
-      <div class="card-head"><span class="name" style="font-weight:700">Transfer history</span><span class="meta" id="tf-meta"></span>
-        <div class="spacer"></div>
+      <div class="card-head"><span class="name" style="font-weight:700">Transfer history</span><span class="meta mono" id="tf-meta" style="font-size:11.5px;color:var(--ink-soft)"></span></div>
+      <div class="ops-filter">
+        <div class="seg" id="tf-dir-seg"><button data-dir="" class="on">All</button><button data-dir="in">In</button><button data-dir="out">Out</button><button data-dir="move">Moves</button></div>
+        <input id="tf-search" class="ref-input" placeholder="Search items, locations, notes&hellip;" aria-label="Search transfers" style="flex:0 1 260px;min-width:0" autocomplete="off">
+        <div class="spacer" style="flex:1"></div>
         <button class="btn outline btn-sm" id="export-transfers">Export PDF</button>
       </div>
       <div id="tf-body"></div>
@@ -1076,18 +1217,12 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 
   <!-- ===================== EQUIPMENT ===================== -->
   <section class="panel" id="panel-equip" role="tabpanel" aria-labelledby="tab-equip">
-    <div class="card" style="padding:16px 18px">
-      <div class="card-head" style="padding:0 0 12px"><span class="name" style="font-weight:700">Equipment inventory by location</span><span class="meta">editable</span></div>
-      <div id="equip-grid-wrap"></div>
-    </div>
+    <div id="equip-grid-wrap"></div>
   </section>
 
   <!-- ===================== BENCH COUNTS ===================== -->
   <section class="panel" id="panel-benchcounts" role="tabpanel" aria-labelledby="tab-benchcounts">
-    <div class="card" style="padding:16px 18px">
-      <div class="card-head" style="padding:0 0 12px"><span class="name" style="font-weight:700">Bench inventory by location</span><span class="meta">editable</span></div>
-      <div id="bench-grid-wrap"></div>
-    </div>
+    <div id="bench-grid-wrap"></div>
   </section>
 
   <!-- ===================== SETTINGS ===================== -->
@@ -1113,7 +1248,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
         <div class="settings-row">
           <div class="settings-row-text">
             <div class="settings-row-title">Reset to sample</div>
-            <div class="settings-row-desc">Clear everything and reload the built-in sample catalog. This cannot be undone.</div>
+            <div class="settings-row-desc">Clear everything and reload the built-in sample data. This cannot be undone.</div>
           </div>
           <button class="btn outline" id="reset">Reset to sample</button>
         </div>
@@ -1194,6 +1329,16 @@ function ensureShape(){
     DB.transfers=DB.transfers.map(t=>Array.isArray(t.items)?t:{id:t.id,date:t.date,from:t.from,to:t.to,notes:t.notes,items:[{kind:t.kind,column:t.column||'',item:t.item||'',qty:t.qty}]});
     DB.transfersGrouped=true;
   }
+  // ---- New Builds: per-PO ordered quantities ----
+  if(!DB.poOrders||typeof DB.poOrders!=='object'||Array.isArray(DB.poOrders)) DB.poOrders={};
+  // ---- Equipment: per-unit records (one-time: turn old grid counts into individual units) ----
+  if(!Array.isArray(DB.equipUnits)) DB.equipUnits=[];
+  if(!DB.equipUnitsMigrated){
+    DB.equip.locations.forEach(loc=>{ DB.equip.columns.forEach(c=>{ const n=Math.max(0,Math.round(Number(loc.vals&&loc.vals[c])||0)); for(let i=0;i<n;i++) DB.equipUnits.push(newUnit(c,loc.id)); }); });
+    DB.equipUnitsMigrated=true;
+  }
+  DB.equipUnits.forEach(u=>{ if(!u.id) u.id=uid(); if(!u.condition) u.condition='In service'; if(u.locId==null) u.locId=''; });
+  syncEquipCounts();
   DB.refurbs.forEach(r=>{ if(typeof r.benchId==='string') r.benchId=r.benchId.replace(/\.0+$/,''); });
   DB.refurbs.forEach(r=>{ if(r.status==='Complete') r.status='Completed'; });
 }
@@ -1227,12 +1372,12 @@ function importData(file){
   reader.onload=()=>{
     try{
       const data=JSON.parse(reader.result);
-      if(!data||!Array.isArray(data.benches)) throw new Error('invalid');
+      if(!data||typeof data!=='object'||!(Array.isArray(data.newBuilds)||Array.isArray(data.refurbs)||data.inv||data.equip)) throw new Error('invalid');
       DB=data;
       ensureShape();
       save();
       renderAll();
-      setTab('catalog');
+      setTab('dash');
       flashBtn(btn,'Imported \u2713');
     }catch(e){ flashBtn(btn,'Invalid file'); }
   };
@@ -1346,79 +1491,11 @@ function opsSelect(val,options,onChange){const s=document.createElement('select'
 function confirmDelBtn(onDel,title){const b=document.createElement('button');b.className='icon-btn';b.title=title||'Delete';b.innerHTML='&times;';let armed=false,t=null;b.onclick=(e)=>{e.stopPropagation();if(!armed){armed=true;b.classList.add('confirm');b.textContent='Delete?';t=setTimeout(()=>{armed=false;b.classList.remove('confirm');b.innerHTML='&times;';},3000);return;}clearTimeout(t);onDel();};return b;}
 function tdWrap(node){const td=document.createElement('td');if(node)td.appendChild(node);return td;}
 
-function buildsMetaText(){const t=DB.newBuilds.reduce((s,b)=>s+(b.qty||0),0);return DB.newBuilds.length?(DB.newBuilds.length+' releases \u00b7 '+t.toLocaleString()+' benches'):'';}
-function renderBuilds(){
-  const body=document.getElementById('builds-body');if(!body)return;body.innerHTML='';
-  document.getElementById('builds-count').textContent=DB.newBuilds.length?(' ('+DB.newBuilds.length+')'):'';
-  document.getElementById('builds-meta').textContent=buildsMetaText();
-  if(!DB.newBuilds.length){ body.innerHTML='<div class="ops-empty">No builds logged yet. Use \u201c+ Add build\u201d below.</div>'; return; }
-  const scroll=document.createElement('div');scroll.className='ops-scroll';
-  const table=document.createElement('table');table.className='ops-table';
-  table.innerHTML='<thead><tr><th>PO #</th><th>Manufacturer</th><th>Qty</th><th>Date received</th><th>Notes</th><th></th></tr></thead>';
-  const tb=document.createElement('tbody');
-  DB.newBuilds.forEach(b=>{
-    const tr=document.createElement('tr');
-    tr.append(
-      tdWrap(opsInput(b.po,v=>{b.po=v;save();},{ph:'PO #'})),
-      tdWrap(opsInput(b.manufacturer,v=>{b.manufacturer=v;save();},{ph:'Manufacturer'})),
-      tdWrap(opsInput(b.qty,v=>{b.qty=v;save();document.getElementById('builds-meta').textContent=buildsMetaText();},{num:true,type:'number'})),
-      tdWrap(opsInput(b.date,v=>{b.date=v;save();},{type:'date'})),
-      tdWrap(opsInput(b.notes,v=>{b.notes=v;save();},{ph:'Notes'})),
-      tdWrap(confirmDelBtn(()=>{DB.newBuilds=DB.newBuilds.filter(x=>x!==b);save();renderBuilds();},'Remove build'))
-    );
-    tb.appendChild(tr);
-  });
-  table.appendChild(tb);scroll.appendChild(table);body.appendChild(scroll);
-}
 
 function kpiTile(label,val,warn){
   const t=document.createElement('div');t.className='kpi-tile'+(warn?' warn':'');
   t.innerHTML='<div class="kpi-num">'+val+'</div><div class="kpi-lbl">'+esc(label)+'</div>';
   return t;
-}
-function renderRefurbs(){
-  const body=document.getElementById('refurb-body');if(!body)return;body.innerHTML='';
-  document.getElementById('refurb-count').textContent=DB.refurbs.length?(' ('+DB.refurbs.length+')'):'';
-  const fsel=document.getElementById('refurb-filter');
-  if(fsel && !fsel.dataset.built){ ['All statuses',...REFURB_STATUSES].forEach(o=>{const op=document.createElement('option');op.value=(o==='All statuses'?'':o);op.textContent=o;fsel.appendChild(op);}); fsel.dataset.built='1'; fsel.onchange=()=>renderRefurbs(); }
-  const q=(document.getElementById('refurb-search').value||'').trim().toLowerCase();
-  const fstat=fsel?fsel.value:'';
-  const counts={}; REFURB_STATUSES.forEach(s=>counts[s]=0);
-  DB.refurbs.forEach(r=>{ if(counts[r.status]!==undefined)counts[r.status]++; });
-  document.getElementById('refurb-meta').textContent=DB.refurbs.length+' jobs \u00b7 '+counts['Completed']+' completed \u00b7 '+counts['In Progress']+' in progress';
-  const kpiWrap=document.getElementById('refurb-kpi');
-  if(kpiWrap){
-    kpiWrap.innerHTML='';
-    kpiWrap.appendChild(kpiTile('Total jobs',DB.refurbs.length));
-    kpiWrap.appendChild(kpiTile('In progress',counts['In Progress']||0,(counts['In Progress']||0)>0));
-    kpiWrap.appendChild(kpiTile('Completed',counts['Completed']||0));
-  }
-  const shown=DB.refurbs.filter(r=>{
-    if(fstat && r.status!==fstat) return false;
-    if(q){ const hay=((r.benchId||'')+' '+(r.team||'')+' '+(r.dropTo||'')+' '+(r.location||'')+' '+(r.notes||'')).toLowerCase(); if(!hay.includes(q)) return false; }
-    return true;
-  });
-  if(!shown.length){ body.innerHTML='<div class="ops-empty">'+(DB.refurbs.length?'No jobs match your filter.':'No refurb jobs yet. Use \u201c+ Add job\u201d below.')+'</div>'; return; }
-  const scroll=document.createElement('div');scroll.className='ops-scroll';
-  const table=document.createElement('table');table.className='ops-table';
-  table.innerHTML='<thead><tr><th>Bench ID</th><th>Location</th><th>Team</th><th>Dropped off to</th><th>Drop off</th><th>Pick up</th><th>Status</th><th>Notes</th><th></th></tr></thead>';
-  const tb=document.createElement('tbody');
-  shown.forEach(r=>{
-    const tr=document.createElement('tr');
-    tr.append(
-      tdWrap(opsInput(r.benchId,v=>{r.benchId=v;save();})),
-      tdWrap(opsInput(r.location,v=>{r.location=v;save();})),
-      tdWrap(opsInput(r.team,v=>{r.team=v;save();})),
-      tdWrap(opsInput(r.dropTo,v=>{r.dropTo=v;save();})),
-      tdWrap(opsInput(r.dropOff,v=>{r.dropOff=v;save();},{ph:'MM/DD/YY'})),
-      tdWrap(opsInput(r.pickUp,v=>{r.pickUp=v;save();},{ph:'MM/DD/YY'})),
-      tdWrap(refurbStatusSelect(r)),
-      tdWrap(opsInput(r.notes,v=>{r.notes=v;save();})),
-      tdWrap(confirmDelBtn(()=>{DB.refurbs=DB.refurbs.filter(x=>x!==r);save();renderRefurbs();},'Remove job'))
-    );
-    tb.appendChild(tr);
-  });
-  table.appendChild(tb);scroll.appendChild(table);body.appendChild(scroll);
 }
 
 function gridGrandTotal(grid){
@@ -1437,10 +1514,11 @@ function renderDash(){
     note.innerHTML='<span class="dash-note-dot"></span>'+rfProg+' refurb job'+(rfProg===1?'':'s')+' currently in progress';
     body.appendChild(note);
   }
-  function kpiTile(label,val,warn){
-    const t=document.createElement('div');t.className='kpi-tile'+(warn?' warn':'');
-    t.innerHTML='<div class="kpi-num">'+val+'</div><div class="kpi-lbl">'+esc(label)+'</div>';
-    return t;
+  const eqAttn=(DB.equipUnits||[]).filter(u=>u.condition&&u.condition!=='In service').length;
+  if(eqAttn>0){
+    const note=document.createElement('div');note.className='dash-note';
+    note.innerHTML='<span class="dash-note-dot"></span>'+eqAttn+' equipment unit'+(eqAttn===1?' needs':'s need')+' repair or is out of service';
+    body.appendChild(note);
   }
   const kpi=document.createElement('div');kpi.className='kpi-strip';
   kpi.appendChild(kpiTile('Benches on hand',benchTotal.toLocaleString()));
@@ -1451,8 +1529,8 @@ function renderDash(){
   body.appendChild(kpi);
 
   function card(title,rowsArr){const c=document.createElement('div');c.className='dash-card';let html='<h3>'+esc(title)+'</h3>';rowsArr.forEach(([l,v,acc])=>{html+='<div class="stat-row"><span class="stat-lbl">'+esc(l)+'</span><span class="stat-val'+(acc?' accent':'')+'">'+v+'</span></div>';});c.innerHTML=html;return c;}
-  const nbRows=[['Total releases logged',nbCount],['Total benches picked up',nbQty.toLocaleString(),true]];
-  Object.keys(byMan).sort().forEach(m=>{ if(m==='Unassigned'&&byMan[m]===0) return; nbRows.push([m+' qty',byMan[m].toLocaleString()]); });
+  const nbRows=[['Total pickups logged',nbCount],['Total benches picked up',nbQty.toLocaleString(),true]];
+  poGroups().forEach(g=>{ if(!g.rows.length&&!g.ordered) return; nbRows.push(['PO '+(g.po||'(none)')+(g.manufacturer?(' \u00b7 '+g.manufacturer):''),g.ordered?(g.picked.toLocaleString()+' / '+g.ordered.toLocaleString()):g.picked.toLocaleString()]); });
   const row=document.createElement('div');row.className='dash-row';
   row.appendChild(card('New Builds',nbRows));
   row.appendChild(refurbStatusCard(rfCount,rfProg,rfDone,rfNotStarted));
@@ -1566,7 +1644,7 @@ function invTable(){
     });
     grand+=rowTot;
     const rt=document.createElement('td');rt.className='rowtot';rt.dataset.loc=loc.id;rt.textContent=rowTot.toLocaleString();tr.appendChild(rt);
-    const del=document.createElement('td');del.appendChild(confirmDelBtn(()=>{DB.inv.locations=DB.inv.locations.filter(x=>x!==loc);DB.equip.locations=DB.equip.locations.filter(l=>l.id!==loc.id);save();renderDash();renderEquipGrid();renderBenchCounts();},'Remove location (also removes it from Equipment)'));tr.appendChild(del);
+    const del=document.createElement('td');del.appendChild(confirmDelBtn(()=>{DB.inv.locations=DB.inv.locations.filter(x=>x!==loc);DB.equip.locations=DB.equip.locations.filter(l=>l.id!==loc.id);(DB.equipUnits||[]).forEach(u=>{if(u.locId===loc.id)u.locId='';});save();renderDash();renderEquipGrid();renderBenchCounts();},'Remove location (also removes it from Equipment)'));tr.appendChild(del);
     tb.appendChild(tr);
   });
   t.appendChild(tb);
@@ -1580,66 +1658,10 @@ function refreshInvTotals(){
     const cell=document.querySelector('.rowtot[data-loc="'+loc.id+'"]');if(cell)cell.textContent=rt.toLocaleString();});
   const cells=document.querySelectorAll('.inv-table .coltot');cols.forEach((c,i)=>{if(cells[i])cells[i].textContent=colTot[c].toLocaleString();});
   const g=document.querySelector('.inv-table .grandtot');if(g)g.textContent=grand.toLocaleString();
-}
-function renderBenchCounts(){
-  const wrap=document.getElementById('bench-grid-wrap');if(!wrap)return;wrap.innerHTML='';
-  if(DB.inv.locations.length) wrap.appendChild(invBars());
-  wrap.appendChild(invTable());
-  const addLoc=document.createElement('button');addLoc.className='ghost-btn';addLoc.textContent='+ Add location';addLoc.style.marginTop='10px';
-  addLoc.onclick=()=>{const id=uid();const vals={};DB.inv.columns.forEach(c=>vals[c]=0);DB.inv.locations.push({id,name:'New location',vals});const evals={};DB.equip.columns.forEach(c=>evals[c]=0);DB.equip.locations.push({id,name:'New location',vals:evals});save();renderBenchCounts();renderEquipGrid();renderDash();};
-  const invPdfBtn=document.createElement('button');invPdfBtn.className='btn outline';invPdfBtn.textContent='Inventory report (PDF)';invPdfBtn.style.marginTop='10px';invPdfBtn.style.marginLeft='8px';
-  invPdfBtn.onclick=()=>{ if(!DB.inv.locations.length){flashBtn(invPdfBtn,'No inventory');return;} withPdf(invPdfBtn,()=>exportInventoryPDF()); };
-  wrap.appendChild(addLoc);wrap.appendChild(invPdfBtn);
+  const kg=document.querySelector('#bc-kpi [data-bc="grand"]');if(kg)kg.textContent=grand.toLocaleString();
+  cols.forEach(c=>{document.querySelectorAll('#bc-kpi [data-bc]').forEach(el=>{if(el.dataset.bc===c)el.textContent=colTot[c].toLocaleString();});});
 }
 /* ---------- equipment (Heaters / AC Units / Compressors / Cooling Towers) ---------- */
-function addEquipType(){
-  let base='New type', name=base, n=1;
-  while(DB.equip.columns.includes(name)){ n++; name=base+' '+n; }
-  DB.equip.columns.push(name);
-  DB.equip.locations.forEach(loc=>{ if(!loc.vals) loc.vals={}; loc.vals[name]=0; });
-}
-function renameEquipColumn(oldName,newName){
-  newName=(newName||'').trim();
-  if(!newName||newName===oldName) return false;
-  if(DB.equip.columns.includes(newName)) return false;
-  const idx=DB.equip.columns.indexOf(oldName);
-  if(idx<0) return false;
-  DB.equip.columns[idx]=newName;
-  DB.equip.locations.forEach(loc=>{ if(!loc.vals)loc.vals={}; if(oldName in loc.vals){ loc.vals[newName]=loc.vals[oldName]; delete loc.vals[oldName]; } });
-  DB.transfers.forEach(t=>{ (t.items||[]).forEach(it=>{ if(it.kind==='equip'&&it.column===oldName){ it.column=newName; it.item=newName; } }); });
-  return true;
-}
-function removeEquipColumn(name){
-  DB.equip.columns=DB.equip.columns.filter(c=>c!==name);
-  DB.equip.locations.forEach(loc=>{ if(loc.vals) delete loc.vals[name]; });
-}
-function equipBars(){
-  const cols=DB.equip.columns;
-  const palette=['#AA0201','#4B4E53','#2F6B4F','#9A6512','#6B4E9A','#1F6F78'];
-  const wrap=document.createElement('div');wrap.className='inv-bars';
-  const totals=DB.equip.locations.map(loc=>{let t=0;cols.forEach(c=>t+=(loc.vals&&loc.vals[c])||0);return t;});
-  const max=Math.max(1,...totals);
-  DB.equip.locations.forEach((loc,i)=>{
-    const rowTot=totals[i];
-    const row=document.createElement('div');row.className='inv-bar-row';
-    const label=document.createElement('span');label.className='inv-bar-label';label.textContent=loc.name||'—';
-    const track=document.createElement('div');track.className='inv-bar-track';
-    const fill=document.createElement('div');fill.className='inv-bar-fill';fill.style.width=(rowTot>0?(rowTot/max*100):0)+'%';
-    cols.forEach((c,ci)=>{
-      const v=(loc.vals&&loc.vals[c])||0; if(!v||!rowTot)return;
-      const seg=document.createElement('span');seg.className='inv-bar-seg';seg.style.width=(v/rowTot*100)+'%';seg.style.background=palette[ci%palette.length];seg.title=c+': '+v;
-      fill.appendChild(seg);
-    });
-    track.appendChild(fill);
-    const total=document.createElement('span');total.className='inv-bar-total mono';total.textContent=rowTot.toLocaleString();
-    row.appendChild(label);row.appendChild(track);row.appendChild(total);
-    wrap.appendChild(row);
-  });
-  const legend=document.createElement('div');legend.className='inv-bar-legend';
-  legend.innerHTML=cols.map((c,ci)=>'<span class="inv-legend-item"><span class="dash-dot" style="background:'+palette[ci%palette.length]+'"></span>'+esc(c)+'</span>').join('');
-  wrap.appendChild(legend);
-  return wrap;
-}
 function equipTable(){
   const scroll=document.createElement('div');scroll.className='ops-scroll';
   const t=document.createElement('table');t.className='equip-table';
@@ -1690,18 +1712,6 @@ function refreshEquipTotals(){
   const cells=document.querySelectorAll('#equip-grid-wrap .equip-table .coltot');cols.forEach((c,i)=>{if(cells[i])cells[i].textContent=colTot[c].toLocaleString();});
   const g=document.querySelector('#equip-grid-wrap .equip-table .grandtot');if(g)g.textContent=grand.toLocaleString();
 }
-function renderEquipGrid(){
-  const wrap=document.getElementById('equip-grid-wrap');if(!wrap)return;wrap.innerHTML='';
-  if(DB.equip.locations.length) wrap.appendChild(equipBars());
-  wrap.appendChild(equipTable());
-  const addLoc=document.createElement('button');addLoc.className='ghost-btn';addLoc.textContent='+ Add location';addLoc.style.marginTop='10px';
-  addLoc.onclick=()=>{const id=uid();const vals={};DB.equip.columns.forEach(c=>vals[c]=0);DB.equip.locations.push({id,name:'New location',vals});const bvals={};DB.inv.columns.forEach(c=>bvals[c]=0);DB.inv.locations.push({id,name:'New location',vals:bvals});save();renderEquipGrid();renderDash();renderBenchCounts();};
-  const addType=document.createElement('button');addType.className='ghost-btn';addType.textContent='+ Add equipment type';addType.style.marginTop='10px';addType.style.marginLeft='8px';
-  addType.onclick=()=>{addEquipType();save();renderEquipGrid();};
-  const pdfBtn=document.createElement('button');pdfBtn.className='btn outline';pdfBtn.textContent='Inventory report (PDF)';pdfBtn.style.marginTop='10px';pdfBtn.style.marginLeft='8px';
-  pdfBtn.onclick=()=>{ if(!DB.equip.locations.length){flashBtn(pdfBtn,'No inventory');return;} withPdf(pdfBtn,()=>exportEquipInventoryPDF()); };
-  wrap.appendChild(addLoc);wrap.appendChild(addType);wrap.appendChild(pdfBtn);
-}
 function exportInventoryPDF(){
   if(!pdfReady())return;
   const doc=newPdf();const M=40;const PH=doc.internal.pageSize.getHeight();
@@ -1747,25 +1757,6 @@ function exportInventoryPDF(){
   stampWatermark(doc);
   doc.save('inventory-report-'+stampForFile(new Date().toISOString())+'.pdf');
 }
-function exportBuildsPDF(){
-  if(!pdfReady())return;
-  const doc=newPdf();const M=40;let y=50;
-  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('New Builds Received',M,y);
-  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(90);y+=18;doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
-  const rows=DB.newBuilds.map(b=>[b.po||'',b.manufacturer||'',String(b.qty||0),b.date||'',b.notes||'']);
-  const tot=DB.newBuilds.reduce((s,b)=>s+(b.qty||0),0);
-  doc.autoTable({startY:y+18,margin:{left:M,right:M},head:[['PO #','Manufacturer','Qty','Date received','Notes']],body:rows,foot:[['','','Total '+tot.toLocaleString(),'','']],styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{2:{halign:'right'}}});
-  stampWatermark(doc);doc.save('new-builds-'+stampForFile(new Date().toISOString())+'.pdf');
-}
-function exportRefurbsPDF(){
-  if(!pdfReady())return;
-  const doc=newPdf();const M=40;let y=50;
-  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Refurb Jobs',M,y);
-  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(90);y+=18;doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
-  const rows=DB.refurbs.map(r=>[r.benchId||'',r.team||'',r.dropTo||'',r.dropOff||'',r.pickUp||'',r.status||'',r.notes||'']);
-  doc.autoTable({startY:y+18,margin:{left:M,right:M},head:[['Bench ID','Team','Dropped to','Drop off','Pick up','Status','Notes']],body:rows,styles:{font:'helvetica',fontSize:8,cellPadding:4},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
-  stampWatermark(doc);doc.save('refurb-jobs-'+stampForFile(new Date().toISOString())+'.pdf');
-}
 
 /* ---------- transfers ---------- */
 function transferDir(t){ if(t.from==='External')return 'in'; if(t.to==='External')return 'out'; return 'move'; }
@@ -1777,125 +1768,6 @@ function applyTransferToGrid(t,sign){
   if(f){ if(!f.vals)f.vals={}; f.vals[col]=(f.vals[col]||0)-sign*(t.qty||0); }
   if(to){ if(!to.vals)to.vals={}; to.vals[col]=(to.vals[col]||0)+sign*(t.qty||0); }
 }
-function renderTransferMoveItems(){
-  const wrap=document.getElementById('tf-items-wrap');if(!wrap)return;
-  wrap.innerHTML='';
-  const list=document.createElement('div');list.className='eq-move-grid';
-  const benchHead=document.createElement('div');benchHead.className='tf-move-group';benchHead.textContent='Benches';
-  list.appendChild(benchHead);
-  DB.inv.columns.forEach(c=>{
-    const row=document.createElement('div');row.className='eq-move-row';
-    const label=document.createElement('span');label.className='eq-move-label';label.textContent=c;
-    const inp=document.createElement('input');inp.type='number';inp.min='0';inp.className='ops-input num eq-move-qty';inp.dataset.domain='bench';inp.dataset.col=c;inp.placeholder='0';
-    row.appendChild(label);row.appendChild(inp);
-    list.appendChild(row);
-  });
-  const equipHead=document.createElement('div');equipHead.className='tf-move-group';equipHead.textContent='Equipment';
-  list.appendChild(equipHead);
-  DB.equip.columns.forEach(c=>{
-    const row=document.createElement('div');row.className='eq-move-row';
-    const label=document.createElement('span');label.className='eq-move-label';label.textContent=c;
-    const inp=document.createElement('input');inp.type='number';inp.min='0';inp.className='ops-input num eq-move-qty';inp.dataset.domain='equip';inp.dataset.col=c;inp.placeholder='0';
-    row.appendChild(label);row.appendChild(inp);
-    list.appendChild(row);
-  });
-  const orow=document.createElement('div');orow.className='eq-move-row';
-  const oDesc=document.createElement('input');oDesc.className='ops-input eq-move-other-desc';oDesc.placeholder='Other (describe)';
-  const oQty=document.createElement('input');oQty.type='number';oQty.min='0';oQty.className='ops-input num eq-move-other-qty';oQty.placeholder='0';
-  orow.appendChild(oDesc);orow.appendChild(oQty);
-  list.appendChild(orow);
-  wrap.appendChild(list);
-}
-function refreshTransferForm(){
-  const locOpts=['External',...DB.inv.locations.map(l=>l.name)];
-  ['tf-from','tf-to'].forEach((id,idx)=>{const s=document.getElementById(id);if(!s)return;const cur2=s.value;s.innerHTML='';locOpts.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;s.appendChild(o);});if(cur2&&locOpts.includes(cur2))s.value=cur2;else s.value=(idx===0?'External':(DB.inv.locations[0]?DB.inv.locations[0].name:'External'));});
-  const d=document.getElementById('tf-date');if(d&&!d.value)d.value=new Date().toISOString().slice(0,10);
-  renderTransferMoveItems();
-}
-function logTransfer(){
-  const btn=document.getElementById('tf-log');
-  const from=document.getElementById('tf-from').value;
-  const to=document.getElementById('tf-to').value;
-  const date=document.getElementById('tf-date').value||new Date().toISOString().slice(0,10);
-  const notes=(document.getElementById('tf-notes').value||'').trim();
-  if(from===to){flashBtn(btn,'From = To');return;}
-  const items=[];
-  document.querySelectorAll('#tf-items-wrap .eq-move-qty').forEach(inp=>{
-    const qty=parseFloat(inp.value)||0;
-    if(qty<=0) return;
-    const column=inp.dataset.col;
-    const kind=(inp.dataset.domain==='bench')?'bench':'equip';
-    const item=(kind==='bench')?(column+' benches'):column;
-    items.push({kind,column,item,qty});
-    inp.value='';
-  });
-  const oDescEl=document.querySelector('#tf-items-wrap .eq-move-other-desc');
-  const oQtyEl=document.querySelector('#tf-items-wrap .eq-move-other-qty');
-  const oDesc=((oDescEl&&oDescEl.value)||'').trim();
-  if(oDesc){
-    const qtyRaw=((oQtyEl&&oQtyEl.value)||'').trim();
-    const qty=qtyRaw===''?'':(parseFloat(qtyRaw)||0);
-    items.push({kind:'other',column:'',item:oDesc,qty});
-    oDescEl.value='';oQtyEl.value='';
-  }
-  if(!items.length){flashBtn(btn,'Enter a quantity');return;}
-  items.forEach(it=>{
-    if(it.kind==='bench') applyTransferToGrid({from,to,column:it.column,qty:it.qty,kind:'bench'},1);
-    else if(it.kind==='equip') applyEquipTransferToGrid({from,to,column:it.column,qty:it.qty,kind:'equip'},1);
-  });
-  DB.transfers.unshift({id:uid(),date,from,to,notes,items});
-  document.getElementById('tf-notes').value='';
-  save();
-  flashBtn(btn,items.length>1?('Logged '+items.length+' \u2713'):'Logged \u2713');
-  renderTransfers();renderDash();renderEquipGrid();renderBenchCounts();
-}
-function renderTransfers(){
-  refreshTransferForm();
-  const body=document.getElementById('tf-body');if(!body)return;body.innerHTML='';
-  document.getElementById('transfers-count').textContent=DB.transfers.length?(' ('+DB.transfers.length+')'):'';
-  document.getElementById('tf-meta').textContent=DB.transfers.length?(DB.transfers.length+' logged'):'';
-  if(!DB.transfers.length){ body.innerHTML='<div class="ops-empty">No transfers logged yet. Use the form above to record a move.</div>'; return; }
-  const scroll=document.createElement('div');scroll.className='ops-scroll';
-  const table=document.createElement('table');table.className='ops-table';
-  table.innerHTML='<thead><tr><th>Date</th><th>Direction</th><th>Items</th><th>From</th><th>To</th><th>Notes</th><th></th></tr></thead>';
-  const tb=document.createElement('tbody');
-  DB.transfers.forEach(t=>{
-    const tr=document.createElement('tr');
-    const dir=transferDir(t);const dirLabel={in:'IN',out:'OUT',move:'MOVE'}[dir];
-    const itemsHtml=(t.items||[]).map(it=>{
-      const qtyTxt=(it.qty===''||it.qty==null||it.qty===0)?'':(' \u00d7'+Number(it.qty).toLocaleString());
-      return esc(it.item||'')+qtyTxt;
-    }).join(', ');
-    const cells=[t.date||'', '<span class="tf-dir '+dir+'">'+dirLabel+'</span>', itemsHtml, esc(t.from||''), esc(t.to||''), esc(t.notes||'')];
-    cells.forEach(c=>{const td=document.createElement('td');td.innerHTML=c;tr.appendChild(td);});
-    const dtd=document.createElement('td');
-    dtd.appendChild(confirmDelBtn(()=>{
-      (t.items||[]).forEach(it=>{
-        if(it.kind==='bench') applyTransferToGrid({from:t.from,to:t.to,column:it.column,qty:it.qty,kind:'bench'},-1);
-        else if(it.kind==='equip') applyEquipTransferToGrid({from:t.from,to:t.to,column:it.column,qty:it.qty,kind:'equip'},-1);
-      });
-      DB.transfers=DB.transfers.filter(x=>x!==t); save(); renderTransfers(); renderDash(); renderEquipGrid(); renderBenchCounts();
-    },'Remove transfer (reverses grid)'));
-    tr.appendChild(dtd);
-    tb.appendChild(tr);
-  });
-  table.appendChild(tb);scroll.appendChild(table);body.appendChild(scroll);
-}
-function exportTransfersPDF(){
-  if(!pdfReady())return;
-  const doc=newPdf();const M=40;let y=50;
-  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Transfer Log',M,y);
-  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(90);y+=18;doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
-  const rows=DB.transfers.map(t=>{
-    const itemsTxt=(t.items||[]).map(it=>{
-      const qtyTxt=(it.qty===''||it.qty==null||it.qty===0)?'':(' x'+it.qty);
-      return (it.item||'')+qtyTxt;
-    }).join(', ');
-    return [t.date||'',{in:'IN',out:'OUT',move:'MOVE'}[transferDir(t)],itemsTxt,t.from||'',t.to||'',t.notes||''];
-  });
-  doc.autoTable({startY:y+18,margin:{left:M,right:M},head:[['Date','Dir','Items','From','To','Notes']],body:rows,styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
-  stampWatermark(doc);doc.save('transfers-'+stampForFile(new Date().toISOString())+'.pdf');
-}
 
 /* ---------- equipment grid math (moves are logged from the Transfers tab) ---------- */
 function applyEquipTransferToGrid(t,sign){
@@ -1906,47 +1778,933 @@ function applyEquipTransferToGrid(t,sign){
   if(f){ if(!f.vals)f.vals={}; f.vals[col]=(f.vals[col]||0)-sign*(t.qty||0); }
   if(to){ if(!to.vals)to.vals={}; to.vals[col]=(to.vals[col]||0)+sign*(t.qty||0); }
 }
+
+/* ---------- shared UI helpers for grouped sections ---------- */
+const UI={poOpen:{},teamOpen:{},eqOpen:{},tfDir:'',tfQ:''};
+function todayISO(){const d=new Date();const p=x=>String(x).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());}
+function stopClick(el){['click','mousedown','keydown'].forEach(ev=>el.addEventListener(ev,e=>{ if(ev!=='keydown'||e.key===' '||e.key==='Enter') e.stopPropagation(); }));return el;}
+function grpStat(label,valHtml,cls){const s=document.createElement('div');s.className='grp-stat';s.innerHTML='<b class="'+(cls||'')+'">'+valHtml+'</b><span>'+esc(label)+'</span>';return s;}
+function progBar(parts,label){
+  // parts: [{val,cls}] fractions 0..1
+  const w=document.createElement('div');w.className='grp-prog';
+  const tr=document.createElement('div');tr.className='prog-track';
+  parts.forEach(p=>{ if(p.val<=0) return; const f=document.createElement('div');f.className='prog-fill '+(p.cls||'');f.style.width=Math.min(100,p.val*100)+'%';tr.appendChild(f); });
+  const lb=document.createElement('div');lb.className='prog-lbl';lb.textContent=label;
+  w.appendChild(tr);w.appendChild(lb);return w;
+}
+/* Builds a collapsible section. opts: {key,store,defaultOpen,eyebrow,titleNode,stats:[nodes],cls} → {el,body} */
+function grpSection(opts){
+  const g=document.createElement('div');
+  const isOpen=(opts.store[opts.key]!==undefined)?opts.store[opts.key]:opts.defaultOpen;
+  g.className='grp'+(isOpen?' open':'')+(opts.cls?' '+opts.cls:'');
+  const head=document.createElement('div');head.className='grp-head';head.tabIndex=0;head.setAttribute('role','button');head.setAttribute('aria-expanded',isOpen?'true':'false');
+  const caret=document.createElement('span');caret.className='grp-caret';caret.textContent='▶';
+  const title=document.createElement('div');title.className='grp-title';
+  const eb=document.createElement('span');eb.className='grp-eyebrow';eb.textContent=opts.eyebrow||'';title.appendChild(eb);
+  title.appendChild(opts.titleNode);
+  if(opts.subNode) title.appendChild(opts.subNode);
+  head.appendChild(caret);head.appendChild(title);
+  (opts.right||[]).forEach(n=>head.appendChild(n));
+  const toggle=()=>{const o=!g.classList.contains('open');g.classList.toggle('open',o);head.setAttribute('aria-expanded',o?'true':'false');opts.store[opts.key]=o;};
+  head.onclick=(e)=>{ if(e.target.closest('input,select,button,textarea')) return; toggle(); };
+  head.onkeydown=(e)=>{ if(e.target!==head) return; if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();} };
+  const body=document.createElement('div');body.className='grp-body';
+  g.appendChild(head);g.appendChild(body);
+  return {el:g,body};
+}
+function confirmTextBtn(label,onDel,title){const b=document.createElement('button');b.className='mini-btn';b.title=title||label;b.textContent=label;let armed=false,t=null;b.onclick=(e)=>{e.stopPropagation();if(!armed){armed=true;b.textContent='Click again to confirm';b.style.color='var(--warn)';b.style.borderColor='#E9C4C4';b.style.background='#F6E1E1';t=setTimeout(()=>{armed=false;b.textContent=label;b.style.color='';b.style.borderColor='';b.style.background='';},3000);return;}clearTimeout(t);onDel();};return b;}
+function grpNameInput(val,ph,onCommit,sub){
+  const i=document.createElement('input');i.className='grp-in'+(sub?' sub':'');i.value=val||'';i.placeholder=ph||'';
+  i.setAttribute('autocomplete','off');i.setAttribute('autocorrect','off');i.setAttribute('autocapitalize','off');
+  i.onchange=()=>onCommit(i.value.trim(),i);
+  i.onkeydown=(e)=>{ if(e.key==='Enter') i.blur(); };
+  return i;
+}
+
+/* ===================== NEW BUILDS — one section per PO ===================== */
+function poKey(b){return ((b&&b.po)||'').toString().trim();}
+function poGroups(){
+  const map={};
+  Object.keys(DB.poOrders||{}).forEach(k=>{ map[k]={po:k,rows:[]}; });
+  DB.newBuilds.forEach(b=>{ const k=poKey(b); (map[k]||(map[k]={po:k,rows:[]})).rows.push(b); });
+  const groups=Object.values(map).map(g=>{
+    const meta=DB.poOrders[g.po]||{};
+    const picked=g.rows.reduce((s,b)=>s+(Number(b.qty)||0),0);
+    const ordered=Number(meta.ordered)||0;
+    const dates=g.rows.map(b=>b.date||'').filter(Boolean).sort();
+    const mans=[...new Set(g.rows.map(b=>(b.manufacturer||'').trim()).filter(Boolean))];
+    const man=mans.length?mans.join(' / '):(meta.manufacturer||'');
+    return {po:g.po,rows:g.rows,picked,ordered,remaining:ordered?Math.max(0,ordered-picked):null,
+      complete:ordered>0&&picked>=ordered,first:dates[0]||'',last:dates[dates.length-1]||'',manufacturer:man};
+  });
+  groups.sort((a,b)=>{
+    if(a.complete!==b.complete) return a.complete?1:-1;
+    const la=a.last||'9999-99-99', lb=b.last||'9999-99-99';
+    if(la!==lb) return lb.localeCompare(la);
+    return b.po.localeCompare(a.po,undefined,{numeric:true});
+  });
+  return groups;
+}
+function fmtDate(iso){ if(!iso) return ''; const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(iso); if(!m) return iso; return m[2]+'/'+m[3]+'/'+m[1].slice(2); }
+function buildsMetaText(){const t=DB.newBuilds.reduce((s,b)=>s+(Number(b.qty)||0),0);const n=poGroups().length;return n?(n+' PO'+(n===1?'':'s')+' · '+DB.newBuilds.length+' pickups · '+t.toLocaleString()+' benches'):'';}
+function renamePO(oldKey,newKey){
+  if(newKey===oldKey) return;
+  DB.newBuilds.forEach(b=>{ if(poKey(b)===oldKey) b.po=newKey; });
+  const om=DB.poOrders[oldKey];
+  if(om){ const nm=DB.poOrders[newKey]; if(nm){ nm.ordered=(Number(nm.ordered)||0)+(Number(om.ordered)||0); if(!nm.manufacturer) nm.manufacturer=om.manufacturer||''; } else if(newKey) DB.poOrders[newKey]=om; delete DB.poOrders[oldKey]; }
+  if(UI.poOpen[oldKey]!==undefined){ UI.poOpen[newKey]=UI.poOpen[oldKey]; delete UI.poOpen[oldKey]; }
+}
+function renderBuildsKpi(groups){
+  const k=document.getElementById('builds-kpi');if(!k)return;k.innerHTML='';
+  const picked=groups.reduce((s,g)=>s+g.picked,0);
+  const open=groups.filter(g=>!g.complete).length;
+  const remaining=groups.reduce((s,g)=>s+(g.remaining||0),0);
+  k.appendChild(kpiTile('Open POs',open));
+  k.appendChild(kpiTile('Benches picked up',picked.toLocaleString()));
+  k.appendChild(kpiTile('Still to pick up',remaining.toLocaleString(),remaining>0));
+  k.appendChild(kpiTile('Pickups logged',DB.newBuilds.length.toLocaleString()));
+}
+function renderBuilds(){
+  const body=document.getElementById('builds-body');if(!body)return;body.innerHTML='';
+  if(!DB.poOrders) DB.poOrders={};
+  const groups=poGroups();
+  document.getElementById('builds-count').textContent=groups.length?(' ('+groups.length+')'):'';
+  document.getElementById('builds-meta').textContent=buildsMetaText();
+  renderBuildsKpi(groups);
+  if(!groups.length){ body.innerHTML='<div class="card"><div class="ops-empty">No POs yet. Start one with “+ Add PO” above.</div></div>'; return; }
+  const locOpts=['',...DB.inv.locations.map(l=>l.name)];
+  groups.forEach(g=>{
+    const key=g.po;
+    const nameIn=grpNameInput(g.po,'Enter PO #',(v,inp)=>{
+      if(v===key) return;
+      if(!v){ inp.value=key; return; }
+      renamePO(key,v);save();renderBuilds();renderDash();
+    });
+    const manIn=grpNameInput(g.manufacturer,'Manufacturer',(v)=>{
+      g.rows.forEach(b=>b.manufacturer=v);
+      if(!DB.poOrders[key]) DB.poOrders[key]={ordered:0,manufacturer:''};
+      DB.poOrders[key].manufacturer=v; save(); renderDash();
+    },true);
+    // stats
+    const ordWrap=document.createElement('div');ordWrap.className='grp-stat';
+    const ordIn=document.createElement('input');ordIn.type='number';ordIn.min='0';ordIn.className='num-in';ordIn.value=g.ordered||'';ordIn.setAttribute('aria-label','Qty ordered on PO '+key);ordIn.setAttribute('autocomplete','off');
+    ordIn.onchange=()=>{ if(!DB.poOrders[key]) DB.poOrders[key]={ordered:0,manufacturer:g.manufacturer||''}; DB.poOrders[key].ordered=Math.max(0,parseFloat(ordIn.value)||0); save(); renderBuilds(); renderDash(); };
+    const ordLbl=document.createElement('span');ordLbl.textContent='Ordered';
+    ordWrap.appendChild(ordIn);ordWrap.appendChild(ordLbl);
+    const stats=document.createElement('div');stats.className='grp-stats';
+    stats.appendChild(grpStat('Pickups',g.rows.length));
+    stats.appendChild(grpStat('Picked up',g.picked.toLocaleString(),'acc'));
+    stats.appendChild(ordWrap);
+    stats.appendChild(grpStat('Remaining',g.remaining==null?'—':g.remaining.toLocaleString(),g.remaining?'amber':(g.complete?'good':'')));
+    let prog;
+    if(g.ordered>0){ const fr=g.picked/g.ordered; prog=progBar([{val:fr,cls:g.picked>g.ordered?'over':(fr>=1?'done':'')}],g.picked.toLocaleString()+' of '+g.ordered.toLocaleString()+' · '+Math.round(fr*100)+'%'+(g.picked>g.ordered?' (over)':'')); }
+    else prog=progBar([],'Set Ordered to track progress');
+    const sec=grpSection({key,store:UI.poOpen,defaultOpen:!g.complete,eyebrow:'PO #'+(g.last?(' · last pickup '+fmtDate(g.last)):''),titleNode:nameIn,subNode:manIn,right:[prog,stats],cls:g.complete?'g-done':(g.rows.length?'g-active':'')});
+    // live-refresh header numbers while typing quantities (no re-render, so focus is kept)
+    const updHead=()=>{
+      const picked=g.rows.reduce((s,b)=>s+(Number(b.qty)||0),0);
+      const bs=stats.querySelectorAll('.grp-stat b');
+      if(bs[1]) bs[1].textContent=picked.toLocaleString();
+      if(bs[2]) bs[2].textContent=g.ordered?Math.max(0,g.ordered-picked).toLocaleString():'—';
+      const tot=sec.el.querySelector('tfoot .mono'); if(tot) tot.textContent=picked.toLocaleString();
+      if(g.ordered>0){ const fr=picked/g.ordered; const f=prog.querySelector('.prog-fill'); if(f){f.style.width=Math.min(100,fr*100)+'%';f.className='prog-fill '+(picked>g.ordered?'over':(fr>=1?'done':''));} const l=prog.querySelector('.prog-lbl'); if(l) l.textContent=picked.toLocaleString()+' of '+g.ordered.toLocaleString()+' · '+Math.round(fr*100)+'%'+(picked>g.ordered?' (over)':''); }
+      document.getElementById('builds-meta').textContent=buildsMetaText();
+    };
+    // body: pickups table
+    const rows=g.rows.slice().sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999'));
+    if(rows.length){
+      const scroll=document.createElement('div');scroll.className='ops-scroll';
+      const table=document.createElement('table');table.className='ops-table';
+      table.innerHTML='<thead><tr><th>#</th><th>Date received</th><th>Qty</th><th>Location</th><th>Notes</th><th></th></tr></thead>';
+      const tb=document.createElement('tbody');
+      rows.forEach((b,i)=>{
+        const tr=document.createElement('tr');
+        const idx=document.createElement('td');idx.className='idx';idx.textContent=String(i+1).padStart(2,'0');
+        const qtyIn=opsInput(b.qty,v=>{b.qty=v;save();updHead();},{num:true,type:'number'});
+        qtyIn.onchange=()=>{renderBuildsKpi(poGroups());renderDash();};
+        const qtyTd=tdWrap(qtyIn);qtyTd.style.width='110px';
+        const dateTd=tdWrap(opsInput(b.date,v=>{b.date=v;save();},{type:'date'}));dateTd.style.width='170px';
+        tr.append(idx,dateTd,qtyTd,
+          tdWrap(opsSelect(b.location||'',locOpts.includes(b.location||'')?locOpts:[...locOpts,b.location],v=>{b.location=v;save();})),
+          tdWrap(opsInput(b.notes,v=>{b.notes=v;save();})),
+          tdWrap(confirmDelBtn(()=>{DB.newBuilds=DB.newBuilds.filter(x=>x!==b);if(!DB.poOrders[key]&&key) DB.poOrders[key]={ordered:0,manufacturer:g.manufacturer||''};save();renderBuilds();renderDash();},'Remove pickup')));
+        tb.appendChild(tr);
+      });
+      const tf=document.createElement('tfoot');tf.innerHTML='<tr><td></td><td style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)">PO total</td><td class="mono" style="text-align:right;padding-right:18px">'+g.picked.toLocaleString()+'</td><td colspan="3"></td></tr>';
+      table.appendChild(tb);table.appendChild(tf);scroll.appendChild(table);sec.body.appendChild(scroll);
+    } else {
+      const e=document.createElement('div');e.className='ops-empty';e.textContent='No pickups logged on this PO yet.';sec.body.appendChild(e);
+    }
+    const act=document.createElement('div');act.className='grp-actions';
+    const addP=document.createElement('button');addP.className='ghost-btn';addP.textContent='+ Add pickup';
+    addP.onclick=()=>{ DB.newBuilds.push({id:uid(),po:key,manufacturer:g.manufacturer||'',qty:0,date:todayISO(),location:'',notes:''}); UI.poOpen[key]=true; save(); renderBuilds(); renderDash(); };
+    const sp=document.createElement('div');sp.className='spacer';
+    const delPO=confirmTextBtn('Remove PO',()=>{ DB.newBuilds=DB.newBuilds.filter(b=>poKey(b)!==key); delete DB.poOrders[key]; save(); renderBuilds(); renderDash(); },'Remove this PO and all its pickups');
+    act.append(addP,sp,delPO);
+    sec.body.appendChild(act);
+    body.appendChild(sec.el);
+  });
+}
+function addPOFromForm(){
+  const btn=document.getElementById('add-build');
+  const poEl=document.getElementById('np-po'),manEl=document.getElementById('np-man'),ordEl=document.getElementById('np-ord');
+  const po=(poEl.value||'').trim();
+  if(!po){ flashBtn(btn,'Enter PO #'); poEl.focus(); return; }
+  if(DB.poOrders[po]||DB.newBuilds.some(b=>poKey(b)===po)){ UI.poOpen[po]=true; renderBuilds(); flashBtn(btn,'PO exists'); return; }
+  DB.poOrders[po]={ordered:Math.max(0,parseFloat(ordEl.value)||0),manufacturer:(manEl.value||'').trim()};
+  UI.poOpen[po]=true;
+  poEl.value='';manEl.value='';ordEl.value='';
+  save();renderBuilds();renderDash();flashBtn(btn,'Added ✓');
+}
+function exportBuildsPDF(){
+  if(!pdfReady())return;
+  const doc=newPdf();const M=40;const PH=doc.internal.pageSize.getHeight();let y=50;
+  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('New Builds Received',M,y);
+  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(90);y+=18;doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
+  const groups=poGroups();
+  const grand=groups.reduce((s,g)=>s+g.picked,0);
+  // summary
+  doc.autoTable({startY:y+16,margin:{left:M,right:M},head:[['PO #','Manufacturer','Pickups','Picked up','Ordered','Remaining']],
+    body:groups.map(g=>[g.po||'(no PO #)',g.manufacturer||'',String(g.rows.length),g.picked.toLocaleString(),g.ordered?g.ordered.toLocaleString():'—',g.remaining==null?'—':g.remaining.toLocaleString()]),
+    foot:[['TOTAL','',String(DB.newBuilds.length),grand.toLocaleString(),'','']],
+    styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{2:{halign:'right'},3:{halign:'right'},4:{halign:'right'},5:{halign:'right'}}});
+  y=doc.lastAutoTable.finalY;
+  groups.forEach(g=>{
+    if(y+80>PH-46){doc.addPage();y=40;}
+    y+=26;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('PO #'+(g.po||'(none)')+(g.manufacturer?('  ·  '+g.manufacturer):''),M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(90);
+    doc.text(g.picked.toLocaleString()+' picked up'+(g.ordered?(' of '+g.ordered.toLocaleString()+' ordered · '+(g.remaining||0).toLocaleString()+' remaining'):''),M,y+13);doc.setTextColor(0);
+    const rows=g.rows.slice().sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999')).map((b,i)=>[String(i+1),fmtDate(b.date),String(Number(b.qty)||0),b.location||'',b.notes||'']);
+    doc.autoTable({startY:y+20,margin:{left:M,right:M},head:[['#','Date received','Qty','Location','Notes']],body:rows.length?rows:[['','No pickups yet','','','']],foot:[['','PO total',g.picked.toLocaleString(),'','']],
+      styles:{font:'helvetica',fontSize:9,cellPadding:4},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{0:{cellWidth:24},2:{halign:'right'}}});
+    y=doc.lastAutoTable.finalY;
+  });
+  stampWatermark(doc);doc.save('new-builds-'+stampForFile(new Date().toISOString())+'.pdf');
+}
+
+/* ===================== REFURB JOBS — one section per team ===================== */
+function teamKey(r){return ((r&&r.team)||'').toString().trim().toLowerCase();}
+function mdyKey(s){ const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/.exec((s||'').trim()); if(!m) return ''; let y=m[3]; if(y.length===2) y='20'+y; return y+'-'+m[1].padStart(2,'0')+'-'+m[2].padStart(2,'0'); }
+function refurbGroups(list){
+  const map={};
+  list.forEach(r=>{ const k=teamKey(r); if(!map[k]) map[k]={key:k,name:(r.team||'').trim(),rows:[]}; map[k].rows.push(r); });
+  return Object.values(map).map(g=>{
+    const prog=g.rows.filter(r=>r.status==='In Progress').length;
+    const done=g.rows.filter(r=>r.status==='Completed').length;
+    const drops=g.rows.map(r=>mdyKey(r.dropOff)).filter(Boolean).sort();
+    const shops={};g.rows.forEach(r=>{const s=(r.dropTo||'').trim();if(s)shops[s]=(shops[s]||0)+1;});
+    const stored={};g.rows.forEach(r=>{const s=(r.location||'').trim();if(s)stored[s]=(stored[s]||0)+1;});
+    return {...g,prog,done,notStarted:g.rows.length-prog-done,firstDrop:drops[0]||'',lastDrop:drops[drops.length-1]||'',shops,stored};
+  }).sort((a,b)=>{
+    const au=!a.key&&a.done<a.rows.length, bu=!b.key&&b.done<b.rows.length; // unassigned w/ open work first
+    if(au!==bu) return au?-1:1;
+    const ae=!a.key, be=!b.key; if(ae!==be) return ae?1:-1;                  // finished unassigned last
+    if((a.prog>0)!==(b.prog>0)) return a.prog>0?-1:1;
+    const ac=a.done===a.rows.length, bc=b.done===b.rows.length;
+    if(ac!==bc) return ac?1:-1;
+    return (b.lastDrop||'').localeCompare(a.lastDrop||'');
+  });
+}
+function renameTeam(oldKey,newName){
+  DB.refurbs.forEach(r=>{ if(teamKey(r)===oldKey) r.team=newName; });
+  const nk=newName.trim().toLowerCase();
+  if(UI.teamOpen[oldKey]!==undefined){ UI.teamOpen[nk]=UI.teamOpen[oldKey]; delete UI.teamOpen[oldKey]; }
+}
+function storedLocSelect(r){
+  const opts=['',...DB.inv.locations.map(l=>l.name)];
+  if(r.location&&!opts.includes(r.location)) opts.push(r.location);
+  return opsSelect(r.location||'',opts,v=>{r.location=v;save();});
+}
+function shortMdy(k){ return k?fmtDate(k):''; }
+function renderRefurbs(){
+  const body=document.getElementById('refurb-body');if(!body)return;body.innerHTML='';
+  document.getElementById('refurb-count').textContent=DB.refurbs.length?(' ('+DB.refurbs.length+')'):'';
+  const fsel=document.getElementById('refurb-filter');
+  if(fsel && !fsel.dataset.built){ ['All statuses',...REFURB_STATUSES,'Not started'].forEach(o=>{const op=document.createElement('option');op.value=(o==='All statuses'?'':o);op.textContent=o;fsel.appendChild(op);}); fsel.dataset.built='1'; fsel.onchange=()=>renderRefurbs(); }
+  const q=(document.getElementById('refurb-search').value||'').trim().toLowerCase();
+  const fstat=fsel?fsel.value:'';
+  const counts={}; REFURB_STATUSES.forEach(s=>counts[s]=0);
+  DB.refurbs.forEach(r=>{ if(counts[r.status]!==undefined)counts[r.status]++; });
+  const allGroups=refurbGroups(DB.refurbs);
+  const teamsActive=allGroups.filter(g=>g.key&&g.prog>0).length;
+  document.getElementById('refurb-meta').textContent=allGroups.length+' teams · '+DB.refurbs.length+' benches';
+  const kpiWrap=document.getElementById('refurb-kpi');
+  if(kpiWrap){
+    kpiWrap.innerHTML='';
+    kpiWrap.appendChild(kpiTile('Total benches',DB.refurbs.length));
+    kpiWrap.appendChild(kpiTile('In progress',counts['In Progress']||0,(counts['In Progress']||0)>0));
+    kpiWrap.appendChild(kpiTile('Completed',counts['Completed']||0));
+    kpiWrap.appendChild(kpiTile('Teams',allGroups.filter(g=>g.key).length));
+    kpiWrap.appendChild(kpiTile('Teams with work open',teamsActive,teamsActive>0));
+  }
+  const filtering=!!(q||fstat);
+  const matches=r=>{
+    if(fstat==='Not started'){ if(r.status==='In Progress'||r.status==='Completed') return false; }
+    else if(fstat && r.status!==fstat) return false;
+    if(q){ const hay=((r.benchId||'')+' '+(r.team||'')+' '+(r.dropTo||'')+' '+(r.location||'')+' '+(r.notes||'')).toLowerCase(); if(!hay.includes(q)) return false; }
+    return true;
+  };
+  let any=false;
+  allGroups.forEach(g=>{
+    const shown=g.rows.filter(matches);
+    if(filtering&&!shown.length) return;
+    any=true;
+    const key=g.key;
+    const unassigned=!key;
+    const titleNode=unassigned?(()=>{const s=document.createElement('span');s.className='grp-name';s.textContent='No team assigned';return s;})()
+      :grpNameInput(g.name,'Team name',(v,inp)=>{ if(!v){inp.value=g.name;return;} if(v===g.name) return; renameTeam(key,v); save(); renderRefurbs(); });
+    const sub=document.createElement('div');sub.style.marginTop='3px';
+    Object.keys(g.shops).forEach(s=>{const t=document.createElement('span');t.className='tag';t.innerHTML='Shop: <b>'+esc(s)+'</b> '+g.shops[s];sub.appendChild(t);});
+    Object.keys(g.stored).forEach(s=>{const t=document.createElement('span');t.className='tag green';t.innerHTML='Stored: <b>'+esc(s)+'</b> '+g.stored[s];sub.appendChild(t);});
+    const total=g.rows.length;
+    const prog=progBar([{val:g.done/total,cls:'done'},{val:g.prog/total,cls:'amber'}],g.done+' of '+total+' done'+(g.prog?(' · '+g.prog+' in progress'):''));
+    const stats=document.createElement('div');stats.className='grp-stats';
+    stats.appendChild(grpStat('Benches',total));
+    stats.appendChild(grpStat('In progress',g.prog,g.prog?'amber':''));
+    stats.appendChild(grpStat('Completed',g.done,g.done===total?'good':''));
+    const ds=grpStat('Dropped off',g.firstDrop?(shortMdy(g.firstDrop)+(g.lastDrop!==g.firstDrop?('–'+shortMdy(g.lastDrop).slice(0,5)):'')):'—');ds.classList.add('wide');stats.appendChild(ds);
+    const allDone=g.done===total;
+    const sec=grpSection({key:key||'__none',store:UI.teamOpen,defaultOpen:filtering||g.prog>0||(!allDone&&g.notStarted>0),
+      eyebrow:unassigned?'Needs a team':'Team',titleNode,subNode:sub,right:[prog,stats],cls:unassigned?'g-alert':(g.prog>0?'g-active':(allDone?'g-done':''))});
+    if(filtering) { sec.el.classList.add('open'); }
+    const scroll=document.createElement('div');scroll.className='ops-scroll';
+    const table=document.createElement('table');table.className='ops-table';
+    table.innerHTML='<thead><tr><th>Bench ID</th>'+(unassigned?'<th>Team</th>':'')+'<th>Stored location</th><th>Dropped off to</th><th>Drop off</th><th>Pick up</th><th>Status</th><th>Notes</th><th></th></tr></thead>';
+    const tb=document.createElement('tbody');
+    shown.forEach(r=>{
+      const tr=document.createElement('tr');
+      const cells=[tdWrap(opsInput(r.benchId,v=>{r.benchId=v;save();}))];
+      if(unassigned){ const ti=opsInput(r.team,v=>{r.team=v;save();}); ti.onchange=()=>{ if((r.team||'').trim()){ UI.teamOpen[teamKey(r)]=true; renderRefurbs(); } }; cells.push(tdWrap(ti)); }
+      cells.push(
+        tdWrap(storedLocSelect(r)),
+        tdWrap(opsInput(r.dropTo,v=>{r.dropTo=v;save();})),
+        tdWrap(opsInput(r.dropOff,v=>{r.dropOff=v;save();},{ph:'MM/DD/YY'})),
+        tdWrap(opsInput(r.pickUp,v=>{r.pickUp=v;save();},{ph:'MM/DD/YY'})),
+        tdWrap(refurbStatusSelect(r)),
+        tdWrap(opsInput(r.notes,v=>{r.notes=v;save();})),
+        tdWrap(confirmDelBtn(()=>{DB.refurbs=DB.refurbs.filter(x=>x!==r);save();renderRefurbs();},'Remove job'))
+      );
+      tr.append(...cells);
+      tb.appendChild(tr);
+    });
+    table.appendChild(tb);scroll.appendChild(table);sec.body.appendChild(scroll);
+    const act=document.createElement('div');act.className='grp-actions';
+    const add=document.createElement('button');add.className='ghost-btn';add.textContent=unassigned?'+ Add job':'+ Add bench to '+(g.name||'team');
+    add.onclick=()=>{
+      const shop=Object.keys(g.shops).sort((a,b)=>g.shops[b]-g.shops[a])[0]||'';
+      DB.refurbs.push({id:uid(),benchId:'',location:'',team:g.name||'',dropTo:unassigned?'':shop,dropOff:'',pickUp:'',status:'',notes:''});
+      UI.teamOpen[key||'__none']=true;save();clearRefurbFilters();renderRefurbs();
+    };
+    const sp=document.createElement('div');sp.className='spacer';
+    act.append(add,sp);
+    if(!unassigned&&g.prog>0){
+      const markAll=confirmTextBtn('Mark all completed',()=>{ g.rows.forEach(r=>{ if(r.status==='In Progress') r.status='Completed'; }); save(); renderRefurbs(); },'Set every In Progress bench on this team to Completed');
+      act.appendChild(markAll);
+    }
+    sec.body.appendChild(act);
+    body.appendChild(sec.el);
+  });
+  if(!any) body.innerHTML='<div class="card"><div class="ops-empty">'+(DB.refurbs.length?'No jobs match your filter.':'No refurb jobs yet. Use “+ Add job” above.')+'</div></div>';
+}
+function clearRefurbFilters(){const s=document.getElementById('refurb-search');if(s)s.value='';const f=document.getElementById('refurb-filter');if(f)f.value='';}
+function setAllGroups(store,keys,open){ keys.forEach(k=>store[k]=open); }
+function exportRefurbsPDF(){
+  if(!pdfReady())return;
+  const doc=newPdf();const M=40;const PH=doc.internal.pageSize.getHeight();let y=50;
+  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Refurb Jobs',M,y);
+  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(90);y+=18;doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
+  const groups=refurbGroups(DB.refurbs);
+  doc.autoTable({startY:y+16,margin:{left:M,right:M},head:[['Team','Benches','In progress','Completed','Not started']],
+    body:groups.map(g=>[g.name||'(no team)',String(g.rows.length),String(g.prog),String(g.done),String(g.notStarted)]),
+    foot:[['TOTAL',String(DB.refurbs.length),String(groups.reduce((s,g)=>s+g.prog,0)),String(groups.reduce((s,g)=>s+g.done,0)),String(groups.reduce((s,g)=>s+g.notStarted,0))]],
+    styles:{font:'helvetica',fontSize:9,cellPadding:4},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{1:{halign:'right'},2:{halign:'right'},3:{halign:'right'},4:{halign:'right'}}});
+  y=doc.lastAutoTable.finalY;
+  groups.forEach(g=>{
+    if(y+70>PH-46){doc.addPage();y=40;}
+    y+=24;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text((g.name||'No team assigned')+'  ·  '+g.done+' of '+g.rows.length+' done',M,y);
+    const rows=g.rows.map(r=>[r.benchId||'',r.location||'',r.dropTo||'',r.dropOff||'',r.pickUp||'',r.status||'',r.notes||'']);
+    doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Bench ID','Stored location','Dropped to','Drop off','Pick up','Status','Notes']],body:rows,styles:{font:'helvetica',fontSize:8,cellPadding:4},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
+    y=doc.lastAutoTable.finalY;
+  });
+  stampWatermark(doc);doc.save('refurb-jobs-'+stampForFile(new Date().toISOString())+'.pdf');
+}
+
+/* ===================== EQUIPMENT — per-unit tracking ===================== */
+const EQ_CONDITIONS=['In service','Needs repair','Out of service'];
+const EQ_PREFIX={'Heaters':'HTR','AC Units':'AC','Compressors':'CMP','Cooling Towers':'CT'};
+const EQ_PALETTE=['#AA0201','#4B4E53','#2F6B4F','#9A6512','#6B4E9A','#1F6F78'];
+const EQ_STALE_DAYS=90;
+function eqPrefix(type){ if(EQ_PREFIX[type]) return EQ_PREFIX[type]; const w=(type||'EQ').trim().split(/\s+/).filter(Boolean); const p=(w.length>1?w.map(x=>x[0]).join(''):(w[0]||'EQ').slice(0,3)).toUpperCase().replace(/[^A-Z0-9]/g,''); return p||'EQ'; }
+function nextUnitTag(type){ const p=eqPrefix(type)+'-'; let n=0; (DB.equipUnits||[]).forEach(u=>{ const t=(u.tag||''); if(t.startsWith(p)){ const k=parseInt(t.slice(p.length),10); if(k>n) n=k; } }); return p+String(n+1).padStart(3,'0'); }
+function newUnit(type,locId){ return {id:uid(),tag:nextUnitTag(type),type,locId:locId||'',condition:'In service',lastChecked:'',notes:''}; }
+function locNameById(id){ if(id==='External') return 'External'; if(!id) return ''; const l=DB.equip.locations.find(x=>x.id===id)||DB.inv.locations.find(x=>x.id===id); return l?(l.name||'—'):''; }
+function locIdByName(n){ if(n==='External') return 'External'; const l=DB.equip.locations.find(x=>x.name===n); return l?l.id:''; }
+function syncEquipCounts(){
+  if(!DB||!DB.equip||!Array.isArray(DB.equipUnits)) return;
+  DB.equip.locations.forEach(loc=>{ const vals={}; DB.equip.columns.forEach(c=>vals[c]=0); DB.equipUnits.forEach(u=>{ if(u.locId===loc.id&&vals[u.type]!==undefined) vals[u.type]++; }); loc.vals=vals; });
+}
+function unitStale(u){ if(!u.lastChecked) return true; const d=new Date(u.lastChecked+'T00:00:00'); if(isNaN(d)) return true; return (Date.now()-d.getTime())/86400000>EQ_STALE_DAYS; }
+function addEquipType(){
+  let base='New type', name=base, n=1;
+  while(DB.equip.columns.includes(name)){ n++; name=base+' '+n; }
+  DB.equip.columns.push(name);
+  DB.equip.locations.forEach(loc=>{ if(!loc.vals) loc.vals={}; loc.vals[name]=0; });
+}
+function renameEquipColumn(oldName,newName){
+  newName=(newName||'').trim();
+  if(!newName||newName===oldName) return false;
+  if(DB.equip.columns.includes(newName)) return false;
+  const idx=DB.equip.columns.indexOf(oldName);
+  if(idx<0) return false;
+  DB.equip.columns[idx]=newName;
+  DB.equip.locations.forEach(loc=>{ if(!loc.vals)loc.vals={}; if(oldName in loc.vals){ loc.vals[newName]=loc.vals[oldName]; delete loc.vals[oldName]; } });
+  (DB.equipUnits||[]).forEach(u=>{ if(u.type===oldName) u.type=newName; });
+  DB.transfers.forEach(t=>{ (t.items||[]).forEach(it=>{ if(it.kind==='equip'&&it.column===oldName){ it.column=newName; it.item=newName; } }); });
+  return true;
+}
+function removeEquipColumn(name){
+  if((DB.equipUnits||[]).some(u=>u.type===name)) return false;
+  DB.equip.columns=DB.equip.columns.filter(c=>c!==name);
+  DB.equip.locations.forEach(loc=>{ if(loc.vals) delete loc.vals[name]; });
+  return true;
+}
+function equipBars(){
+  syncEquipCounts();
+  const cols=DB.equip.columns;
+  const wrap=document.createElement('div');wrap.className='inv-bars';
+  const totals=DB.equip.locations.map(loc=>{let t=0;cols.forEach(c=>t+=(loc.vals&&loc.vals[c])||0);return t;});
+  const max=Math.max(1,...totals);
+  DB.equip.locations.forEach((loc,i)=>{
+    const rowTot=totals[i];
+    const row=document.createElement('div');row.className='inv-bar-row';
+    const label=document.createElement('span');label.className='inv-bar-label';label.textContent=loc.name||'—';
+    const track=document.createElement('div');track.className='inv-bar-track';
+    const fill=document.createElement('div');fill.className='inv-bar-fill';fill.style.width=(rowTot>0?(rowTot/max*100):0)+'%';
+    cols.forEach((c,ci)=>{ const v=(loc.vals&&loc.vals[c])||0; if(!v||!rowTot)return; const seg=document.createElement('span');seg.className='inv-bar-seg';seg.style.width=(v/rowTot*100)+'%';seg.style.background=EQ_PALETTE[ci%EQ_PALETTE.length];seg.title=c+': '+v;fill.appendChild(seg); });
+    track.appendChild(fill);
+    const total=document.createElement('span');total.className='inv-bar-total mono';total.textContent=rowTot.toLocaleString();
+    row.appendChild(label);row.appendChild(track);row.appendChild(total);
+    wrap.appendChild(row);
+  });
+  const legend=document.createElement('div');legend.className='inv-bar-legend';
+  legend.innerHTML=cols.map((c,ci)=>'<span class="inv-legend-item"><span class="dash-dot" style="background:'+EQ_PALETTE[ci%EQ_PALETTE.length]+'"></span>'+esc(c)+'</span>').join('');
+  wrap.appendChild(legend);
+  return wrap;
+}
+function condSelect(u,onAfter){
+  const s=opsSelect(u.condition||'In service',EQ_CONDITIONS,v=>{u.condition=v;save();paint();if(onAfter)onAfter();});
+  s.classList.add('cond-sel');
+  function paint(){ s.classList.remove('c-ok','c-rep','c-out'); s.classList.add(u.condition==='Needs repair'?'c-rep':(u.condition==='Out of service'?'c-out':'c-ok')); }
+  paint(); return s;
+}
+function renderEquipGrid(){
+  const wrap=document.getElementById('equip-grid-wrap');if(!wrap)return;wrap.innerHTML='';
+  if(!Array.isArray(DB.equipUnits)) DB.equipUnits=[];
+  syncEquipCounts();
+  const units=DB.equipUnits;
+  const ec=document.getElementById('equip-count'); if(ec) ec.textContent=units.length?(' ('+units.length+')'):'';
+  // KPIs
+  const kpi=document.createElement('div');kpi.className='kpi-strip';
+  const nRep=units.filter(u=>u.condition==='Needs repair').length, nOut=units.filter(u=>u.condition==='Out of service').length;
+  const nStale=units.filter(unitStale).length, nExt=units.filter(u=>u.locId==='External').length;
+  kpi.appendChild(kpiTile('Total units',units.length));
+  kpi.appendChild(kpiTile('In service',units.length-nRep-nOut));
+  kpi.appendChild(kpiTile('Needs repair',nRep,nRep>0));
+  kpi.appendChild(kpiTile('Out of service',nOut,nOut>0));
+  kpi.appendChild(kpiTile('Not checked in '+EQ_STALE_DAYS+' days',nStale,nStale>0));
+  if(nExt) kpi.appendChild(kpiTile('Out at External',nExt));
+  wrap.appendChild(kpi);
+  // type cards
+  const typesHead=document.createElement('div');typesHead.className='dash-section-title';typesHead.textContent='Equipment types';wrap.appendChild(typesHead);
+  const types=document.createElement('div');types.className='eq-types';
+  DB.equip.columns.forEach((c,ci)=>{
+    const card=document.createElement('div');card.className='eq-type';card.style.setProperty('--swatch',EQ_PALETTE[ci%EQ_PALETTE.length]);
+    const head=document.createElement('div');head.className='eq-type-head';
+    const nm=grpNameInput(c,'Type name',(v,inp)=>{ if(!renameEquipColumn(c,v)){inp.value=c;} else {save();renderEquipGrid();renderDash();} });
+    head.appendChild(nm);
+    const del=confirmDelBtn(()=>{ if(!removeEquipColumn(c)){ flashBtn(del,'Has units'); return; } save();renderEquipGrid();renderDash(); },'Remove type (only when it has no units)');
+    head.appendChild(del);
+    const ofType=units.filter(u=>u.type===c);
+    const num=document.createElement('div');num.className='eq-type-num';num.innerHTML=ofType.length+'<small>units</small>';
+    const locs=document.createElement('div');locs.className='eq-type-locs';
+    const parts=DB.equip.locations.map(l=>{const n=ofType.filter(u=>u.locId===l.id).length;return n?(esc(l.name)+' <span class="mono">'+n+'</span>'):'';}).filter(Boolean);
+    const ext=ofType.filter(u=>u.locId==='External').length; if(ext) parts.push('External <span class="mono">'+ext+'</span>');
+    const rep=ofType.filter(u=>u.condition!=='In service').length;
+    locs.innerHTML=(parts.join(' · ')||'None yet')+(rep?('<br><span class="stale">'+rep+' need attention</span>'):'');
+    card.append(head,num,locs);types.appendChild(card);
+  });
+  const addT=document.createElement('button');addT.className='eq-type add';addT.textContent='+ Add equipment type';
+  addT.onclick=()=>{addEquipType();save();renderEquipGrid();};
+  types.appendChild(addT);
+  wrap.appendChild(types);
+  // add units form
+  const form=document.createElement('div');form.className='newpo';
+  form.innerHTML='<div class="newpo-title">Add equipment units</div>';
+  const fQty=document.createElement('label');fQty.className='tf-field';fQty.style.flex='0 1 90px';fQty.innerHTML='<span>How many</span>';
+  const qIn=document.createElement('input');qIn.type='number';qIn.min='1';qIn.value='1';qIn.className='ops-input num field-box';qIn.id='eq-add-qty';fQty.appendChild(qIn);
+  const fType=document.createElement('label');fType.className='tf-field';fType.innerHTML='<span>Type</span>';
+  const tSel=opsSelect(DB.equip.columns[0]||'',DB.equip.columns,()=>{});tSel.classList.add('field-box');tSel.id='eq-add-type';fType.appendChild(tSel);
+  const fLoc=document.createElement('label');fLoc.className='tf-field';fLoc.innerHTML='<span>Location</span>';
+  const lSel=document.createElement('select');lSel.className='ops-sel field-box';lSel.id='eq-add-loc';
+  DB.equip.locations.forEach(l=>{const o=document.createElement('option');o.value=l.id;o.textContent=l.name;lSel.appendChild(o);});
+  fLoc.appendChild(lSel);
+  const addBtn=document.createElement('button');addBtn.className='btn accent';addBtn.id='eq-add-btn';addBtn.style.height='38px';addBtn.textContent='+ Add units';
+  addBtn.onclick=()=>{
+    const n=Math.min(200,Math.max(1,parseInt(qIn.value,10)||1)); const type=tSel.value; if(!type){flashBtn(addBtn,'Add a type first');return;}
+    for(let i=0;i<n;i++){ const u=newUnit(type,lSel.value); u.lastChecked=todayISO(); DB.equipUnits.push(u); }
+    UI.eqOpen[lSel.value]=true; save(); renderEquipGrid(); renderDash(); flashBtn(document.getElementById('eq-add-btn'),'Added '+n+' ✓');
+  };
+  const hint=document.createElement('div');hint.className='page-note';hint.style.flex='1 1 100%';hint.style.margin='0';
+  hint.innerHTML='Each unit gets its own ID automatically (e.g. HTR-004) — you can overwrite it with your own asset tag. Locations are shared with <b>Bench Counts</b>; add or rename them there.';
+  form.append(fQty,fType,fLoc,addBtn,hint);
+  wrap.appendChild(form);
+  // filters
+  const bar=document.createElement('div');bar.className='sec-toolbar';
+  const sIn=document.createElement('input');sIn.className='ref-input';sIn.placeholder='Search unit ID, notes…';sIn.value=UI.eqQ||'';sIn.setAttribute('autocomplete','off');sIn.id='eq-search';
+  const fT=opsSelect(UI.eqType||'',['',...DB.equip.columns],v=>{UI.eqType=v;renderEquipList();});fT.classList.add('field-box');fT.style.maxWidth='170px';fT.options[0].textContent='All types';
+  const fC=opsSelect(UI.eqCond||'',['',...EQ_CONDITIONS,'Not checked recently'],v=>{UI.eqCond=v;renderEquipList();});fC.classList.add('field-box');fC.style.maxWidth='190px';fC.options[0].textContent='Any condition';
+  sIn.oninput=()=>{UI.eqQ=sIn.value;renderEquipList();};
+  const sp=document.createElement('div');sp.className='spacer';
+  const seg=document.createElement('div');seg.className='seg';
+  const ex=document.createElement('button');ex.textContent='Expand all';const co=document.createElement('button');co.textContent='Collapse all';
+  ex.onclick=()=>{eqLocKeys().forEach(k=>UI.eqOpen[k]=true);renderEquipList();};
+  co.onclick=()=>{eqLocKeys().forEach(k=>UI.eqOpen[k]=false);renderEquipList();};
+  seg.append(ex,co);
+  const pdfBtn=document.createElement('button');pdfBtn.className='btn outline btn-sm';pdfBtn.textContent='Equipment report (PDF)';
+  pdfBtn.onclick=()=>{ if(!DB.equip.locations.length&&!units.length){flashBtn(pdfBtn,'No equipment');return;} withPdf(pdfBtn,()=>exportEquipInventoryPDF()); };
+  const t2=document.createElement('div');t2.className='dash-section-title';t2.style.margin='0';t2.textContent='Units by location';
+  bar.append(t2,sIn,fT,fC,sp,seg,pdfBtn);
+  wrap.appendChild(bar);
+  const list=document.createElement('div');list.id='eq-list';wrap.appendChild(list);
+  renderEquipList();
+}
+function eqLocKeys(){ const k=DB.equip.locations.map(l=>l.id); k.push('External',''); return k; }
+function renderEquipList(){
+  const list=document.getElementById('eq-list');if(!list)return;list.innerHTML='';
+  const q=(UI.eqQ||'').trim().toLowerCase(), ft=UI.eqType||'', fc=UI.eqCond||'';
+  const filtering=!!(q||ft||fc);
+  const match=u=>{
+    if(ft&&u.type!==ft) return false;
+    if(fc==='Not checked recently'){ if(!unitStale(u)) return false; } else if(fc&&u.condition!==fc) return false;
+    if(q){ const h=((u.tag||'')+' '+(u.type||'')+' '+(u.notes||'')+' '+locNameById(u.locId)).toLowerCase(); if(!h.includes(q)) return false; }
+    return true;
+  };
+  const buckets=DB.equip.locations.map(l=>({id:l.id,name:l.name||'—',eyebrow:'Location'}));
+  buckets.push({id:'External',name:'External / sent out',eyebrow:'Off-site'});
+  buckets.push({id:'',name:'No location set',eyebrow:'Needs a location'});
+  const locOpts=[{v:'',t:'— none —'},...DB.equip.locations.map(l=>({v:l.id,t:l.name})),{v:'External',t:'External'}];
+  let any=false;
+  buckets.forEach(bk=>{
+    const all=DB.equipUnits.filter(u=>(u.locId||'')===bk.id);
+    if(!all.length&&(bk.id==='External'||bk.id==='')) return;
+    const shown=all.filter(match);
+    if(filtering&&!shown.length) return;
+    any=true;
+    const nRep=all.filter(u=>u.condition!=='In service').length, nStale=all.filter(unitStale).length;
+    const sub=document.createElement('div');sub.style.marginTop='3px';
+    DB.equip.columns.forEach(c=>{const n=all.filter(u=>u.type===c).length;if(n){const t=document.createElement('span');t.className='tag';t.innerHTML=esc(c)+' <b>'+n+'</b>';sub.appendChild(t);}});
+    const title=document.createElement('span');title.className='grp-name';title.textContent=bk.name;
+    const stats=document.createElement('div');stats.className='grp-stats';
+    stats.appendChild(grpStat('Units',all.length,'acc'));
+    stats.appendChild(grpStat('Need attention',nRep,nRep?'amber':''));
+    stats.appendChild(grpStat('Not checked',nStale,nStale?'acc':''));
+    const sec=grpSection({key:bk.id,store:UI.eqOpen,defaultOpen:filtering||bk.id===''||all.length<=12||nRep>0,eyebrow:bk.eyebrow,titleNode:title,subNode:sub,right:[stats],cls:bk.id===''?'g-alert':(nRep?'g-active':(all.length?'g-done':''))});
+    if(filtering) sec.el.classList.add('open');
+    if(!all.length){ const e=document.createElement('div');e.className='ops-empty';e.textContent='No equipment at this location yet. Use “Add equipment units” above.';sec.body.appendChild(e); }
+    else {
+      const scroll=document.createElement('div');scroll.className='ops-scroll';
+      const table=document.createElement('table');table.className='ops-table';
+      table.innerHTML='<thead><tr><th>Unit ID</th><th>Type</th><th>Condition</th><th>Last checked</th><th>Location</th><th>Notes</th><th></th></tr></thead>';
+      const tb=document.createElement('tbody');
+      shown.slice().sort((a,b)=>(a.type||'').localeCompare(b.type||'')||(a.tag||'').localeCompare(b.tag||'',undefined,{numeric:true})).forEach(u=>{
+        const tr=document.createElement('tr');
+        const tagIn=opsInput(u.tag,v=>{u.tag=v;save();});tagIn.style.fontFamily="'JetBrains Mono',monospace";tagIn.style.fontWeight='600';
+        const tagTd=tdWrap(tagIn);tagTd.style.width='120px';
+        const typeSel=opsSelect(u.type,DB.equip.columns.includes(u.type)?DB.equip.columns:[...DB.equip.columns,u.type],v=>{u.type=v;save();renderEquipGrid();renderDash();});
+        const chk=document.createElement('div');chk.className='chk-wrap';
+        const dIn=opsInput(u.lastChecked,v=>{u.lastChecked=v;save();},{type:'date'});
+        const tBtn=document.createElement('button');tBtn.className='mini-btn';tBtn.textContent='✓ Today';tBtn.title='Mark checked today';
+        tBtn.onclick=()=>{u.lastChecked=todayISO();save();renderEquipGrid();};
+        chk.append(dIn,tBtn);
+        if(unitStale(u)){ const st=document.createElement('span');st.className='stale';st.textContent=u.lastChecked?'OVERDUE':'NEVER';chk.appendChild(st); }
+        const locSel=document.createElement('select');locSel.className='ops-sel';
+        locOpts.forEach(o=>{const op=document.createElement('option');op.value=o.v;op.textContent=o.t;if(o.v===(u.locId||''))op.selected=true;locSel.appendChild(op);});
+        locSel.onchange=()=>{u.locId=locSel.value;save();renderEquipGrid();renderDash();renderBenchCounts();};
+        tr.append(tagTd,tdWrap(typeSel),tdWrap(condSelect(u,()=>renderEquipGrid())),tdWrap(chk),tdWrap(locSel),
+          tdWrap(opsInput(u.notes,v=>{u.notes=v;save();})),
+          tdWrap(confirmDelBtn(()=>{DB.equipUnits=DB.equipUnits.filter(x=>x!==u);save();renderEquipGrid();renderDash();},'Remove unit')));
+        tb.appendChild(tr);
+      });
+      table.appendChild(tb);scroll.appendChild(table);sec.body.appendChild(scroll);
+      if(!shown.length){ const e=document.createElement('div');e.className='ops-empty';e.textContent='No units here match the filter.';sec.body.appendChild(e); }
+    }
+    if(bk.id!==''&&bk.id!=='External'){
+      const act=document.createElement('div');act.className='grp-actions';
+      const add=document.createElement('button');add.className='ghost-btn';add.textContent='+ Add unit here';
+      add.onclick=()=>{ const type=UI.eqType||DB.equip.columns[0]; if(!type) return; const u=newUnit(type,bk.id); u.lastChecked=todayISO(); DB.equipUnits.push(u); UI.eqOpen[bk.id]=true; save(); renderEquipGrid(); renderDash(); };
+      const sp=document.createElement('div');sp.className='spacer';
+      const allChk=confirmTextBtn('Mark all checked today',()=>{ all.forEach(u=>u.lastChecked=todayISO()); save(); renderEquipGrid(); },'Set Last checked to today for every unit at this location');
+      const hint=document.createElement('span');hint.className='hint';hint.textContent='Moving units between sites? Log it on Transfers so there’s a record.';
+      act.append(add,hint,sp,allChk);
+      sec.body.appendChild(act);
+    }
+    list.appendChild(sec.el);
+  });
+  if(!any) list.innerHTML='<div class="card"><div class="ops-empty">'+(DB.equipUnits.length?'No units match your filter.':'No equipment yet. Add units above.')+'</div></div>';
+}
 function exportEquipInventoryPDF(){
   if(!pdfReady())return;
+  syncEquipCounts();
   const doc=newPdf();const M=40;const PH=doc.internal.pageSize.getHeight();
   const room=(y,need)=>{ if(y+need>PH-46){doc.addPage();return 54;} return y; };
   let y=50;
   const cols=DB.equip.columns.slice();
-  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Equipment Inventory Report',M,y);
+  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Equipment Report',M,y);
   doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(90);y+=18;doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
   const colTot={};cols.forEach(c=>colTot[c]=0);let grand=0;
   const body1=DB.equip.locations.map(loc=>{let rt=0;const row=[loc.name||''];cols.forEach(c=>{const v=(loc.vals&&loc.vals[c])||0;row.push(v.toLocaleString());rt+=v;colTot[c]+=v;});row.push(rt.toLocaleString());grand+=rt;return row;});
+  const ext=DB.equipUnits.filter(u=>u.locId==='External');
+  if(ext.length){ const row=['External (out)'];let rt=0;cols.forEach(c=>{const v=ext.filter(u=>u.type===c).length;row.push(v.toLocaleString());rt+=v;});row.push(rt.toLocaleString());body1.push(row); }
   const right1={};for(let i=1;i<=cols.length+1;i++)right1[i]={halign:'right'};
-  y+=26;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('On hand by location',M,y);
-  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Location',...cols,'Total']],body:body1,foot:[['TOTAL',...cols.map(c=>colTot[c].toLocaleString()),grand.toLocaleString()]],styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:right1});
+  y+=26;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Units by location',M,y);
+  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Location',...cols,'Total']],body:body1,foot:[['ON HAND',...cols.map(c=>colTot[c].toLocaleString()),grand.toLocaleString()]],styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:right1});
   y=doc.lastAutoTable.finalY;
-  const extOut={},extIn={};cols.forEach(c=>{extOut[c]=0;extIn[c]=0;});
-  const otherOut=[];
-  DB.transfers.forEach(t=>{
-    (t.items||[]).forEach(it=>{const q=Number(it.qty)||0;
-      if(it.kind==='equip'&&it.column&&extOut[it.column]!==undefined){ if(t.to==='External')extOut[it.column]+=q; if(t.from==='External')extIn[it.column]+=q; }
-    });
-  });
-  y=room(y,90);y+=28;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Sent out / received (External)',M,y);
-  const body2=cols.map(c=>{const netOut=Math.max(0,extOut[c]-extIn[c]);return [c,extOut[c].toLocaleString(),extIn[c].toLocaleString(),netOut.toLocaleString()];});
-  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Item','Sent out','Received back','Currently out']],body:body2,styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT,columnStyles:{1:{halign:'right'},2:{halign:'right'},3:{halign:'right'}}});
+  const byCond=EQ_CONDITIONS.map(c=>[c,String(DB.equipUnits.filter(u=>(u.condition||'In service')===c).length)]);
+  byCond.push(['Not checked in '+EQ_STALE_DAYS+' days',String(DB.equipUnits.filter(unitStale).length)]);
+  y=room(y,90);y+=26;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Condition summary',M,y);
+  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Condition','Units']],body:byCond,styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT,columnStyles:{1:{halign:'right'}},tableWidth:260});
   y=doc.lastAutoTable.finalY;
-  if(otherOut.length){
-    y=room(y,90);y+=24;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Other equipment sent out',M,y);
-    doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Date','Item','Qty','From','Notes']],body:otherOut,styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT,columnStyles:{2:{halign:'right'}}});
-    y=doc.lastAutoTable.finalY;
-  }
-  let netGrand=0,ownedGrand=0;
-  const body3=cols.map(c=>{const oh=colTot[c];const netOut=Math.max(0,extOut[c]-extIn[c]);const owned=oh+netOut;netGrand+=netOut;ownedGrand+=owned;return [c,oh.toLocaleString(),netOut.toLocaleString(),owned.toLocaleString()];});
-  y=room(y,110);y+=28;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Total owned  (on hand + currently out)',M,y);
-  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Item','On hand','Currently out','Total owned']],body:body3,foot:[['TOTAL',grand.toLocaleString(),netGrand.toLocaleString(),ownedGrand.toLocaleString()]],styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{1:{halign:'right'},2:{halign:'right'},3:{halign:'right'}}});
-  y=doc.lastAutoTable.finalY;
-  y=room(y,40);doc.setFont('helvetica','italic');doc.setFontSize(8);doc.setTextColor(110);
-  doc.text('Total owned = current on-hand inventory + equipment currently out to External (sent out minus received back). Internal moves between locations do not change these totals.',M,y+16,{maxWidth:515});
-  doc.setTextColor(0);
+  const sorted=DB.equipUnits.slice().sort((a,b)=>locNameById(a.locId).localeCompare(locNameById(b.locId))||(a.type||'').localeCompare(b.type||'')||(a.tag||'').localeCompare(b.tag||'',undefined,{numeric:true}));
+  y=room(y,90);y+=26;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Unit list',M,y);
+  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Unit ID','Type','Location','Condition','Last checked','Notes']],
+    body:sorted.map(u=>[u.tag||'',u.type||'',locNameById(u.locId)||'(none)',u.condition||'',u.lastChecked?fmtDate(u.lastChecked):'never',u.notes||'']),
+    styles:{font:'helvetica',fontSize:8,cellPadding:4},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
   stampWatermark(doc);
-  doc.save('equipment-inventory-report-'+stampForFile(new Date().toISOString())+'.pdf');
+  doc.save('equipment-report-'+stampForFile(new Date().toISOString())+'.pdf');
 }
+
+/* ---------- transfers ---------- */
+function renderTransferMoveItems(){
+  const wrap=document.getElementById('tf-items-wrap');if(!wrap)return;
+  wrap.innerHTML='';
+  const grid=document.createElement('div');grid.className='tf-items-grid';
+  // benches
+  const bBox=document.createElement('div');bBox.className='tf-box';bBox.innerHTML='<h4>Benches</h4>';
+  const bList=document.createElement('div');bList.className='eq-move-grid';
+  DB.inv.columns.forEach(c=>{
+    const row=document.createElement('div');row.className='eq-move-row';
+    const label=document.createElement('span');label.className='eq-move-label';label.textContent=c;
+    const inp=document.createElement('input');inp.type='number';inp.min='0';inp.className='ops-input num eq-move-qty';inp.dataset.domain='bench';inp.dataset.col=c;inp.placeholder='0';
+    row.appendChild(label);row.appendChild(inp);bList.appendChild(row);
+  });
+  bBox.appendChild(bList);
+  // equipment (units)
+  const eBox=document.createElement('div');eBox.className='tf-box';eBox.innerHTML='<h4>Equipment units</h4>';
+  const eWrap=document.createElement('div');eWrap.id='tf-equip-wrap';eBox.appendChild(eWrap);
+  // other
+  const oBox=document.createElement('div');oBox.className='tf-box';oBox.innerHTML='<h4>Other</h4>';
+  const orow=document.createElement('div');orow.className='eq-move-row';
+  const oDesc=document.createElement('input');oDesc.className='ops-input eq-move-other-desc';oDesc.placeholder='Describe item';oDesc.setAttribute('autocomplete','off');
+  const oQty=document.createElement('input');oQty.type='number';oQty.min='0';oQty.className='ops-input num eq-move-other-qty';oQty.placeholder='0';oQty.style.flex='0 0 80px';
+  orow.appendChild(oDesc);orow.appendChild(oQty);oBox.appendChild(orow);
+  const oNote=document.createElement('div');oNote.className='tf-none';oNote.style.marginTop='8px';oNote.textContent='Paper trail only — no counts change.';oBox.appendChild(oNote);
+  grid.append(bBox,eBox,oBox);
+  wrap.appendChild(grid);
+  wrap.oninput=updateTfSummary;wrap.onchange=updateTfSummary;
+  renderTransferEquip();
+}
+function renderTransferEquip(){
+  const w=document.getElementById('tf-equip-wrap');if(!w)return;w.innerHTML='';
+  const fromSel=document.getElementById('tf-from');const from=fromSel?fromSel.value:'';
+  const fromId=locIdByName(from);
+  const isExt=from==='External';
+  let shownAny=false;
+  DB.equip.columns.forEach(c=>{
+    const here=(DB.equipUnits||[]).filter(u=>u.type===c&&(u.locId||'')===(fromId||'__nowhere')).sort((a,b)=>(a.tag||'').localeCompare(b.tag||'',undefined,{numeric:true}));
+    if(!here.length&&!isExt) return;
+    shownAny=true;
+    const box=document.createElement('div');box.className='tf-type';
+    const nm=document.createElement('div');nm.className='tf-type-name';nm.innerHTML=esc(c)+'<span>'+here.length+' at '+esc(from)+'</span>';
+    box.appendChild(nm);
+    if(here.length){
+      const chips=document.createElement('div');chips.className='unit-chips';
+      here.forEach(u=>{
+        const lb=document.createElement('label');lb.className='unit-chip'+(u.condition!=='In service'?' rep':'');lb.title=(u.condition||'')+(u.notes?(' — '+u.notes):'');
+        const cb=document.createElement('input');cb.type='checkbox';cb.className='tf-unit';cb.dataset.unit=u.id;cb.dataset.type=c;
+        lb.appendChild(cb);lb.appendChild(document.createTextNode(u.tag||'(no ID)'));
+        chips.appendChild(lb);
+      });
+      if(here.length>3){ const allB=document.createElement('button');allB.type='button';allB.className='mini-btn';allB.textContent='All '+here.length;allB.onclick=()=>{const cbs=chips.querySelectorAll('input.tf-unit');const on=[...cbs].some(x=>!x.checked);cbs.forEach(x=>x.checked=on);updateTfSummary();};chips.appendChild(allB); }
+      box.appendChild(chips);
+    }
+    if(isExt){
+      const row=document.createElement('div');row.className='eq-move-row';row.style.marginTop='5px';
+      const lb=document.createElement('span');lb.className='eq-move-label';lb.textContent='New units arriving';
+      const inp=document.createElement('input');inp.type='number';inp.min='0';inp.className='ops-input num tf-new-units';inp.dataset.type=c;inp.placeholder='0';inp.style.flex='0 0 80px';
+      row.append(lb,inp);box.appendChild(row);
+    }
+    w.appendChild(box);
+  });
+  if(!shownAny){ const n=document.createElement('div');n.className='tf-none';n.textContent=fromId?('No equipment units at '+from+'.'):'Pick a From location to see its units.';w.appendChild(n); }
+  updateTfSummary();
+}
+function updateTfSummary(){
+  const el=document.getElementById('tf-summary');if(!el)return;
+  let benches=0,lines=0;
+  document.querySelectorAll('#tf-items-wrap .eq-move-qty').forEach(i=>{const q=parseFloat(i.value)||0;if(q>0){benches+=q;lines++;}});
+  const units=document.querySelectorAll('#tf-items-wrap input.tf-unit:checked').length;
+  let fresh=0;document.querySelectorAll('#tf-items-wrap .tf-new-units').forEach(i=>fresh+=Math.max(0,parseInt(i.value,10)||0));
+  const od=document.querySelector('#tf-items-wrap .eq-move-other-desc');const other=od&&od.value.trim()?1:0;
+  const from=(document.getElementById('tf-from')||{}).value||'', to=(document.getElementById('tf-to')||{}).value||'';
+  if(!benches&&!units&&!fresh&&!other){ el.textContent='Nothing selected yet.'; return; }
+  const parts=[];
+  if(benches) parts.push('<b>'+benches.toLocaleString()+'</b> bench'+(benches===1?'':'es'));
+  if(units) parts.push('<b>'+units+'</b> equipment unit'+(units===1?'':'s'));
+  if(fresh) parts.push('<b>'+fresh+'</b> new unit'+(fresh===1?'':'s'));
+  if(other) parts.push('<b>1</b> other item');
+  el.innerHTML='Moving '+parts.join(' + ')+' · '+esc(from)+' → '+esc(to)+(from===to?' <span class="stale">FROM = TO</span>':'');
+}
+function refreshTransferForm(){
+  const locOpts=['External',...DB.inv.locations.map(l=>l.name)];
+  ['tf-from','tf-to'].forEach((id,idx)=>{const s=document.getElementById(id);if(!s)return;const cur2=s.value;s.innerHTML='';locOpts.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;s.appendChild(o);});if(cur2&&locOpts.includes(cur2))s.value=cur2;else s.value=(idx===0?'External':(DB.inv.locations[0]?DB.inv.locations[0].name:'External'));});
+  const d=document.getElementById('tf-date');if(d&&!d.value)d.value=todayISO();
+  renderTransferMoveItems();
+}
+function logTransfer(){
+  const btn=document.getElementById('tf-log');
+  const from=document.getElementById('tf-from').value;
+  const to=document.getElementById('tf-to').value;
+  const date=document.getElementById('tf-date').value||todayISO();
+  const notes=(document.getElementById('tf-notes').value||'').trim();
+  if(from===to){flashBtn(btn,'From = To');return;}
+  const fromId=locIdByName(from), toId=locIdByName(to);
+  const items=[];
+  document.querySelectorAll('#tf-items-wrap .eq-move-qty').forEach(inp=>{
+    const qty=parseFloat(inp.value)||0;
+    if(qty<=0) return;
+    const column=inp.dataset.col;
+    items.push({kind:'bench',column,item:column+' benches',qty});
+  });
+  // equipment units, grouped by type
+  const byType={};
+  document.querySelectorAll('#tf-items-wrap input.tf-unit:checked').forEach(cb=>{
+    const u=DB.equipUnits.find(x=>x.id===cb.dataset.unit); if(!u) return;
+    (byType[u.type]||(byType[u.type]=[])).push({u,from:u.locId||''});
+  });
+  const fresh={};
+  document.querySelectorAll('#tf-items-wrap .tf-new-units').forEach(inp=>{const n=Math.min(200,Math.max(0,parseInt(inp.value,10)||0));if(n)fresh[inp.dataset.type]=n;});
+  const eqItems=[];
+  new Set([...Object.keys(byType),...Object.keys(fresh)]).forEach(type=>{
+    const moved=(byType[type]||[]).map(x=>({id:x.u.id,tag:x.u.tag,from:x.from}));
+    eqItems.push({kind:'equip',column:type,item:type,qty:moved.length+(fresh[type]||0),units:moved,newCount:fresh[type]||0,_moving:byType[type]||[]});
+  });
+  const oDescEl=document.querySelector('#tf-items-wrap .eq-move-other-desc');
+  const oQtyEl=document.querySelector('#tf-items-wrap .eq-move-other-qty');
+  const oDesc=((oDescEl&&oDescEl.value)||'').trim();
+  let other=null;
+  if(oDesc){
+    const qtyRaw=((oQtyEl&&oQtyEl.value)||'').trim();
+    const qty=qtyRaw===''?'':(parseFloat(qtyRaw)||0);
+    other={kind:'other',column:'',item:oDesc,qty};
+  }
+  if(!items.length&&!eqItems.length&&!other){flashBtn(btn,'Select something to move');return;}
+  items.forEach(it=>applyTransferToGrid({from,to,column:it.column,qty:it.qty,kind:'bench'},1));
+  eqItems.forEach(it=>{
+    it._moving.forEach(x=>{ x.u.locId=toId; x.u.lastMoved=date; });
+    for(let i=0;i<it.newCount;i++){ const u=newUnit(it.column,toId); u.lastChecked=date; u.lastMoved=date; DB.equipUnits.push(u); it.units.push({id:u.id,tag:u.tag,from:'__new'}); }
+    delete it._moving; delete it.newCount;
+    it.item=it.column; items.push(it);
+  });
+  if(other) items.push(other);
+  syncEquipCounts();
+  DB.transfers.unshift({id:uid(),date,from,to,notes,items});
+  // clear form
+  document.getElementById('tf-notes').value='';
+  document.querySelectorAll('#tf-items-wrap .eq-move-qty,#tf-items-wrap .tf-new-units').forEach(i=>i.value='');
+  if(oDescEl){oDescEl.value='';oQtyEl.value='';}
+  save();
+  flashBtn(btn,items.length>1?('Logged '+items.length+' ✓'):'Logged ✓');
+  renderTransfers();renderDash();renderEquipGrid();renderBenchCounts();
+}
+function reverseTransfer(t){
+  (t.items||[]).forEach(it=>{
+    if(it.kind==='bench') applyTransferToGrid({from:t.from,to:t.to,column:it.column,qty:it.qty,kind:'bench'},-1);
+    else if(it.kind==='equip'){
+      if(Array.isArray(it.units)){
+        it.units.forEach(m=>{
+          if(m.from==='__new'){ DB.equipUnits=DB.equipUnits.filter(u=>u.id!==m.id); return; }
+          const u=DB.equipUnits.find(x=>x.id===m.id); if(u) u.locId=m.from;
+        });
+      } else {
+        // legacy count-only transfer: move that many units of the type back, best effort
+        const fromId=locIdByName(t.from), toId=locIdByName(t.to);
+        let n=Number(it.qty)||0;
+        DB.equipUnits.filter(u=>u.type===it.column&&(u.locId||'')===(toId||'__nowhere')).forEach(u=>{ if(n>0){ u.locId=fromId; n--; } });
+      }
+    }
+  });
+  syncEquipCounts();
+}
+function tfItemTags(t){
+  return (t.items||[]).map(it=>{
+    const q=(it.qty===''||it.qty==null||it.qty===0)?'':(' <b>×'+Number(it.qty).toLocaleString()+'</b>');
+    const cls=it.kind==='bench'?'':(it.kind==='equip'?' amber':' green');
+    const tip=(it.kind==='equip'&&Array.isArray(it.units)&&it.units.length)?(' title="'+esc(it.units.map(u=>u.tag).join(', '))+'"'):'';
+    return '<span class="tag'+cls+'"'+tip+'>'+esc(it.item||'')+q+'</span>';
+  }).join('');
+}
+function renderTransfersKpi(){
+  const k=document.getElementById('tf-kpi');if(!k)return;k.innerHTML='';
+  let inn=0,out=0,mv=0,b=0,e=0;
+  DB.transfers.forEach(t=>{const d=transferDir(t);if(d==='in')inn++;else if(d==='out')out++;else mv++;(t.items||[]).forEach(it=>{const q=Number(it.qty)||0;if(it.kind==='bench')b+=q;else if(it.kind==='equip')e+=q;});});
+  k.appendChild(kpiTile('Transfers logged',DB.transfers.length));
+  k.appendChild(kpiTile('Inbound',inn));
+  k.appendChild(kpiTile('Outbound',out));
+  k.appendChild(kpiTile('Internal moves',mv));
+  k.appendChild(kpiTile('Benches moved',b.toLocaleString()));
+  k.appendChild(kpiTile('Equipment moved',e.toLocaleString()));
+}
+function renderTransfers(){
+  refreshTransferForm();
+  renderTransfersKpi();
+  const body=document.getElementById('tf-body');if(!body)return;body.innerHTML='';
+  document.getElementById('transfers-count').textContent=DB.transfers.length?(' ('+DB.transfers.length+')'):'';
+  document.getElementById('tf-meta').textContent=DB.transfers.length?(DB.transfers.length+' logged'):'';
+  document.querySelectorAll('#tf-dir-seg button').forEach(b=>b.classList.toggle('on',(b.dataset.dir||'')===(UI.tfDir||'')));
+  if(!DB.transfers.length){ body.innerHTML='<div class="ops-empty">No transfers logged yet. Use the form above to record a move.</div>'; return; }
+  const q=(UI.tfQ||'').trim().toLowerCase();
+  const shown=DB.transfers.filter(t=>{
+    if(UI.tfDir&&transferDir(t)!==UI.tfDir) return false;
+    if(q){ const h=((t.from||'')+' '+(t.to||'')+' '+(t.notes||'')+' '+(t.items||[]).map(it=>(it.item||'')+' '+((it.units||[]).map(u=>u.tag).join(' '))).join(' ')).toLowerCase(); if(!h.includes(q)) return false; }
+    return true;
+  }).map((t,i)=>({t,i})).sort((a,b)=>((b.t.date||'').localeCompare(a.t.date||''))||(a.i-b.i)).map(x=>x.t);
+  if(!shown.length){ body.innerHTML='<div class="ops-empty">No transfers match your filter.</div>'; return; }
+  const scroll=document.createElement('div');scroll.className='ops-scroll';
+  const table=document.createElement('table');table.className='ops-table';
+  table.innerHTML='<thead><tr><th>Date</th><th>Direction</th><th>Route</th><th>Items</th><th>Notes</th><th></th></tr></thead>';
+  const tb=document.createElement('tbody');
+  const months={};shown.forEach(t=>{const m=(t.date||'').slice(0,7);months[m]=(months[m]||0)+1;});
+  let curMonth=null;
+  shown.forEach(t=>{
+    const m=(t.date||'').slice(0,7);
+    if(m!==curMonth){
+      curMonth=m;
+      const mr=document.createElement('tr');mr.className='tf-month';
+      let label='No date';
+      if(m){ const d=new Date(m+'-01T00:00:00'); label=isNaN(d)?m:d.toLocaleDateString(undefined,{month:'long',year:'numeric'}); }
+      mr.innerHTML='<td colspan="6">'+esc(label)+'<span>'+months[m]+' transfer'+(months[m]===1?'':'s')+'</span></td>';
+      tb.appendChild(mr);
+    }
+    const tr=document.createElement('tr');
+    const dir=transferDir(t);const dirLabel={in:'IN',out:'OUT',move:'MOVE'}[dir];
+    const cells=['<span class="mono">'+esc(fmtDate(t.date||''))+'</span>','<span class="tf-dir '+dir+'">'+dirLabel+'</span>',
+      '<span class="tf-route-cell">'+esc(t.from||'')+'<span class="arr">→</span>'+esc(t.to||'')+'</span>',
+      tfItemTags(t), '<span style="color:var(--ink-soft)">'+esc(t.notes||'')+'</span>'];
+    cells.forEach(c=>{const td=document.createElement('td');td.innerHTML=c;tr.appendChild(td);});
+    const dtd=document.createElement('td');
+    dtd.appendChild(confirmDelBtn(()=>{
+      reverseTransfer(t);
+      DB.transfers=DB.transfers.filter(x=>x!==t); save(); renderTransfers(); renderDash(); renderEquipGrid(); renderBenchCounts();
+    },'Remove transfer (reverses counts and unit moves)'));
+    tr.appendChild(dtd);
+    tb.appendChild(tr);
+  });
+  table.appendChild(tb);scroll.appendChild(table);body.appendChild(scroll);
+}
+function exportTransfersPDF(){
+  if(!pdfReady())return;
+  const doc=newPdf();const M=40;let y=50;
+  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Transfer Log',M,y);
+  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(90);y+=18;doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
+  const rows=DB.transfers.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).map(t=>{
+    const itemsTxt=(t.items||[]).map(it=>{
+      const qtyTxt=(it.qty===''||it.qty==null||it.qty===0)?'':(' x'+it.qty);
+      const ids=(it.kind==='equip'&&Array.isArray(it.units)&&it.units.length)?(' ('+it.units.map(u=>u.tag).join(', ')+')'):'';
+      return (it.item||'')+qtyTxt+ids;
+    }).join(', ');
+    return [fmtDate(t.date||''),{in:'IN',out:'OUT',move:'MOVE'}[transferDir(t)],itemsTxt,t.from||'',t.to||'',t.notes||''];
+  });
+  doc.autoTable({startY:y+18,margin:{left:M,right:M},head:[['Date','Dir','Items','From','To','Notes']],body:rows,styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
+  stampWatermark(doc);doc.save('transfers-'+stampForFile(new Date().toISOString())+'.pdf');
+}
+
+/* ---------- bench counts ---------- */
+function benchExternalOut(){
+  const out={};DB.inv.columns.forEach(c=>out[c]=0);
+  DB.transfers.forEach(t=>(t.items||[]).forEach(it=>{ if(it.kind==='bench'&&out[it.column]!==undefined){ const q=Number(it.qty)||0; if(t.to==='External')out[it.column]+=q; if(t.from==='External')out[it.column]-=q; } }));
+  let tot=0;Object.keys(out).forEach(c=>{out[c]=Math.max(0,out[c]);tot+=out[c];});
+  return {byCol:out,total:tot};
+}
+function renderBenchCounts(){
+  const wrap=document.getElementById('bench-grid-wrap');if(!wrap)return;wrap.innerHTML='';
+  const cols=DB.inv.columns;const palette=['#AA0201','#4B4E53','#2F6B4F','#9A6512','#6B4E9A','#1F6F78'];
+  const colTot={};cols.forEach(c=>colTot[c]=0);
+  DB.inv.locations.forEach(l=>cols.forEach(c=>colTot[c]+=(l.vals&&l.vals[c])||0));
+  const grand=cols.reduce((s,c)=>s+colTot[c],0);
+  const ext=benchExternalOut();
+  // KPI strip
+  const kpi=document.createElement('div');kpi.className='kpi-strip';kpi.id='bc-kpi';
+  const gt=kpiTile('Benches on hand',grand.toLocaleString());gt.querySelector('.kpi-num').dataset.bc='grand';kpi.appendChild(gt);
+  cols.forEach(c=>{const t=kpiTile(c+' on hand',colTot[c].toLocaleString());t.querySelector('.kpi-num').dataset.bc=c;kpi.appendChild(t);});
+  kpi.appendChild(kpiTile('Out at External',ext.total.toLocaleString()));
+  wrap.appendChild(kpi);
+  // charts row
+  const row=document.createElement('div');row.className='dash-row';
+  const c1=document.createElement('div');c1.className='dash-card';c1.innerHTML='<h3>By location</h3>';
+  if(DB.inv.locations.length){ const b=invBars();b.style.borderBottom='none';b.style.marginBottom='0';b.style.paddingBottom='0';c1.appendChild(b); } else c1.insertAdjacentHTML('beforeend','<div class="tf-none">No locations yet.</div>');
+  const c2=document.createElement('div');c2.className='dash-card';c2.innerHTML='<h3>By bench type</h3>';
+  const tb=document.createElement('div');tb.className='type-bars';
+  const maxT=Math.max(1,...cols.map(c=>colTot[c]));
+  cols.forEach((c,ci)=>{
+    const r=document.createElement('div');r.className='type-row';
+    r.innerHTML='<span class="type-name"><span class="dash-dot" style="background:'+palette[ci%palette.length]+'"></span>'+esc(c)+'</span>'
+      +'<div class="inv-bar-track"><div style="height:100%;border-radius:5px;width:'+(colTot[c]/maxT*100)+'%;background:'+palette[ci%palette.length]+'"></div></div>'
+      +'<span class="type-val">'+colTot[c].toLocaleString()+'</span><span class="type-pct">'+(grand?Math.round(colTot[c]/grand*100):0)+'%</span>';
+    tb.appendChild(r);
+  });
+  if(ext.total){ const n=document.createElement('div');n.className='tf-none';n.style.marginTop='8px';n.textContent='Plus '+ext.total.toLocaleString()+' currently out at External ('+cols.filter(c=>ext.byCol[c]).map(c=>c+' '+ext.byCol[c]).join(', ')+').';tb.appendChild(n); }
+  c2.appendChild(tb);
+  row.append(c1,c2);wrap.appendChild(row);
+  // location cards
+  if(DB.inv.locations.length){
+    const lh=document.createElement('div');lh.className='dash-section-title';lh.textContent='Locations';wrap.appendChild(lh);
+    const lg=document.createElement('div');lg.className='bc-loc-grid';
+    DB.inv.locations.forEach(l=>{
+      const tot=cols.reduce((s,c)=>s+((l.vals&&l.vals[c])||0),0);
+      const card=document.createElement('div');card.className='bc-loc';
+      let h='<div class="bc-loc-name">'+esc(l.name||'—')+'<span class="mono">'+tot.toLocaleString()+'</span></div><div class="bc-loc-share">'+(grand?Math.round(tot/grand*100):0)+'% of all benches on hand</div>';
+      cols.forEach((c,ci)=>{h+='<div class="bc-loc-row"><span><span class="dash-dot" style="display:inline-block;margin-right:6px;background:'+palette[ci%palette.length]+'"></span>'+esc(c)+'</span><span class="mono">'+((l.vals&&l.vals[c])||0).toLocaleString()+'</span></div>';});
+      card.innerHTML=h;lg.appendChild(card);
+    });
+    wrap.appendChild(lg);
+  }
+  // editable grid
+  const ed=document.createElement('div');ed.className='card card-pad';
+  ed.innerHTML='<div class="dash-section-title">Edit counts <span style="font-family:Inter,sans-serif;font-weight:400;font-size:12px;color:var(--ink-soft);margin-left:4px">type a number to correct a count — transfers adjust these automatically</span></div>';
+  ed.appendChild(invTable());
+  const addLoc=document.createElement('button');addLoc.className='ghost-btn';addLoc.textContent='+ Add location';addLoc.style.marginTop='12px';
+  addLoc.onclick=()=>{const id=uid();const vals={};DB.inv.columns.forEach(c=>vals[c]=0);DB.inv.locations.push({id,name:'New location',vals});const evals={};DB.equip.columns.forEach(c=>evals[c]=0);DB.equip.locations.push({id,name:'New location',vals:evals});save();renderBenchCounts();renderEquipGrid();renderDash();};
+  const invPdfBtn=document.createElement('button');invPdfBtn.className='btn outline btn-sm';invPdfBtn.textContent='Inventory report (PDF)';invPdfBtn.style.marginTop='12px';invPdfBtn.style.marginLeft='8px';
+  invPdfBtn.onclick=()=>{ if(!DB.inv.locations.length){flashBtn(invPdfBtn,'No inventory');return;} withPdf(invPdfBtn,()=>exportInventoryPDF()); };
+  ed.appendChild(addLoc);ed.appendChild(invPdfBtn);
+  const lnote=document.createElement('div');lnote.className='page-note';lnote.style.marginTop='10px';lnote.innerHTML='Locations here are shared with <b>Equipment</b>, <b>New Builds</b>, <b>Refurb Jobs</b> and <b>Transfers</b>. Removing a location moves its equipment units to “No location set”.';
+  ed.appendChild(lnote);
+  wrap.appendChild(ed);
+  // recent bench movements
+  const rec=DB.transfers.filter(t=>(t.items||[]).some(it=>it.kind==='bench')).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,6);
+  const rc=document.createElement('div');rc.className='card card-pad';
+  rc.innerHTML='<div class="dash-section-title">Recent bench movements</div>';
+  if(rec.length){
+    const list=document.createElement('div');list.className='dash-recent-list';
+    rec.forEach(t=>{const dir=transferDir(t);const r=document.createElement('div');r.className='dash-recent-row';
+      r.innerHTML='<span class="tf-dir '+dir+'">'+{in:'IN',out:'OUT',move:'MOVE'}[dir]+'</span><span class="dash-recent-main">'+esc(t.from||'')+' → '+esc(t.to||'')+' &nbsp;'+tfItemTags({items:(t.items||[]).filter(it=>it.kind==='bench')})+'</span><span class="dash-recent-date mono">'+esc(fmtDate(t.date||''))+'</span>';
+      list.appendChild(r);});
+    rc.appendChild(list);
+  } else rc.insertAdjacentHTML('beforeend','<div class="tf-none">No bench transfers logged yet.</div>');
+  const vb=document.createElement('button');vb.className='btn outline btn-sm';vb.style.marginTop='10px';vb.textContent='View Transfers →';vb.onclick=()=>setTab('transfers');rc.appendChild(vb);
+  wrap.appendChild(rc);
+}
+
 
 /* ---------- tabs ---------- */
 const ALL_TABS=['dash','builds','refurb','transfers','equip','benchcounts','settings'];
@@ -1995,8 +2753,18 @@ async function init(){
   document.getElementById('tab-equip').onclick=()=>setTab('equip');
   document.getElementById('tab-benchcounts').onclick=()=>setTab('benchcounts');
   document.getElementById('tab-settings').onclick=()=>setTab('settings');
-  document.getElementById('add-build').onclick=()=>{ DB.newBuilds.push({id:uid(),po:'',manufacturer:'',qty:0,date:'',notes:''});save();renderBuilds(); };
-  document.getElementById('add-refurb').onclick=()=>{ DB.refurbs.push({id:uid(),benchId:'',location:'',team:'',dropTo:'',dropOff:'',pickUp:'',status:'',notes:''});save();const s=document.getElementById('refurb-search');if(s)s.value='';const f=document.getElementById('refurb-filter');if(f)f.value='';renderRefurbs(); };
+  document.getElementById('add-build').onclick=addPOFromForm;
+  ['np-po','np-man','np-ord'].forEach(id=>{const el=document.getElementById(id);if(el)el.onkeydown=e=>{if(e.key==='Enter')addPOFromForm();};});
+  document.getElementById('builds-expand').onclick=()=>{poGroups().forEach(g=>UI.poOpen[g.po]=true);renderBuilds();};
+  document.getElementById('builds-collapse').onclick=()=>{poGroups().forEach(g=>UI.poOpen[g.po]=false);renderBuilds();};
+  document.getElementById('refurb-expand').onclick=()=>{refurbGroups(DB.refurbs).forEach(g=>UI.teamOpen[g.key||'__none']=true);renderRefurbs();};
+  document.getElementById('refurb-collapse').onclick=()=>{refurbGroups(DB.refurbs).forEach(g=>UI.teamOpen[g.key||'__none']=false);renderRefurbs();};
+  document.getElementById('tf-from').onchange=renderTransferEquip;
+  document.getElementById('tf-to').onchange=updateTfSummary;
+  document.getElementById('tf-swap').onclick=()=>{const f=document.getElementById('tf-from'),t=document.getElementById('tf-to');const a=f.value;f.value=t.value;t.value=a;renderTransferEquip();};
+  document.querySelectorAll('#tf-dir-seg button').forEach(b=>b.onclick=()=>{UI.tfDir=b.dataset.dir||'';renderTransfers();});
+  document.getElementById('tf-search').oninput=(e)=>{UI.tfQ=e.target.value;renderTransfers();};
+  document.getElementById('add-refurb').onclick=()=>{ DB.refurbs.push({id:uid(),benchId:'',location:'',team:'',dropTo:'',dropOff:'',pickUp:'',status:'',notes:''});UI.teamOpen['__none']=true;save();clearRefurbFilters();renderRefurbs(); };
   document.getElementById('refurb-search').oninput=()=>renderRefurbs();
   document.getElementById('tf-log').onclick=logTransfer;
   document.getElementById('export-builds').onclick=()=>{ const btn=document.getElementById('export-builds'); if(!DB.newBuilds.length){flashBtn(btn,'Nothing to export');return;} withPdf(btn,()=>exportBuildsPDF()); };
