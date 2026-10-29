@@ -773,10 +773,36 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     .tf-items-grid{grid-template-columns:1fr}
   }
   /* bench counts */
-  .type-bars .type-row{display:grid;grid-template-columns:90px 1fr 56px 44px;gap:10px;align-items:center;padding:6px 0}
+  .type-bars .type-row{display:grid;grid-template-columns:116px 1fr 56px 44px;gap:10px;align-items:center;padding:6px 0}
   .type-bars .type-name{font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:7px}
   .type-bars .type-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-align:right}
   .type-bars .type-pct{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);text-align:right}
+  /* equipment & benches overview */
+  .eq-viewbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 18px}
+  .eq-viewbar .seg button{padding:8px 16px}
+  .eq-viewbar .eq-viewhint{font-size:12px;color:var(--ink-soft)}
+  .eqo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-bottom:22px}
+  .eqo-loc{background:var(--card);border:1px solid var(--line-soft);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px 12px;display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--ink)}
+  .eqo-loc.ext{border-top-color:var(--steel,#4B4E53);background:repeating-linear-gradient(135deg,var(--card),var(--card) 10px,rgba(0,0,0,.012) 10px,rgba(0,0,0,.012) 20px)}
+  .eqo-loc.alert{border-top-color:var(--accent,#AA0201)}
+  .eqo-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .eqo-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .eqo-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;line-height:1.2;color:var(--ink)}
+  .eqo-total{text-align:right;line-height:1}
+  .eqo-total .mono{font-size:24px;font-weight:700;color:var(--ink)}
+  .eqo-total small{display:block;font-size:10px;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+  .eqo-blk{border-top:1px solid var(--line-soft);padding-top:8px}
+  .eqo-blk-head{display:flex;justify-content:space-between;align-items:baseline;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+  .eqo-blk-head .mono{font-size:15px;color:var(--ink);letter-spacing:0}
+  .eqo-items{display:grid;grid-template-columns:1fr 1fr;gap:1px 16px}
+  .eqo-item{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-soft);padding:2px 0}
+  .eqo-item .dash-dot{display:inline-block;margin-right:6px}
+  .eqo-item>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .eqo-item .mono{color:var(--ink);font-weight:600}
+  .eqo-item.zero{opacity:.4}
+  .eqo-attn{margin-top:5px;display:flex;gap:10px;flex-wrap:wrap}
+  .eqo-foot{display:flex;gap:8px;margin-top:auto;padding-top:2px}
+  @media (max-width:520px){ .eqo-items{grid-template-columns:1fr} }
   .bc-loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:16px}
   .bc-loc{background:var(--card);border:1px solid var(--line-soft);border-radius:12px;box-shadow:var(--shadow);padding:14px 16px}
   .bc-loc-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
@@ -1148,7 +1174,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .accentbar{display:none}
   .sb-brand img.brand-logo{display:none}
   .card>.dash-section-title:first-child,.dash-card>.dash-section-title:first-child{margin-top:0}
-  .appshell{grid-template-rows:1fr;grid-template-columns:232px 1fr}
+  .appshell{grid-template-rows:1fr;grid-template-columns:248px 1fr}
   .sidebar,.main{grid-row:1}
   body{font-size:14px;-webkit-font-smoothing:antialiased}
   /* dark sidebar */
@@ -1271,9 +1297,8 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
       </button>
       <button class="tab" role="tab" id="tab-transfers" aria-selected="false" aria-controls="panel-transfers"><span class="tab-ico" aria-hidden="true">&#8644;</span><span class="tab-label">Transfers</span><span class="count" id="transfers-count"></span>
       </button>
-      <button class="tab" role="tab" id="tab-equip" aria-selected="false" aria-controls="panel-equip"><span class="tab-ico" aria-hidden="true">&#9881;</span><span class="tab-label">Equipment</span><span class="count" id="equip-count"></span>
+      <button class="tab" role="tab" id="tab-equip" aria-selected="false" aria-controls="panel-equip"><span class="tab-ico" aria-hidden="true">&#9881;</span><span class="tab-label">Equipment &amp; Benches</span><span class="count" id="equip-count"></span>
       </button>
-      <button class="tab" role="tab" id="tab-benchcounts" aria-selected="false" aria-controls="panel-benchcounts"><span class="tab-ico" aria-hidden="true">&#9636;</span><span class="tab-label">Bench Counts</span></button>
     </div>
     <div class="sb-group sb-group-divider">
       <div class="sb-group-label">System</div>
@@ -1377,14 +1402,9 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     </div>
   </section>
 
-  <!-- ===================== EQUIPMENT ===================== -->
+  <!-- ===================== EQUIPMENT & BENCHES (Bench Counts merged in 2026-10-29) ===================== -->
   <section class="panel" id="panel-equip" role="tabpanel" aria-labelledby="tab-equip">
     <div id="equip-grid-wrap"></div>
-  </section>
-
-  <!-- ===================== BENCH COUNTS ===================== -->
-  <section class="panel" id="panel-benchcounts" role="tabpanel" aria-labelledby="tab-benchcounts">
-    <div id="bench-grid-wrap"></div>
   </section>
 
   <!-- ===================== SETTINGS ===================== -->
@@ -1710,12 +1730,12 @@ function renderDash(){
     if(hasData){ wrap.appendChild(chartFn()); }
     else { const empty=document.createElement('div');empty.className='note';empty.textContent='Nothing logged yet.';wrap.appendChild(empty); }
     const viewBtn=document.createElement('button');viewBtn.className='btn outline';viewBtn.textContent=viewLabel;viewBtn.style.marginTop='10px';
-    viewBtn.onclick=()=>setTab(viewTab);
+    viewBtn.onclick=()=>{ if(typeof viewTab==='function') viewTab(); else setTab(viewTab); };
     wrap.appendChild(viewBtn);
     return wrap;
   }
-  body.appendChild(previewSection('Bench inventory by location',DB.inv.locations.length>0,invBars,'View Bench Counts →','benchcounts'));
-  body.appendChild(previewSection('Equipment inventory by location',DB.equip.locations.length>0,equipBars,'View Equipment →','equip'));
+  body.appendChild(previewSection('Bench inventory by location',DB.inv.locations.length>0,invBars,'View benches →',()=>{UI.eqView='benches';setTab('equip');}));
+  body.appendChild(previewSection('Equipment inventory by location',DB.equip.locations.length>0,equipBars,'View equipment units →',()=>{UI.eqView='units';setTab('equip');}));
 
   const tfWrap=document.createElement('div');tfWrap.className='card';tfWrap.style.padding='18px 18px 20px';
   const tfHead=document.createElement('div');tfHead.className='dash-section-title';tfHead.textContent='Recent transfers';
@@ -1947,7 +1967,7 @@ function applyEquipTransferToGrid(t,sign){
 }
 
 /* ---------- shared UI helpers for grouped sections ---------- */
-const UI={poView:'all',rfView:'open',poOpen:{},teamOpen:{},eqOpen:{},tfDir:'',tfQ:'',tfOpen:{}};
+const UI={eqView:'overview',poView:'all',rfView:'open',poOpen:{},teamOpen:{},eqOpen:{},tfDir:'',tfQ:'',tfOpen:{}};
 function todayISO(){const d=new Date();const p=x=>String(x).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());}
 function stopClick(el){['click','mousedown','keydown'].forEach(ev=>el.addEventListener(ev,e=>{ if(ev!=='keydown'||e.key===' '||e.key==='Enter') e.stopPropagation(); }));return el;}
 function grpStat(label,valHtml,cls){const s=document.createElement('div');s.className='grp-stat';s.innerHTML='<b class="'+(cls||'')+'">'+valHtml+'</b><span>'+esc(label)+'</span>';return s;}
@@ -2609,23 +2629,114 @@ function condSelect(u,onAfter){
   function paint(){ s.classList.remove('c-ok','c-rep','c-out'); s.classList.add(u.condition==='Needs repair'?'c-rep':(u.condition==='Out of service'?'c-out':'c-ok')); }
   paint(); return s;
 }
+function benchTotals(){
+  const cols=DB.inv.columns;const colTot={};cols.forEach(c=>colTot[c]=0);
+  DB.inv.locations.forEach(l=>cols.forEach(c=>colTot[c]+=(l.vals&&l.vals[c])||0));
+  return {colTot,grand:cols.reduce((s,c)=>s+colTot[c],0)};
+}
+function eqGoUnits(locKey){ UI.eqView='units'; if(locKey!==undefined) UI.eqOpen[locKey]=true; renderEquipGrid(); const w=document.getElementById('panel-equip'); if(w&&w.scrollIntoView) try{w.scrollIntoView({block:'start'});}catch(e){} }
+function eqGoBenches(){ UI.eqView='benches'; renderEquipGrid(); }
+/* Equipment & Benches tab (Bench Counts merged in 2026-10-29): shared KPI strip + Overview / Benches / Equipment units views */
 function renderEquipGrid(){
   const wrap=document.getElementById('equip-grid-wrap');if(!wrap)return;wrap.innerHTML='';
   if(!Array.isArray(DB.equipUnits)) DB.equipUnits=[];
   syncEquipCounts();
   const units=DB.equipUnits;
   const ec=document.getElementById('equip-count'); if(ec) ec.textContent=units.length?String(units.length):'';
-  // KPIs
-  const kpi=document.createElement('div');kpi.className='kpi-strip';
+  const bt=benchTotals(), bext=benchExternalOut();
+  // combined KPIs
+  const kpi=document.createElement('div');kpi.className='kpi-strip';kpi.id='bc-kpi';
   const nRep=units.filter(u=>u.condition==='Needs repair').length, nOut=units.filter(u=>u.condition==='Out of service').length;
   const nStale=units.filter(unitStale).length, nExt=units.filter(u=>u.locId==='External').length;
-  kpi.appendChild(kpiTile('Total units',units.length));
-  kpi.appendChild(kpiTile('In service',units.length-nRep-nOut));
+  const gt=kpiTile('Benches on hand',bt.grand.toLocaleString());gt.querySelector('.kpi-num').dataset.bc='grand';kpi.appendChild(gt);
+  kpi.appendChild(kpiTile('Equipment units',units.length.toLocaleString()));
   kpi.appendChild(kpiTile('Needs repair',nRep,nRep>0));
   kpi.appendChild(kpiTile('Out of service',nOut,nOut>0));
   kpi.appendChild(kpiTile('Not checked in '+EQ_STALE_DAYS+' days',nStale,nStale>0));
-  if(nExt) kpi.appendChild(kpiTile('Out at External',nExt));
+  if(bext.total||nExt) kpi.appendChild(kpiTile('Out at External',[bext.total?bext.total.toLocaleString()+'<small style="font-size:11px;font-weight:500;margin:0 6px 0 3px">benches</small>':'',nExt?nExt+'<small style="font-size:11px;font-weight:500;margin-left:3px">units</small>':''].filter(Boolean).join('')));
   wrap.appendChild(kpi);
+  // view switcher
+  const view=['overview','benches','units'].includes(UI.eqView)?UI.eqView:'overview';
+  const vb=document.createElement('div');vb.className='eq-viewbar';
+  const seg=document.createElement('div');seg.className='seg';seg.id='eq-view';
+  [['overview','Overview',''],['benches','Benches',bt.grand],['units','Equipment units',units.length]].forEach(([v,l,n])=>{
+    const b=document.createElement('button');b.dataset.v=v;b.className=v===view?'on':'';b.innerHTML=esc(l)+(n!==''?'<span class="seg-n">'+Number(n).toLocaleString()+'</span>':'');
+    b.onclick=()=>{UI.eqView=v;UI.eqEdit=null;renderEquipGrid();};seg.appendChild(b);
+  });
+  const hint=document.createElement('span');hint.className='eq-viewhint';
+  hint.textContent={overview:'Everything at each location — benches and equipment together.',benches:'Bench counts by location and type. Add, rename or remove locations here.',units:'Every equipment unit by asset #, with condition and last check.'}[view];
+  vb.append(seg,hint);wrap.appendChild(vb);
+  const body=document.createElement('div');body.id='eq-view-body';wrap.appendChild(body);
+  if(view==='overview') renderEqOverview(body);
+  else if(view==='benches'){ const bw=document.createElement('div');bw.id='bench-grid-wrap';body.appendChild(bw);renderBenchCounts(); }
+  else renderEquipUnits(body);
+}
+function eqTypeBars(cols,totals,palette){
+  const grand=cols.reduce((s,c)=>s+(totals[c]||0),0);
+  const tb=document.createElement('div');tb.className='type-bars';
+  const maxT=Math.max(1,...cols.map(c=>totals[c]||0));
+  cols.forEach((c,ci)=>{
+    const r=document.createElement('div');r.className='type-row';const v=totals[c]||0;
+    r.innerHTML='<span class="type-name"><span class="dash-dot" style="background:'+palette[ci%palette.length]+'"></span>'+esc(c)+'</span>'
+      +'<div class="inv-bar-track"><div style="height:100%;border-radius:5px;width:'+(v/maxT*100)+'%;background:'+palette[ci%palette.length]+'"></div></div>'
+      +'<span class="type-val">'+v.toLocaleString()+'</span><span class="type-pct">'+(grand?Math.round(v/grand*100):0)+'%</span>';
+    tb.appendChild(r);
+  });
+  if(!cols.length) tb.innerHTML='<div class="tf-none">No types yet.</div>';
+  return tb;
+}
+function renderEqOverview(body){
+  const bcols=DB.inv.columns, ecols=DB.equip.columns, units=DB.equipUnits;
+  const bext=benchExternalOut();
+  const itemsHtml=(cols,valOf)=>'<div class="eqo-items">'+cols.map((c,ci)=>{const v=valOf(c);return '<div class="eqo-item'+(v?'':' zero')+'"><span><span class="dash-dot" style="background:'+EQ_PALETTE[ci%EQ_PALETTE.length]+'"></span>'+esc(c)+'</span><span class="mono">'+v.toLocaleString()+'</span></div>';}).join('')+'</div>';
+  const card=(o)=>{
+    const el=document.createElement('div');el.className='eqo-loc'+(o.cls?' '+o.cls:'');el.dataset.loc=o.key;
+    const bTot=bcols.reduce((s,c)=>s+(o.bench(c)||0),0);
+    const lu=units.filter(u=>(u.locId||'')===o.key);
+    const nAttn=lu.filter(u=>(u.condition||'In service')!=='In service').length, nSt=lu.filter(unitStale).length;
+    let h='<div class="eqo-head"><div><div class="eqo-eyebrow">'+esc(o.eyebrow)+'</div><div class="eqo-name">'+esc(o.name)+'</div></div>'
+      +'<div class="eqo-total"><span class="mono">'+(bTot+lu.length).toLocaleString()+'</span><small>items</small></div></div>';
+    if(o.showBench) h+='<div class="eqo-blk"><div class="eqo-blk-head"><span>Benches</span><span class="mono">'+bTot.toLocaleString()+'</span></div>'+itemsHtml(bcols,c=>o.bench(c)||0)+'</div>';
+    h+='<div class="eqo-blk"><div class="eqo-blk-head"><span>Equipment units</span><span class="mono">'+lu.length.toLocaleString()+'</span></div>'+itemsHtml(ecols,c=>lu.filter(u=>u.type===c).length);
+    if(nAttn||nSt) h+='<div class="eqo-attn">'+(nAttn?'<span class="stale">'+nAttn+' NEED ATTENTION</span>':'')+(nSt?'<span class="stale">'+nSt+' NOT CHECKED</span>':'')+'</div>';
+    h+='</div>';
+    el.innerHTML=h;
+    const foot=document.createElement('div');foot.className='eqo-foot';
+    if(o.showBench&&o.key!=='External'){ const b1=document.createElement('button');b1.className='mini-btn';b1.textContent='Edit bench counts';b1.onclick=eqGoBenches;foot.appendChild(b1); }
+    const b2=document.createElement('button');b2.className='mini-btn';b2.textContent=lu.length?'View units ('+lu.length+')':'Add units';b2.onclick=()=>eqGoUnits(o.key);foot.appendChild(b2);
+    el.appendChild(foot);
+    return el;
+  };
+  const lh=document.createElement('div');lh.className='dash-section-title';lh.textContent='By location';body.appendChild(lh);
+  const grid=document.createElement('div');grid.className='eqo-grid';grid.id='eqo-grid';
+  DB.inv.locations.forEach(l=>grid.appendChild(card({key:l.id,name:l.name||'—',eyebrow:'Location',showBench:true,bench:c=>(l.vals&&l.vals[c])||0})));
+  const extUnits=units.filter(u=>u.locId==='External').length;
+  if(bext.total||extUnits) grid.appendChild(card({key:'External',name:'External / sent out',eyebrow:'Off-site',cls:'ext',showBench:true,bench:c=>bext.byCol[c]||0}));
+  if(units.some(u=>!u.locId)) grid.appendChild(card({key:'',name:'No location set',eyebrow:'Needs a location',cls:'alert',showBench:false,bench:()=>0}));
+  if(!grid.children.length) grid.innerHTML='<div class="card"><div class="ops-empty">No locations yet. Add one under Benches.</div></div>';
+  body.appendChild(grid);
+  // by type
+  const bt=benchTotals();const eTot={};ecols.forEach(c=>eTot[c]=units.filter(u=>u.type===c).length);
+  const row=document.createElement('div');row.className='dash-row';
+  const c1=document.createElement('div');c1.className='dash-card';c1.innerHTML='<h3>Benches by type</h3>';c1.appendChild(eqTypeBars(bcols,bt.colTot,EQ_PALETTE));
+  const c2=document.createElement('div');c2.className='dash-card';c2.innerHTML='<h3>Equipment by type</h3>';c2.appendChild(eqTypeBars(ecols,eTot,EQ_PALETTE));
+  row.append(c1,c2);body.appendChild(row);
+  // recent movements (benches + equipment)
+  const rec=DB.transfers.filter(t=>(t.items||[]).some(it=>it.kind==='bench'||it.kind==='equip')).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,6);
+  const rc=document.createElement('div');rc.className='card card-pad';
+  rc.innerHTML='<div class="dash-section-title">Recent movements</div>';
+  if(rec.length){
+    const list=document.createElement('div');list.className='dash-recent-list';
+    rec.forEach(t=>{const dir=transferDir(t);const r=document.createElement('div');r.className='dash-recent-row';
+      r.innerHTML='<span class="tf-dir '+dir+'">'+{in:'IN',out:'OUT',move:'MOVE'}[dir]+'</span><span class="dash-recent-main">'+esc(t.from||'')+' → '+esc(t.to||'')+' &nbsp;'+tfItemTags({items:(t.items||[]).filter(it=>it.kind==='bench'||it.kind==='equip')})+'</span><span class="dash-recent-date mono">'+esc(fmtDate(t.date||''))+'</span>';
+      list.appendChild(r);});
+    rc.appendChild(list);
+  } else rc.insertAdjacentHTML('beforeend','<div class="tf-none">No bench or equipment transfers logged yet.</div>');
+  const vbtn=document.createElement('button');vbtn.className='btn outline btn-sm';vbtn.style.marginTop='10px';vbtn.textContent='View Transfers →';vbtn.onclick=()=>setTab('transfers');rc.appendChild(vbtn);
+  body.appendChild(rc);
+}
+function renderEquipUnits(wrap){
+  const units=DB.equipUnits;
   // type cards
   const typesHead=document.createElement('div');typesHead.className='dash-section-title';typesHead.textContent='Equipment types';wrap.appendChild(typesHead);
   const types=document.createElement('div');types.className='eq-types';
@@ -2672,7 +2783,7 @@ function renderEquipGrid(){
   qIn.oninput=()=>{errMsg.textContent='';};
   qIn.onkeydown=e=>{ if(e.key==='Enter'){ e.preventDefault(); addBtn.click(); } };
   const hint=document.createElement('div');hint.className='page-note';hint.style.flex='1 1 100%';hint.style.margin='0';
-  hint.innerHTML='Type your own asset numbers — each one becomes a unit. Locations are shared with <b>Bench Counts</b>; add or rename them there.';
+  hint.innerHTML='Type your own asset numbers — each one becomes a unit. Locations are shared with <b>Benches</b>; add or rename them in that view.';
   form.append(fQty,fType,fLoc,addBtn,errMsg,hint);
   wrap.appendChild(form);
   // filters
@@ -3126,80 +3237,38 @@ function benchExternalOut(){
 }
 function renderBenchCounts(){
   const wrap=document.getElementById('bench-grid-wrap');if(!wrap)return;wrap.innerHTML='';
-  const cols=DB.inv.columns;const palette=['#AA0201','#4B4E53','#2F6B4F','#9A6512','#6B4E9A','#1F6F78'];
-  const colTot={};cols.forEach(c=>colTot[c]=0);
-  DB.inv.locations.forEach(l=>cols.forEach(c=>colTot[c]+=(l.vals&&l.vals[c])||0));
-  const grand=cols.reduce((s,c)=>s+colTot[c],0);
+  const cols=DB.inv.columns;
+  const bt=benchTotals();const colTot=bt.colTot;
   const ext=benchExternalOut();
-  // KPI strip
-  const kpi=document.createElement('div');kpi.className='kpi-strip';kpi.id='bc-kpi';
-  const gt=kpiTile('Benches on hand',grand.toLocaleString());gt.querySelector('.kpi-num').dataset.bc='grand';kpi.appendChild(gt);
-  cols.forEach(c=>{const t=kpiTile(c+' on hand',colTot[c].toLocaleString());t.querySelector('.kpi-num').dataset.bc=c;kpi.appendChild(t);});
-  kpi.appendChild(kpiTile('Out at External',ext.total.toLocaleString()));
-  wrap.appendChild(kpi);
   // charts row
   const row=document.createElement('div');row.className='dash-row';
   const c1=document.createElement('div');c1.className='dash-card';c1.innerHTML='<h3>By location</h3>';
   if(DB.inv.locations.length){ const b=invBars();b.style.borderBottom='none';b.style.marginBottom='0';b.style.paddingBottom='0';c1.appendChild(b); } else c1.insertAdjacentHTML('beforeend','<div class="tf-none">No locations yet.</div>');
   const c2=document.createElement('div');c2.className='dash-card';c2.innerHTML='<h3>By bench type</h3>';
-  const tb=document.createElement('div');tb.className='type-bars';
-  const maxT=Math.max(1,...cols.map(c=>colTot[c]));
-  cols.forEach((c,ci)=>{
-    const r=document.createElement('div');r.className='type-row';
-    r.innerHTML='<span class="type-name"><span class="dash-dot" style="background:'+palette[ci%palette.length]+'"></span>'+esc(c)+'</span>'
-      +'<div class="inv-bar-track"><div style="height:100%;border-radius:5px;width:'+(colTot[c]/maxT*100)+'%;background:'+palette[ci%palette.length]+'"></div></div>'
-      +'<span class="type-val">'+colTot[c].toLocaleString()+'</span><span class="type-pct">'+(grand?Math.round(colTot[c]/grand*100):0)+'%</span>';
-    tb.appendChild(r);
-  });
+  const tb=eqTypeBars(cols,colTot,EQ_PALETTE);
   if(ext.total){ const n=document.createElement('div');n.className='tf-none';n.style.marginTop='8px';n.textContent='Plus '+ext.total.toLocaleString()+' currently out at External ('+cols.filter(c=>ext.byCol[c]).map(c=>c+' '+ext.byCol[c]).join(', ')+').';tb.appendChild(n); }
   c2.appendChild(tb);
   row.append(c1,c2);wrap.appendChild(row);
-  // location cards
-  if(DB.inv.locations.length){
-    const lh=document.createElement('div');lh.className='dash-section-title';lh.textContent='Locations';wrap.appendChild(lh);
-    const lg=document.createElement('div');lg.className='bc-loc-grid';
-    DB.inv.locations.forEach(l=>{
-      const tot=cols.reduce((s,c)=>s+((l.vals&&l.vals[c])||0),0);
-      const card=document.createElement('div');card.className='bc-loc';
-      let h='<div class="bc-loc-name">'+esc(l.name||'—')+'<span class="mono">'+tot.toLocaleString()+'</span></div><div class="bc-loc-share">'+(grand?Math.round(tot/grand*100):0)+'% of all benches on hand</div>';
-      cols.forEach((c,ci)=>{h+='<div class="bc-loc-row"><span><span class="dash-dot" style="display:inline-block;margin-right:6px;background:'+palette[ci%palette.length]+'"></span>'+esc(c)+'</span><span class="mono">'+((l.vals&&l.vals[c])||0).toLocaleString()+'</span></div>';});
-      card.innerHTML=h;lg.appendChild(card);
-    });
-    wrap.appendChild(lg);
-  }
   // editable grid
   const ed=document.createElement('div');ed.className='card card-pad';
-  ed.innerHTML='<div class="dash-section-title">Edit counts <span style="font-family:Inter,sans-serif;font-weight:400;font-size:12px;color:var(--ink-soft);margin-left:4px">type a number to correct a count — transfers adjust these automatically</span></div>';
+  ed.innerHTML='<div class="dash-section-title">Edit bench counts <span style="font-family:Inter,sans-serif;font-weight:400;font-size:12px;color:var(--ink-soft);margin-left:4px">type a number to correct a count — transfers adjust these automatically</span></div>';
   ed.appendChild(invTable());
   const addLoc=document.createElement('button');addLoc.className='ghost-btn';addLoc.textContent='+ Add location';addLoc.style.marginTop='12px';
-  addLoc.onclick=()=>{const id=uid();const vals={};DB.inv.columns.forEach(c=>vals[c]=0);DB.inv.locations.push({id,name:'New location',vals});const evals={};DB.equip.columns.forEach(c=>evals[c]=0);DB.equip.locations.push({id,name:'New location',vals:evals});save();renderBenchCounts();renderEquipGrid();renderDash();};
-  const invPdfBtn=document.createElement('button');invPdfBtn.className='btn outline btn-sm';invPdfBtn.textContent='Inventory report (PDF)';invPdfBtn.style.marginTop='12px';invPdfBtn.style.marginLeft='8px';
+  addLoc.onclick=()=>{const id=uid();const vals={};DB.inv.columns.forEach(c=>vals[c]=0);DB.inv.locations.push({id,name:'New location',vals});const evals={};DB.equip.columns.forEach(c=>evals[c]=0);DB.equip.locations.push({id,name:'New location',vals:evals});save();renderEquipGrid();renderDash();};
+  const invPdfBtn=document.createElement('button');invPdfBtn.className='btn outline btn-sm';invPdfBtn.textContent='Bench inventory (PDF)';invPdfBtn.style.marginTop='12px';invPdfBtn.style.marginLeft='8px';
   invPdfBtn.onclick=()=>{ if(!DB.inv.locations.length){flashBtn(invPdfBtn,'No inventory');return;} withPdf(invPdfBtn,()=>exportInventoryPDF()); };
   ed.appendChild(addLoc);ed.appendChild(invPdfBtn);
-  const lnote=document.createElement('div');lnote.className='page-note';lnote.style.marginTop='10px';lnote.innerHTML='Locations here are shared with <b>Equipment</b>, <b>New Builds</b>, <b>Refurb Jobs</b> and <b>Transfers</b>. Removing a location moves its equipment units to “No location set”.';
+  const lnote=document.createElement('div');lnote.className='page-note';lnote.style.marginTop='10px';lnote.innerHTML='Locations here are shared with <b>Equipment units</b>, <b>New Builds</b>, <b>Refurb Jobs</b> and <b>Transfers</b>. Removing a location moves its equipment units to “No location set”.';
   ed.appendChild(lnote);
   wrap.appendChild(ed);
-  // recent bench movements
-  const rec=DB.transfers.filter(t=>(t.items||[]).some(it=>it.kind==='bench')).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,6);
-  const rc=document.createElement('div');rc.className='card card-pad';
-  rc.innerHTML='<div class="dash-section-title">Recent bench movements</div>';
-  if(rec.length){
-    const list=document.createElement('div');list.className='dash-recent-list';
-    rec.forEach(t=>{const dir=transferDir(t);const r=document.createElement('div');r.className='dash-recent-row';
-      r.innerHTML='<span class="tf-dir '+dir+'">'+{in:'IN',out:'OUT',move:'MOVE'}[dir]+'</span><span class="dash-recent-main">'+esc(t.from||'')+' → '+esc(t.to||'')+' &nbsp;'+tfItemTags({items:(t.items||[]).filter(it=>it.kind==='bench')})+'</span><span class="dash-recent-date mono">'+esc(fmtDate(t.date||''))+'</span>';
-      list.appendChild(r);});
-    rc.appendChild(list);
-  } else rc.insertAdjacentHTML('beforeend','<div class="tf-none">No bench transfers logged yet.</div>');
-  const vb=document.createElement('button');vb.className='btn outline btn-sm';vb.style.marginTop='10px';vb.textContent='View Transfers →';vb.onclick=()=>setTab('transfers');rc.appendChild(vb);
-  wrap.appendChild(rc);
 }
 
-
 /* ---------- tabs ---------- */
-const ALL_TABS=['dash','builds','refurb','transfers','equip','benchcounts','settings'];
-const TAB_LABELS={dash:'Dashboard',builds:'New Builds',refurb:'Refurb Jobs',transfers:'Transfers',equip:'Equipment',benchcounts:'Bench Counts',settings:'Settings'};
-const TAB_SUBS={dash:'Bench operations overview',builds:'Purchase orders and bench pickups',refurb:'Refurb sets \u2014 close each set out when it\u2019s dropped off',transfers:'Move benches and equipment between locations',equip:'Every unit, where it is and its condition',benchcounts:'Benches on hand by location and type',settings:'Backup, import and reset'};
+const ALL_TABS=['dash','builds','refurb','transfers','equip','settings'];
+const TAB_LABELS={dash:'Dashboard',builds:'New Builds',refurb:'Refurb Jobs',transfers:'Transfers',equip:'Equipment & Benches',settings:'Settings'};
+const TAB_SUBS={dash:'Bench operations overview',builds:'Purchase orders and bench pickups',refurb:'Refurb sets \u2014 close each set out when it\u2019s dropped off',transfers:'Move benches and equipment between locations',equip:'Benches and equipment at every location \u2014 counts, units and condition',settings:'Backup, import and reset'};
 function setTab(which){
+  if(which==='benchcounts'){ UI.eqView='benches'; which='equip'; } // Bench Counts merged into Equipment & Benches
   ALL_TABS.forEach(t=>{
     const tb=document.getElementById('tab-'+t), pn=document.getElementById('panel-'+t);
     if(!tb||!pn) return;
@@ -3214,7 +3283,6 @@ function setTab(which){
   if(which==='refurb'){renderRefurbs();}
   if(which==='transfers'){renderTransfers();}
   if(which==='equip'){renderEquipGrid();}
-  if(which==='benchcounts'){renderBenchCounts();}
 }
 
 /* ---------- wire up ---------- */
@@ -3242,7 +3310,6 @@ async function init(){
   document.getElementById('tab-refurb').onclick=()=>setTab('refurb');
   document.getElementById('tab-transfers').onclick=()=>setTab('transfers');
   document.getElementById('tab-equip').onclick=()=>setTab('equip');
-  document.getElementById('tab-benchcounts').onclick=()=>setTab('benchcounts');
   document.getElementById('tab-settings').onclick=()=>setTab('settings');
   document.getElementById('add-build').onclick=addPOFromForm;
   ['np-po','np-man','np-ord'].forEach(id=>{const el=document.getElementById(id);if(el)el.onkeydown=e=>{if(e.key==='Enter')addPOFromForm();};});
