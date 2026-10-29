@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dragon Seats — Bench Tracker</title>
+<title>DS Asset Hub · Dragon Seats</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -422,19 +422,19 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 </script>
 <style>
   :root{
-    --paper:#ECEDEF;
-    --card:#FBFBFC;
+    --paper:#f7f6f4;
+    --card:#ffffff;
     --ink:#17181A;
-    --ink-soft:#5E6166;
-    --line:#CDD0D4;
-    --line-soft:#E3E5E8;
+    --ink-soft:#6b6f76;
+    --line:#e3e1dd;
+    --line-soft:#ebe9e5;
     --accent:#AA0201;       /* Dragon Seats red — actionable/totals only */
     --accent-deep:#7F0000;
     --steel:#4B4E53;        /* graphite — structure */
-    --steel-soft:#ECEDEF;
-    --good:#2F6B4F;
+    --steel-soft:#eef0f2;
+    --good:#1f7a3d;
     --warn:#A8160F;
-    --shadow:0 1px 2px rgba(20,21,23,.06),0 10px 28px rgba(20,21,23,.07);
+    --shadow:0 1px 2px rgba(23,24,26,.05);
     --sidebar-w:250px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -647,6 +647,23 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .grp-actions{display:flex;gap:8px;align-items:center;padding:10px 16px 12px;flex-wrap:wrap;border-top:1px solid var(--line-soft);background:#FAFAFB}
   .grp-actions .spacer{flex:1}
   .grp-actions .hint{font-size:11.5px;color:var(--ink-soft)}
+  .po-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:5px;background:#E4F2E8;color:var(--good);border:1px solid #C6E3CE;white-space:nowrap;align-self:center}
+  .mini-btn.po-complete{background:var(--good);border-color:var(--good);color:#fff}
+  .mini-btn.po-complete:hover{filter:brightness(1.08)}
+  .rf-sub{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:3px}
+  .rf-sub .rf-label{max-width:200px}
+  .rf-tags{display:flex;flex-wrap:wrap}
+  .rf-outline{display:flex;flex-wrap:wrap;max-width:560px}
+  .rf-out{display:flex;gap:8px;align-items:baseline;background:#FDF3E2;color:#9A6512;border-radius:5px;padding:3px 9px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.5;margin-top:2px}
+  .rf-out span{text-transform:uppercase;letter-spacing:.06em;font-size:10px;white-space:nowrap}
+  .rf-out b{font-weight:600}
+  .rf-ob{min-width:44px;justify-content:center}
+  .grp-stat b em{font-style:normal}.grp-stat b .ob-o{color:#9A6512}.grp-stat b .ob-b{color:var(--good)}.grp-stat b .ob-dot{font-style:normal;color:var(--ink-soft);margin:0 4px;font-weight:400}
+  .rf-divider{display:flex;align-items:center;gap:10px;margin:22px 2px 10px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .rf-divider::after{content:'';flex:1;height:1px;background:var(--line)}
+  .seg .seg-n{font-family:'JetBrains Mono',monospace;font-size:10.5px;opacity:.7;margin-left:3px}
+  .tf-field i{font-style:normal;text-transform:none;letter-spacing:0;opacity:.7}
+  .grp.g-closed .grp-in:disabled,.grp.g-closed .num-in:disabled,.grp.g-closed .ops-input:disabled,.grp.g-closed select:disabled{background:transparent;color:var(--ink);opacity:1;cursor:default;-webkit-text-fill-color:var(--ink)}
   .tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:5px;background:var(--steel-soft);color:var(--steel);font-family:'JetBrains Mono',monospace;white-space:nowrap;margin:1px 4px 1px 0;line-height:1.5}
   .tag.red{background:#F6E1E1;color:var(--accent-deep)}
   .tag.amber{background:#FDF3E2;color:#9A6512}
@@ -672,6 +689,32 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .cond-sel.c-out{background:#F6E1E1;color:var(--accent-deep);border-color:#E9C4C4}
   .stale{color:var(--accent-deep);font-size:10.5px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
   .chk-wrap{display:flex;align-items:center;gap:6px}
+  /* equipment compact unit list */
+  .eq-row{cursor:pointer}
+  .eq-row:hover td{background:#F7F7F8}
+  .eq-row.editing td{background:#F3F4F5}
+  .eq-row td{padding-top:9px;padding-bottom:9px}
+  .eq-row td,.eq-edit,.eq-edit .tf-field,.eq-edit .tf-field span{text-align:left}
+  .eq-edit .tf-field.chkf{flex:1 1 220px}
+  .eq-edit .chk-wrap .ops-input{min-width:0;flex:1}
+  .eq-tag{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12.5px;color:var(--ink);white-space:nowrap}
+  .eq-tag.auto{color:var(--ink-soft);font-weight:500}
+  .eq-tag .auto-note{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#9A6512;margin-left:6px}
+  .cond-pill{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .cond-pill.c-ok{background:#E7F1EC;color:var(--good)}
+  .cond-pill.c-rep{background:#FDF3E2;color:#9A6512}
+  .cond-pill.c-out{background:#F6E1E1;color:var(--accent-deep)}
+  .eq-date{font-family:'JetBrains Mono',monospace;font-size:11.5px;white-space:nowrap}
+  .eq-notes{color:var(--ink-soft);font-size:12px;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .eq-edit-cell{padding:12px 14px!important;background:#F3F4F5;border-bottom:2px solid var(--line)}
+  .eq-edit{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+  .eq-edit .tf-field{flex:1 1 140px}
+  .eq-edit .tf-field.wide{flex:2 1 240px}
+  .eq-edit .eq-edit-btns{display:flex;gap:8px;align-items:center;margin-left:auto}
+  .eq-add-inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .eq-add-inline .ops-input{width:150px;font-family:'JetBrains Mono',monospace}
+  .eq-add-inline .ops-sel{width:auto}
+  .eq-err{color:var(--accent-deep);font-size:11.5px;font-weight:600}
   .chk-wrap .ops-input{min-width:128px}
   .mini-btn{appearance:none;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--steel);border-radius:6px;padding:4px 8px;white-space:nowrap}
   .mini-btn:hover{border-color:var(--steel);background:var(--steel-soft)}
@@ -714,6 +757,15 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .tf-month td{background:#fff!important;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--ink);padding:14px 10px 6px!important;border-bottom:1.5px solid var(--line)!important;letter-spacing:.02em}
   .tf-month td span{font-family:'Inter',sans-serif;font-weight:500;color:var(--ink-soft);margin-left:6px}
   .tf-route-cell{white-space:nowrap;font-size:12.5px}
+  .tf-assets-row{display:grid;grid-template-columns:1fr;padding:6px 18px 4px}
+  .tf-assets-row .ops-input{border-color:var(--line);height:38px;font-family:'JetBrains Mono',monospace;font-size:12.5px}
+  .tf-field>span em{font-style:normal;text-transform:none;letter-spacing:0;font-weight:400;margin-left:4px}
+  .tf-months{padding:14px 16px 4px}
+  .tf-months .grp{box-shadow:none;border-color:var(--line)}
+  .tf-months .grp-name{font-size:15.5px}
+  .tf-months .ops-table td{text-align:left}
+  .tf-months .ops-table td:last-child{text-align:right;width:40px}
+  .tf-asset-in{font-family:'JetBrains Mono',monospace!important;font-size:12px!important;min-width:120px;width:100%}
   .tf-route-cell .arr{color:var(--ink-soft);margin:0 5px}
   @media(max-width:900px){
     .tf-route{grid-template-columns:1fr 1fr}
@@ -1091,6 +1143,107 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     thead th,tbody td{padding-left:10px;padding-right:10px}
     .mast .doc-tag{text-align:left}
   }
+
+  /* ===== MRP look (2026-10-29): match the DS MRP System's shell & components ===== */
+  .accentbar{display:none}
+  .sb-brand img.brand-logo{display:none}
+  .card>.dash-section-title:first-child,.dash-card>.dash-section-title:first-child{margin-top:0}
+  .appshell{grid-template-rows:1fr;grid-template-columns:232px 1fr}
+  .sidebar,.main{grid-row:1}
+  body{font-size:14px;-webkit-font-smoothing:antialiased}
+  /* dark sidebar */
+  .sidebar{background:var(--ink);color:#eee;border-right:none}
+  .sb-brand{padding:16px 16px 16px;border-bottom:1px solid #26272a;margin-bottom:0;gap:10px}
+  .sb-brand img.sb-mark{width:32px;height:32px;object-fit:contain;border-radius:7px;background:#fff;padding:3px;flex:none}
+  .sb-brand-text strong{color:#fff;font-size:14.5px;font-weight:600;letter-spacing:.01em}
+  .sb-brand-text span{font-size:10px;color:#8a8d93;letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
+  .sb-nav{padding:8px 8px;gap:0}
+  .sb-group{margin-top:0}
+  .sb-group-label{font-family:'Inter',system-ui,sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;color:#6f7278;padding:16px 8px 6px}
+  .sb-group-label.sb-first{padding-top:6px}
+  .tab{font-family:'Space Grotesk',system-ui,sans-serif;color:#c9cacc;font-size:13.5px;font-weight:500;padding:8px 10px;margin:1px 0;
+    border-radius:6px;border-left:2.5px solid transparent;gap:9px}
+  .tab .tab-ico{flex:0 0 auto;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;opacity:.85;font-size:13px}
+  .tab .tab-label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+  .tab .count{color:#9a9da3;background:#2a2b2e;border-radius:8px}
+  .tab .count:empty{display:none}
+  .tab:hover{background:#222327;color:#fff}
+  .tab[aria-selected="true"]{background:#26181a;color:#fff;border-left-color:var(--accent)}
+  .tab[aria-selected="true"] .tab-ico{opacity:1;color:var(--accent)}
+  .tab[aria-selected="true"] .count{color:#fff;background:#3a2224}
+  .tab:focus-visible{outline:2px solid #6f7278}
+  .sb-group.sb-group-divider{border-top:none;padding-top:0}
+  .sb-foot{border-top:1px solid #2a2b2e;padding:12px 18px}
+  .sb-foot,.sb-stamp,.save-state{color:#6f7176;font-size:10.5px}
+  .save-state b{color:#8fbf9f}
+  /* white topbar with subtitle */
+  .topbar{background:var(--card);border-bottom:1px solid var(--line);padding:16px 28px}
+  .topbar h2{font-size:22px;font-weight:600}
+  .topbar .sub{color:var(--ink-soft);font-size:12.5px;margin-top:3px}
+  .content{padding:24px 28px 48px;max-width:none}
+  /* centered layout (2026-10-29): cap the working area and center it in the space beside the sidebar;
+     the topbar title lines up with the content's left edge */
+  :root{--page-max:1480px}
+  .content{max-width:var(--page-max);margin-left:auto;margin-right:auto}
+  .topbar{padding-left:max(28px,calc((100% - var(--page-max))/2 + 28px));padding-right:max(28px,calc((100% - var(--page-max))/2 + 28px))}
+  /* dashboard hero */
+  .dash-hero{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+  .dash-greeting{font-family:'Space Grotesk',system-ui,sans-serif;font-size:23px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+  .dash-date{font-size:12.5px;color:var(--ink-soft)}
+  /* KPI tiles = MRP stat cards */
+  .kpi-strip{gap:10px;margin-bottom:20px}
+  .kpi-tile{border-radius:9px;padding:12px 14px;gap:2px;box-shadow:var(--shadow)}
+  .kpi-num{font-size:22px;font-weight:600;line-height:1.15}
+  .kpi-lbl{font-size:11.5px;color:var(--ink-soft);font-weight:400}
+  /* section titles: uppercase with red rule */
+  .dash-section-title{font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--steel);
+    border-left:3px solid var(--accent);padding-left:8px;margin:22px 0 10px;gap:8px}
+  .dash-section-title::before{display:none}
+  .dash-section-title span,.dash-section-title .meta{text-transform:none;letter-spacing:.01em}
+  .newpo .newpo-title{text-transform:uppercase;letter-spacing:.07em;font-weight:500;font-size:12.5px;color:var(--steel)}
+  /* cards */
+  .card,.dash-card,.grp,.newpo{border-color:var(--line);box-shadow:var(--shadow)}
+  .card-head,.grp-head{background:var(--card)}
+  .grp-head:hover{background:#fbfaf8}
+  .card-head{padding:12px 16px}
+  .card-head .name{font-size:14.5px;font-weight:600}
+  .dash-card h3{color:var(--steel);font-weight:600}
+  .note{background:#fbfaf8}
+  /* buttons = MRP buttons (white default, red accent) */
+  .btn{font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:600;border-radius:6px;padding:8px 16px;min-height:38px;
+    background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:0 1px 2px rgba(23,24,26,.05);justify-content:center;line-height:1}
+  .btn:hover{background:var(--steel-soft);border-color:var(--steel)}
+  .btn.outline{background:#fff;color:var(--ink);border-color:var(--line)}
+  .btn.outline:hover{background:var(--steel-soft);border-color:var(--steel)}
+  .btn.accent{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:none}
+  .btn.accent:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+  .btn.btn-sm,.btn.sm{padding:5px 11px;font-size:12px;min-height:30px;border-radius:6px}
+  .seg{border-radius:6px}
+  .seg button{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;font-weight:500;color:var(--ink-soft)}
+  /* inputs: red focus ring like the MRP */
+  .ref-input,.notes-input,.field-box{border-radius:6px;font-size:13.5px}
+  .ops-input:focus-visible,.ops-sel:focus-visible,.ref-input:focus-visible,.notes-input:focus-visible,.inv-cell:focus-visible,.inv-name:focus-visible,.grp-in:focus-visible,.grp-stat input.num-in:focus-visible{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(170,2,1,.08)}
+  /* tables */
+  .ops-table th,.inv-table thead th,.equip-table thead th{font-family:'Inter',system-ui,sans-serif;font-size:11.5px;letter-spacing:.04em;color:var(--ink-soft);font-weight:600}
+  .ops-table tbody tr:nth-child(even),.inv-table tbody tr:nth-child(even),.equip-table tbody tr:nth-child(even){background:#fbfaf8}
+  .ops-table tbody tr:hover,.inv-table tbody tr:hover,.equip-table tbody tr:hover{background:#f3f1ee}
+  .inv-table tfoot td,.equip-table tfoot td{background:#fbfaf8}
+  .dash-note{border-radius:9px;background:#fdf3dc;border-color:#eadfb8;color:#6b5410}
+  .dash-note-dot{background:#b8860b}
+  @media(max-width:860px){
+    .appshell{grid-template-columns:1fr}
+    .sidebar,.main{grid-row:auto}
+    .sidebar{position:static;height:auto;flex-direction:column;align-items:stretch}
+    .sb-brand{border-bottom:none;padding-bottom:6px}
+    .sb-nav{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;padding:4px 8px 10px;gap:2px}
+    .sb-group,.sb-group.sb-group-divider{display:contents}
+    .sb-group-label{display:none}
+    .tab{width:auto;flex:none;border-left:none;border-bottom:2.5px solid transparent;border-radius:6px 6px 0 0}
+    .tab[aria-selected="true"]{border-bottom-color:var(--accent)}
+    .topbar{padding:14px 16px}
+    .content{padding:18px 16px 40px}
+  }
 </style>
 </head>
 <body>
@@ -1100,38 +1253,31 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 <div class="accentbar" aria-hidden="true"></div>
 <aside class="sidebar">
   <div class="sb-brand">
-    <img class="brand-logo" src="data:image/png;base64,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" alt="Dragon Seats logo">
+    <img class="sb-mark" src="data:image/png;base64,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" alt="Dragon Seats">
+    <img class="brand-logo" hidden src="data:image/png;base64,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" alt="Dragon Seats logo">
     <div class="sb-brand-text">
       <strong>Dragon Seats</strong>
-      <span>Bench Tracker</span>
+      <span>DS Asset Hub</span>
     </div>
   </div>
   <nav class="sb-nav" role="tablist" aria-label="Main navigation">
-    <button class="tab" role="tab" id="tab-dash" aria-selected="true" aria-controls="panel-dash">
-      Dashboard
-    </button>
+    <div class="sb-group-label sb-first">Overview</div>
+    <button class="tab" role="tab" id="tab-dash" aria-selected="true" aria-controls="panel-dash"><span class="tab-ico" aria-hidden="true">&#9679;</span><span class="tab-label">Dashboard</span></button>
     <div class="sb-group">
       <div class="sb-group-label">Operations</div>
-      <button class="tab" role="tab" id="tab-builds" aria-selected="false" aria-controls="panel-builds">
-        New Builds<span class="count" id="builds-count"></span>
+      <button class="tab" role="tab" id="tab-builds" aria-selected="false" aria-controls="panel-builds"><span class="tab-ico" aria-hidden="true">&#9633;</span><span class="tab-label">New Builds</span><span class="count" id="builds-count"></span>
       </button>
-      <button class="tab" role="tab" id="tab-refurb" aria-selected="false" aria-controls="panel-refurb">
-        Refurb Jobs<span class="count" id="refurb-count"></span>
+      <button class="tab" role="tab" id="tab-refurb" aria-selected="false" aria-controls="panel-refurb"><span class="tab-ico" aria-hidden="true">&#9874;</span><span class="tab-label">Refurb Jobs</span><span class="count" id="refurb-count"></span>
       </button>
-      <button class="tab" role="tab" id="tab-transfers" aria-selected="false" aria-controls="panel-transfers">
-        Transfers<span class="count" id="transfers-count"></span>
+      <button class="tab" role="tab" id="tab-transfers" aria-selected="false" aria-controls="panel-transfers"><span class="tab-ico" aria-hidden="true">&#8644;</span><span class="tab-label">Transfers</span><span class="count" id="transfers-count"></span>
       </button>
-      <button class="tab" role="tab" id="tab-equip" aria-selected="false" aria-controls="panel-equip">
-        Equipment<span class="count" id="equip-count"></span>
+      <button class="tab" role="tab" id="tab-equip" aria-selected="false" aria-controls="panel-equip"><span class="tab-ico" aria-hidden="true">&#9881;</span><span class="tab-label">Equipment</span><span class="count" id="equip-count"></span>
       </button>
-      <button class="tab" role="tab" id="tab-benchcounts" aria-selected="false" aria-controls="panel-benchcounts">
-        Bench Counts
-      </button>
+      <button class="tab" role="tab" id="tab-benchcounts" aria-selected="false" aria-controls="panel-benchcounts"><span class="tab-ico" aria-hidden="true">&#9636;</span><span class="tab-label">Bench Counts</span></button>
     </div>
     <div class="sb-group sb-group-divider">
-      <button class="tab" role="tab" id="tab-settings" aria-selected="false" aria-controls="panel-settings">
-        Settings
-      </button>
+      <div class="sb-group-label">System</div>
+      <button class="tab" role="tab" id="tab-settings" aria-selected="false" aria-controls="panel-settings"><span class="tab-ico" aria-hidden="true">&#9776;</span><span class="tab-label">Settings</span></button>
     </div>
   </nav>
   <div class="sb-foot">
@@ -1140,7 +1286,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   </div>
 </aside>
 <main class="main">
-  <div class="topbar"><h2 id="page-title">Dashboard</h2></div>
+  <div class="topbar"><div><h2 id="page-title">Dashboard</h2><div class="sub" id="page-sub">Bench operations overview</div></div></div>
   <div class="content">
 
   <!-- ===================== DASHBOARD ===================== -->
@@ -1161,27 +1307,38 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     <div class="sec-toolbar">
       <div class="dash-section-title" style="margin:0">Purchase orders <span class="meta mono" id="builds-meta" style="font-weight:400;font-size:11.5px;color:var(--ink-soft);margin-left:4px"></span></div>
       <div class="spacer"></div>
+      <div class="seg" id="builds-view" role="group" aria-label="Show POs"><button data-v="open">Open</button><button data-v="closed">Closed</button><button data-v="all">All</button></div>
       <div class="seg"><button id="builds-expand">Expand all</button><button id="builds-collapse">Collapse all</button></div>
       <button class="btn outline btn-sm" id="export-builds">Export PDF</button>
     </div>
     <div id="builds-body"></div>
-    <div class="page-note">Each PO is its own section. Log every pickup/release of finished benches under its PO with <b>+ Add pickup</b>. Set <b>Ordered</b> on a PO to track how many are still to come. Totals update the Dashboard automatically.</div>
+    <div class="page-note">Each PO is its own section. Log every pickup/release of finished benches under its PO with <b>+ Add pickup</b>. Set <b>Ordered</b> on a PO to track how many are still to come. When a PO is done, click <b>Mark PO complete</b> to close it out officially (it locks and moves to the bottom; <b>Reopen PO</b> undoes it). <b>Export PDF</b> inside a PO prints just that PO. Totals update the Dashboard automatically.</div>
   </section>
 
   <!-- ===================== REFURB JOBS ===================== -->
   <section class="panel" id="panel-refurb" role="tabpanel" aria-labelledby="tab-refurb">
     <div id="refurb-kpi" class="kpi-strip"></div>
+    <div class="newpo">
+      <div class="newpo-title">Start a new set</div>
+      <label class="tf-field"><span>Team <i>(optional)</i></span><input id="rf-team" class="ops-input field-box" list="rf-teams" autocomplete="off"></label>
+      <label class="tf-field"><span>Set name <i>(optional)</i></span><input id="rf-label" class="ops-input field-box" autocomplete="off"></label>
+      <label class="tf-field"><span>Dropped off to</span><input id="rf-shop" class="ops-input field-box" list="rf-shops" autocomplete="off"></label>
+      <label class="tf-field" style="flex:0 1 160px"><span>Drop off date</span><input id="rf-drop" type="date" class="ops-input field-box" autocomplete="off"></label>
+      <label class="tf-field" style="flex:0 1 110px"><span># benches</span><input id="rf-n" type="number" min="0" max="200" class="ops-input num field-box" autocomplete="off"></label>
+      <button class="btn accent" id="add-refurb" style="height:38px">+ Add set</button>
+      <datalist id="rf-teams"></datalist><datalist id="rf-shops"></datalist>
+    </div>
     <div class="sec-toolbar">
-      <input id="refurb-search" class="ref-input" placeholder="Search bench ID, team, notes&hellip;" aria-label="Search refurb jobs" autocomplete="off">
+      <input id="refurb-search" class="ref-input" placeholder="Search asset #, team, set, notes&hellip;" aria-label="Search refurb jobs" autocomplete="off">
       <select id="refurb-filter" class="ops-sel field-box" style="max-width:170px" aria-label="Filter by status"></select>
       <span class="meta mono" id="refurb-meta" style="font-size:11.5px;color:var(--ink-soft)"></span>
       <div class="spacer"></div>
+      <div class="seg" id="refurb-view" role="group" aria-label="Show sets"><button data-v="open">Open</button><button data-v="closed">Closed</button><button data-v="all">All</button></div>
       <div class="seg"><button id="refurb-expand">Expand all</button><button id="refurb-collapse">Collapse all</button></div>
       <button class="btn outline btn-sm" id="export-refurb">Export PDF</button>
-      <button class="btn btn-sm" id="add-refurb">+ Add job</button>
     </div>
     <div id="refurb-body"></div>
-    <div class="page-note">Jobs are grouped by team. Rename a team in its header to fix a typo or merge two groups (e.g. type the same name into both). Teams with work in progress sort to the top; fully completed teams stay collapsed.</div>
+    <div class="page-note">Each <b>set</b> is one batch of benches going out for refurb &mdash; a team&rsquo;s benches, or a set with no team (e.g. a travel set: leave Team blank and give it a set name). Start one with <b>Start a new set</b> (enter # benches to create that many rows at once), then fill in bench IDs. When the set is dropped back off, click <b>✓ Mark set complete</b> &mdash; it locks, gets a closed date and moves to the <b>Closed</b> view (<b>Reopen set</b> undoes it). The same team can have many sets over the seasons. Enter each bench&rsquo;s <b>Asset #</b> so you can see exactly which benches are out: a bench shows <b>Out</b> once it has a Drop off date and <b>Back</b> once it has a Pick up date, and each set lists the asset numbers still out. Searching looks through every set, open and closed. <b>Export PDF</b> inside a set prints just that set.</div>
   </section>
 
   <!-- ===================== TRANSFERS ===================== -->
@@ -1196,12 +1353,15 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
         <label class="tf-field"><span>To</span><select id="tf-to" class="ops-sel"></select></label>
         <label class="tf-field"><span>Notes</span><input id="tf-notes" class="ops-input" placeholder="Optional" autocomplete="off"></label>
       </div>
+      <div class="tf-assets-row">
+        <label class="tf-field"><span>Asset #s <em>if applicable</em></span><input id="tf-assets" class="ops-input mono" placeholder="Optional &mdash; separate with commas (e.g. 1042, 1043)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></label>
+      </div>
       <div id="tf-items-wrap"></div>
       <div class="tf-foot">
         <div class="tf-summary" id="tf-summary">Nothing selected yet.</div>
         <button class="btn accent" id="tf-log">Log transfer</button>
       </div>
-      <div class="note">Benches: enter a quantity per type. Equipment: tick the exact units leaving the <b>From</b> location (when receiving from <b>External</b>, enter how many new units arrive and they're created automatically). Counts and unit locations update automatically; deleting a transfer reverses it. <b>Other</b> logs a paper-trail item with no count change.</div>
+      <div class="note">Benches: enter a quantity per type. Equipment: tick the exact units leaving the <b>From</b> location (when receiving from <b>External</b>, enter how many new units arrive and they're created automatically). Counts and unit locations update automatically; deleting a transfer reverses it. <b>Other</b> logs a paper-trail item with no count change. <b>Asset #s</b> are optional &mdash; add or fix them later right in the history.</div>
     </div>
     <div class="card">
       <div class="card-head"><span class="name" style="font-weight:700">Transfer history</span><span class="meta mono" id="tf-meta" style="font-size:11.5px;color:var(--ink-soft)"></span></div>
@@ -1209,6 +1369,8 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
         <div class="seg" id="tf-dir-seg"><button data-dir="" class="on">All</button><button data-dir="in">In</button><button data-dir="out">Out</button><button data-dir="move">Moves</button></div>
         <input id="tf-search" class="ref-input" placeholder="Search items, locations, notes&hellip;" aria-label="Search transfers" style="flex:0 1 260px;min-width:0" autocomplete="off">
         <div class="spacer" style="flex:1"></div>
+        <button class="btn outline btn-sm" id="tf-expand-all">Expand all</button>
+        <button class="btn outline btn-sm" id="tf-collapse-all">Collapse all</button>
         <button class="btn outline btn-sm" id="export-transfers">Export PDF</button>
       </div>
       <div id="tf-body"></div>
@@ -1341,6 +1503,7 @@ function ensureShape(){
   syncEquipCounts();
   DB.refurbs.forEach(r=>{ if(typeof r.benchId==='string') r.benchId=r.benchId.replace(/\.0+$/,''); });
   DB.refurbs.forEach(r=>{ if(r.status==='Complete') r.status='Completed'; });
+  shapeRefurbSets();
 }
 async function load(){
   try{
@@ -1509,6 +1672,10 @@ function renderDash(){
   DB.refurbs.forEach(r=>{ if(rfStat[r.status]!==undefined)rfStat[r.status]++; });
   const rfProg=rfStat['In Progress']||0, rfDone=rfStat['Completed']||0, rfNotStarted=Math.max(0,rfCount-rfProg-rfDone);
   const benchTotal=gridGrandTotal(DB.inv), equipTotal=gridGrandTotal(DB.equip), tfCount=DB.transfers.length;
+  { const hr=new Date().getHours(), greet=hr<12?'Good morning':(hr<18?'Good afternoon':'Good evening');
+    const hero=document.createElement('div');hero.className='dash-hero';
+    hero.innerHTML='<div class="dash-greeting">'+greet+', John</div><div class="dash-date">'+new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})+'</div>';
+    body.appendChild(hero); }
   if(rfProg>0){
     const note=document.createElement('div');note.className='dash-note';
     note.innerHTML='<span class="dash-note-dot"></span>'+rfProg+' refurb job'+(rfProg===1?'':'s')+' currently in progress';
@@ -1530,7 +1697,7 @@ function renderDash(){
 
   function card(title,rowsArr){const c=document.createElement('div');c.className='dash-card';let html='<h3>'+esc(title)+'</h3>';rowsArr.forEach(([l,v,acc])=>{html+='<div class="stat-row"><span class="stat-lbl">'+esc(l)+'</span><span class="stat-val'+(acc?' accent':'')+'">'+v+'</span></div>';});c.innerHTML=html;return c;}
   const nbRows=[['Total pickups logged',nbCount],['Total benches picked up',nbQty.toLocaleString(),true]];
-  poGroups().forEach(g=>{ if(!g.rows.length&&!g.ordered) return; nbRows.push(['PO '+(g.po||'(none)')+(g.manufacturer?(' \u00b7 '+g.manufacturer):''),g.ordered?(g.picked.toLocaleString()+' / '+g.ordered.toLocaleString()):g.picked.toLocaleString()]); });
+  poGroups().forEach(g=>{ if(!g.rows.length&&!g.ordered) return; nbRows.push(['PO '+(g.po||'(none)')+(g.manufacturer?(' \u00b7 '+g.manufacturer):'')+(g.closed?' \u00b7 closed':''),g.ordered?(g.picked.toLocaleString()+' / '+g.ordered.toLocaleString()):g.picked.toLocaleString()]); });
   const row=document.createElement('div');row.className='dash-row';
   row.appendChild(card('New Builds',nbRows));
   row.appendChild(refurbStatusCard(rfCount,rfProg,rfDone,rfNotStarted));
@@ -1780,7 +1947,7 @@ function applyEquipTransferToGrid(t,sign){
 }
 
 /* ---------- shared UI helpers for grouped sections ---------- */
-const UI={poOpen:{},teamOpen:{},eqOpen:{},tfDir:'',tfQ:''};
+const UI={poView:'all',rfView:'open',poOpen:{},teamOpen:{},eqOpen:{},tfDir:'',tfQ:'',tfOpen:{}};
 function todayISO(){const d=new Date();const p=x=>String(x).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());}
 function stopClick(el){['click','mousedown','keydown'].forEach(ev=>el.addEventListener(ev,e=>{ if(ev!=='keydown'||e.key===' '||e.key==='Enter') e.stopPropagation(); }));return el;}
 function grpStat(label,valHtml,cls){const s=document.createElement('div');s.className='grp-stat';s.innerHTML='<b class="'+(cls||'')+'">'+valHtml+'</b><span>'+esc(label)+'</span>';return s;}
@@ -1835,9 +2002,10 @@ function poGroups(){
     const mans=[...new Set(g.rows.map(b=>(b.manufacturer||'').trim()).filter(Boolean))];
     const man=mans.length?mans.join(' / '):(meta.manufacturer||'');
     return {po:g.po,rows:g.rows,picked,ordered,remaining:ordered?Math.max(0,ordered-picked):null,
-      complete:ordered>0&&picked>=ordered,first:dates[0]||'',last:dates[dates.length-1]||'',manufacturer:man};
+      complete:ordered>0&&picked>=ordered,closed:!!meta.closed,closedDate:meta.closedDate||'',first:dates[0]||'',last:dates[dates.length-1]||'',manufacturer:man};
   });
   groups.sort((a,b)=>{
+    if(a.closed!==b.closed) return a.closed?1:-1;
     if(a.complete!==b.complete) return a.complete?1:-1;
     const la=a.last||'9999-99-99', lb=b.last||'9999-99-99';
     if(la!==lb) return lb.localeCompare(la);
@@ -1854,12 +2022,21 @@ function renamePO(oldKey,newKey){
   if(om){ const nm=DB.poOrders[newKey]; if(nm){ nm.ordered=(Number(nm.ordered)||0)+(Number(om.ordered)||0); if(!nm.manufacturer) nm.manufacturer=om.manufacturer||''; } else if(newKey) DB.poOrders[newKey]=om; delete DB.poOrders[oldKey]; }
   if(UI.poOpen[oldKey]!==undefined){ UI.poOpen[newKey]=UI.poOpen[oldKey]; delete UI.poOpen[oldKey]; }
 }
+function setPOClosed(key,closed){
+  if(!DB.poOrders[key]){ const g=poGroups().find(x=>x.po===key); DB.poOrders[key]={ordered:0,manufacturer:(g&&g.manufacturer)||''}; }
+  const m=DB.poOrders[key];
+  if(closed){ m.closed=true; m.closedDate=todayISO(); UI.poOpen[key]=false; }
+  else { delete m.closed; delete m.closedDate; UI.poOpen[key]=true; }
+}
+function poStatusText(g){ return g.closed?('Closed'+(g.closedDate?(' '+fmtDate(g.closedDate)):'')):(g.complete?'Open \u00b7 fully picked up':'Open'); }
 function renderBuildsKpi(groups){
   const k=document.getElementById('builds-kpi');if(!k)return;k.innerHTML='';
   const picked=groups.reduce((s,g)=>s+g.picked,0);
-  const open=groups.filter(g=>!g.complete).length;
-  const remaining=groups.reduce((s,g)=>s+(g.remaining||0),0);
+  const open=groups.filter(g=>!g.closed).length;
+  const closedN=groups.length-open;
+  const remaining=groups.filter(g=>!g.closed).reduce((s,g)=>s+(g.remaining||0),0);
   k.appendChild(kpiTile('Open POs',open));
+  k.appendChild(kpiTile('Closed POs',closedN));
   k.appendChild(kpiTile('Benches picked up',picked.toLocaleString()));
   k.appendChild(kpiTile('Still to pick up',remaining.toLocaleString(),remaining>0));
   k.appendChild(kpiTile('Pickups logged',DB.newBuilds.length.toLocaleString()));
@@ -1868,12 +2045,16 @@ function renderBuilds(){
   const body=document.getElementById('builds-body');if(!body)return;body.innerHTML='';
   if(!DB.poOrders) DB.poOrders={};
   const groups=poGroups();
-  document.getElementById('builds-count').textContent=groups.length?(' ('+groups.length+')'):'';
+  document.getElementById('builds-count').textContent=groups.length?String(groups.length):'';
   document.getElementById('builds-meta').textContent=buildsMetaText();
   renderBuildsKpi(groups);
+  const view=UI.poView||'all';
+  document.querySelectorAll('#builds-view button').forEach(b=>b.classList.toggle('on',b.dataset.v===view));
   if(!groups.length){ body.innerHTML='<div class="card"><div class="ops-empty">No POs yet. Start one with “+ Add PO” above.</div></div>'; return; }
+  const shown=groups.filter(g=>view==='all'||(view==='closed'?g.closed:!g.closed));
+  if(!shown.length){ body.innerHTML='<div class="card"><div class="ops-empty">'+(view==='closed'?'No closed POs yet.':'No open POs — everything is closed out.')+'</div></div>'; return; }
   const locOpts=['',...DB.inv.locations.map(l=>l.name)];
-  groups.forEach(g=>{
+  shown.forEach(g=>{
     const key=g.po;
     const nameIn=grpNameInput(g.po,'Enter PO #',(v,inp)=>{
       if(v===key) return;
@@ -1899,7 +2080,9 @@ function renderBuilds(){
     let prog;
     if(g.ordered>0){ const fr=g.picked/g.ordered; prog=progBar([{val:fr,cls:g.picked>g.ordered?'over':(fr>=1?'done':'')}],g.picked.toLocaleString()+' of '+g.ordered.toLocaleString()+' · '+Math.round(fr*100)+'%'+(g.picked>g.ordered?' (over)':'')); }
     else prog=progBar([],'Set Ordered to track progress');
-    const sec=grpSection({key,store:UI.poOpen,defaultOpen:!g.complete,eyebrow:'PO #'+(g.last?(' · last pickup '+fmtDate(g.last)):''),titleNode:nameIn,subNode:manIn,right:[prog,stats],cls:g.complete?'g-done':(g.rows.length?'g-active':'')});
+    const right=[prog,stats];
+    if(g.closed){ const bd=document.createElement('span');bd.className='po-badge';bd.textContent='\u2713 Closed'+(g.closedDate?(' '+fmtDate(g.closedDate)):'');right.unshift(bd); }
+    const sec=grpSection({key,store:UI.poOpen,defaultOpen:!g.closed&&!g.complete,eyebrow:'PO #'+(g.last?(' · last pickup '+fmtDate(g.last)):''),titleNode:nameIn,subNode:manIn,right,cls:g.closed?'g-done g-closed':(g.complete?'g-done':(g.rows.length?'g-active':''))});
     // live-refresh header numbers while typing quantities (no re-render, so focus is kept)
     const updHead=()=>{
       const picked=g.rows.reduce((s,b)=>s+(Number(b.qty)||0),0);
@@ -1909,6 +2092,7 @@ function renderBuilds(){
       const tot=sec.el.querySelector('tfoot .mono'); if(tot) tot.textContent=picked.toLocaleString();
       if(g.ordered>0){ const fr=picked/g.ordered; const f=prog.querySelector('.prog-fill'); if(f){f.style.width=Math.min(100,fr*100)+'%';f.className='prog-fill '+(picked>g.ordered?'over':(fr>=1?'done':''));} const l=prog.querySelector('.prog-lbl'); if(l) l.textContent=picked.toLocaleString()+' of '+g.ordered.toLocaleString()+' · '+Math.round(fr*100)+'%'+(picked>g.ordered?' (over)':''); }
       document.getElementById('builds-meta').textContent=buildsMetaText();
+      const rh=sec.el.querySelector('.po-rem'); if(rh){ const rem=g.ordered?Math.max(0,g.ordered-picked):0; rh.textContent=rem?(rem.toLocaleString()+' still to pick up'):''; }
     };
     // body: pickups table
     const rows=g.rows.slice().sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999'));
@@ -1938,9 +2122,24 @@ function renderBuilds(){
     const act=document.createElement('div');act.className='grp-actions';
     const addP=document.createElement('button');addP.className='ghost-btn';addP.textContent='+ Add pickup';
     addP.onclick=()=>{ DB.newBuilds.push({id:uid(),po:key,manufacturer:g.manufacturer||'',qty:0,date:todayISO(),location:'',notes:''}); UI.poOpen[key]=true; save(); renderBuilds(); renderDash(); };
+    const expP=document.createElement('button');expP.className='mini-btn';expP.textContent='Export PDF';expP.title='Export just PO #'+key+' as a PDF';
+    expP.onclick=(e)=>{ e.stopPropagation(); withPdf(expP,()=>exportPOPDF(key)); };
     const sp=document.createElement('div');sp.className='spacer';
     const delPO=confirmTextBtn('Remove PO',()=>{ DB.newBuilds=DB.newBuilds.filter(b=>poKey(b)!==key); delete DB.poOrders[key]; save(); renderBuilds(); renderDash(); },'Remove this PO and all its pickups');
-    act.append(addP,sp,delPO);
+    if(g.closed){
+      const hint=document.createElement('span');hint.className='hint';hint.textContent='Closed '+fmtDate(g.closedDate)+' \u00b7 locked'+(g.remaining?(' \u00b7 closed '+g.remaining.toLocaleString()+' short'):'');
+      const reo=confirmTextBtn('Reopen PO',()=>{ setPOClosed(key,false); save(); renderBuilds(); renderDash(); },'Reopen this PO so pickups can be edited again');
+      act.append(expP,hint,sp,reo,delPO);
+      // lock everything on a closed PO
+      sec.el.querySelectorAll('input,select,textarea').forEach(i=>{i.disabled=true;});
+      sec.el.querySelectorAll('.ops-table .icon-btn').forEach(b=>b.remove());
+    } else {
+      const doneB=confirmTextBtn('\u2713 Mark PO complete',()=>{ setPOClosed(key,true); save(); renderBuilds(); renderDash(); },g.remaining?('Close out this PO with '+g.remaining.toLocaleString()+' still not picked up'):'Close out this PO officially');
+      doneB.classList.add('po-complete');
+      act.append(addP,expP);
+      const hint=document.createElement('span');hint.className='hint po-rem';hint.textContent=g.remaining?(g.remaining.toLocaleString()+' still to pick up'):'';act.append(hint);
+      act.append(sp,doneB,delPO);
+    }
     sec.body.appendChild(act);
     body.appendChild(sec.el);
   });
@@ -1956,6 +2155,29 @@ function addPOFromForm(){
   poEl.value='';manEl.value='';ordEl.value='';
   save();renderBuilds();renderDash();flashBtn(btn,'Added ✓');
 }
+function exportPOPDF(key){
+  if(!pdfReady())return;
+  const g=poGroups().find(x=>x.po===key); if(!g) return;
+  const doc=newPdf();const M=40;let y=50;
+  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Purchase Order  PO #'+(g.po||'(none)'),M,y);
+  doc.setFont('helvetica','normal');doc.setFontSize(11);y+=18;
+  if(g.manufacturer){doc.text('Manufacturer: '+g.manufacturer,M,y);y+=15;}
+  doc.setFont('helvetica','bold');
+  if(g.closed) doc.setTextColor(30,120,60); else doc.setTextColor(170,2,1);
+  doc.text('Status: '+poStatusText(g),M,y);doc.setTextColor(90);doc.setFont('helvetica','normal');doc.setFontSize(9);y+=14;
+  doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
+  doc.autoTable({startY:y+14,margin:{left:M,right:M},head:[['Ordered','Picked up','Remaining','Pickups','First pickup','Last pickup']],
+    body:[[g.ordered?g.ordered.toLocaleString():'—',g.picked.toLocaleString(),g.remaining==null?'—':g.remaining.toLocaleString(),String(g.rows.length),fmtDate(g.first)||'—',fmtDate(g.last)||'—']],
+    styles:{font:'helvetica',fontSize:10,cellPadding:6,halign:'center'},headStyles:Object.assign({},PDF_HEAD,{halign:'center'})});
+  y=doc.lastAutoTable.finalY+24;
+  doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Pickups',M,y);
+  const rows=g.rows.slice().sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999')).map((b,i)=>[String(i+1),fmtDate(b.date),String(Number(b.qty)||0),b.location||'',b.notes||'']);
+  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['#','Date received','Qty','Location','Notes']],body:rows.length?rows:[['','No pickups logged','','','']],foot:[['','PO total',g.picked.toLocaleString(),'','']],
+    styles:{font:'helvetica',fontSize:9,cellPadding:4},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{0:{cellWidth:24},2:{halign:'right'}}});
+  stampWatermark(doc);
+  const safe=(g.po||'none').replace(/[^A-Za-z0-9_-]+/g,'-');
+  doc.save('PO-'+safe+'-'+stampForFile(new Date().toISOString())+'.pdf');
+}
 function exportBuildsPDF(){
   if(!pdfReady())return;
   const doc=newPdf();const M=40;const PH=doc.internal.pageSize.getHeight();let y=50;
@@ -1964,14 +2186,14 @@ function exportBuildsPDF(){
   const groups=poGroups();
   const grand=groups.reduce((s,g)=>s+g.picked,0);
   // summary
-  doc.autoTable({startY:y+16,margin:{left:M,right:M},head:[['PO #','Manufacturer','Pickups','Picked up','Ordered','Remaining']],
-    body:groups.map(g=>[g.po||'(no PO #)',g.manufacturer||'',String(g.rows.length),g.picked.toLocaleString(),g.ordered?g.ordered.toLocaleString():'—',g.remaining==null?'—':g.remaining.toLocaleString()]),
-    foot:[['TOTAL','',String(DB.newBuilds.length),grand.toLocaleString(),'','']],
-    styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{2:{halign:'right'},3:{halign:'right'},4:{halign:'right'},5:{halign:'right'}}});
+  doc.autoTable({startY:y+16,margin:{left:M,right:M},head:[['PO #','Manufacturer','Status','Pickups','Picked up','Ordered','Remaining']],
+    body:groups.map(g=>[g.po||'(no PO #)',g.manufacturer||'',g.closed?('Closed '+fmtDate(g.closedDate)):'Open',String(g.rows.length),g.picked.toLocaleString(),g.ordered?g.ordered.toLocaleString():'—',g.remaining==null?'—':g.remaining.toLocaleString()]),
+    foot:[['TOTAL','','',String(DB.newBuilds.length),grand.toLocaleString(),'','']],
+    styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{3:{halign:'right'},4:{halign:'right'},5:{halign:'right'},6:{halign:'right'}}});
   y=doc.lastAutoTable.finalY;
   groups.forEach(g=>{
     if(y+80>PH-46){doc.addPage();y=40;}
-    y+=26;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('PO #'+(g.po||'(none)')+(g.manufacturer?('  ·  '+g.manufacturer):''),M,y);
+    y+=26;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('PO #'+(g.po||'(none)')+(g.manufacturer?('  ·  '+g.manufacturer):'')+(g.closed?('  ·  CLOSED '+fmtDate(g.closedDate)):''),M,y);
     doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(90);
     doc.text(g.picked.toLocaleString()+' picked up'+(g.ordered?(' of '+g.ordered.toLocaleString()+' ordered · '+(g.remaining||0).toLocaleString()+' remaining'):''),M,y+13);doc.setTextColor(0);
     const rows=g.rows.slice().sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999')).map((b,i)=>[String(i+1),fmtDate(b.date),String(Number(b.qty)||0),b.location||'',b.notes||'']);
@@ -1982,33 +2204,99 @@ function exportBuildsPDF(){
   stampWatermark(doc);doc.save('new-builds-'+stampForFile(new Date().toISOString())+'.pdf');
 }
 
-/* ===================== REFURB JOBS — one section per team ===================== */
+/* ===================== REFURB JOBS — one section per set (team + drop-off batch) ===================== */
+/* A "set" is one batch of a team's benches going out for refurb (DB.refurbSets[]). Each refurb row
+   carries setId; rows with no team sit in an unassigned pool (setId ''). Sets can be closed out like POs. */
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function teamKey(r){return ((r&&r.team)||'').toString().trim().toLowerCase();}
-function mdyKey(s){ const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/.exec((s||'').trim()); if(!m) return ''; let y=m[3]; if(y.length===2) y='20'+y; return y+'-'+m[1].padStart(2,'0')+'-'+m[2].padStart(2,'0'); }
-function refurbGroups(list){
-  const map={};
-  list.forEach(r=>{ const k=teamKey(r); if(!map[k]) map[k]={key:k,name:(r.team||'').trim(),rows:[]}; map[k].rows.push(r); });
-  return Object.values(map).map(g=>{
-    const prog=g.rows.filter(r=>r.status==='In Progress').length;
-    const done=g.rows.filter(r=>r.status==='Completed').length;
-    const drops=g.rows.map(r=>mdyKey(r.dropOff)).filter(Boolean).sort();
-    const shops={};g.rows.forEach(r=>{const s=(r.dropTo||'').trim();if(s)shops[s]=(shops[s]||0)+1;});
-    const stored={};g.rows.forEach(r=>{const s=(r.location||'').trim();if(s)stored[s]=(stored[s]||0)+1;});
-    return {...g,prog,done,notStarted:g.rows.length-prog-done,firstDrop:drops[0]||'',lastDrop:drops[drops.length-1]||'',shops,stored};
-  }).sort((a,b)=>{
-    const au=!a.key&&a.done<a.rows.length, bu=!b.key&&b.done<b.rows.length; // unassigned w/ open work first
-    if(au!==bu) return au?-1:1;
-    const ae=!a.key, be=!b.key; if(ae!==be) return ae?1:-1;                  // finished unassigned last
+function mdyKey(s){ s=(s||'').trim(); if(/^\d{4}-\d{2}-\d{2}$/.test(s)) return s; const m=/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/.exec(s); if(!m) return ''; let y=m[3]; if(y.length===2) y='20'+y; return y+'-'+m[1].padStart(2,'0')+'-'+m[2].padStart(2,'0'); }
+function monthLabel(iso){ const m=/^(\d{4})-(\d{2})/.exec(iso||''); return m?(MONTHS[Number(m[2])-1]+' '+m[1]):''; }
+function findSet(id){ return id?(DB.refurbSets||[]).find(s=>s.id===id)||null:null; }
+function setRows(id){ return DB.refurbs.filter(r=>r.setId===id); }
+function newRefurbSet(team,label){
+  const t=(team||'').trim();
+  const n=DB.refurbSets.filter(s=>(s.team||'').trim().toLowerCase()===t.toLowerCase()).length+1;
+  const s={id:uid(),team:t,label:(label||'').trim()||monthLabel(todayISO())||('Set '+n),created:todayISO()};
+  DB.refurbSets.push(s); return s;
+}
+/* Put a row that has a team (but no valid set) into that team's newest open set, creating one if needed. */
+function attachToSet(r){
+  const k=teamKey(r);
+  if(!k){ r.setId=''; return null; }
+  if(findSet(r.setId)) return findSet(r.setId);
+  const open=DB.refurbSets.filter(s=>!s.closed&&(s.team||'').trim().toLowerCase()===k);
+  const s=open.length?open[open.length-1]:newRefurbSet(r.team,'');
+  r.setId=s.id; r.team=s.team; return s;
+}
+/* One-time + ongoing shaping, called from ensureShape(). */
+function shapeRefurbSets(){
+  if(!Array.isArray(DB.refurbSets)) DB.refurbSets=[];
+  if(!DB.refurbSetsMigrated){
+    // existing data: one set per team; fully-completed teams are closed out automatically
+    const byTeam={};
+    DB.refurbs.forEach(r=>{ if(findSet(r.setId)) return; const k=teamKey(r); if(!k){ r.setId=''; return; } (byTeam[k]=byTeam[k]||[]).push(r); });
+    Object.values(byTeam).forEach(rows=>{
+      const drops=rows.map(r=>mdyKey(r.dropOff)).filter(Boolean).sort();
+      const s={id:uid(),team:(rows[0].team||'').trim(),label:monthLabel(drops[0])||'Set 1',created:drops[0]||todayISO()};
+      if(rows.every(r=>r.status==='Completed'||r.status==='Complete')){
+        const picks=rows.map(r=>mdyKey(r.pickUp)).filter(Boolean).sort();
+        s.closed=true; s.closedDate=picks[picks.length-1]||drops[drops.length-1]||todayISO();
+      }
+      DB.refurbSets.push(s);
+      rows.forEach(r=>{ r.setId=s.id; r.team=s.team; });
+    });
+    DB.refurbSetsMigrated=true;
+  }
+  if(!DB.refurbNoTeamGrouped){
+    // rows with no team (travel sets etc.) become their own sets, one per drop-off date
+    const byDrop={};
+    DB.refurbs.forEach(r=>{ if(findSet(r.setId)||teamKey(r)) return; const k=mdyKey(r.dropOff)||'none'; (byDrop[k]=byDrop[k]||[]).push(r); });
+    Object.keys(byDrop).sort().forEach(k=>{
+      const rows=byDrop[k];
+      const s={id:uid(),team:'',label:k==='none'?'No drop-off date':('Drop-off '+fmtDate(k)),created:k==='none'?todayISO():k};
+      if(rows.every(r=>r.status==='Completed')){ const picks=rows.map(r=>mdyKey(r.pickUp)).filter(Boolean).sort(); s.closed=true; s.closedDate=picks[picks.length-1]||(k==='none'?todayISO():k); }
+      DB.refurbSets.push(s); rows.forEach(r=>{ r.setId=s.id; r.team=''; });
+    });
+    DB.refurbNoTeamGrouped=true;
+  }
+  DB.refurbs.forEach(r=>{ if(typeof r.setId!=='string') r.setId=''; if(r.setId&&!findSet(r.setId)) r.setId=''; if(!r.setId&&teamKey(r)) attachToSet(r); });
+}
+function outState(r){ if((r.pickUp||'').trim()) return 'back'; if((r.dropOff||'').trim()) return 'out'; return ''; }
+function outTag(st){ const t=document.createElement('span'); outTagSet(t,st); return t; }
+function outTagSet(t,st){ t.className='tag rf-ob '+(st==='out'?'amber':(st==='back'?'green':'')); t.textContent=st==='out'?'Out':(st==='back'?'Back':'\u2014'); t.title=st==='out'?'Dropped off, not picked up yet':(st==='back'?'Picked up / back':'Not sent out yet'); }
+function outList(rows){ const out=rows.filter(r=>outState(r)==='out'); const ids=out.map(r=>(r.benchId||'').trim()).filter(Boolean); return {n:out.length,ids,noId:out.length-ids.length,back:rows.filter(r=>outState(r)==='back').length}; }
+function outListText(o){ if(!o.n) return ''; const show=o.ids.slice(0,10); let t=show.join(', '); if(o.ids.length>10) t+=' +'+(o.ids.length-10)+' more'; if(o.noId) t+=(t?', ':'')+o.noId+' with no asset #'; return t; }
+function refurbSetStats(rows){
+  const prog=rows.filter(r=>r.status==='In Progress').length;
+  const done=rows.filter(r=>r.status==='Completed').length;
+  const drops=rows.map(r=>mdyKey(r.dropOff)).filter(Boolean).sort();
+  const picks=rows.map(r=>mdyKey(r.pickUp)).filter(Boolean).sort();
+  const shops={};rows.forEach(r=>{const s=(r.dropTo||'').trim();if(s)shops[s]=(shops[s]||0)+1;});
+  const stored={};rows.forEach(r=>{const s=(r.location||'').trim();if(s)stored[s]=(stored[s]||0)+1;});
+  return {prog,done,notStarted:rows.length-prog-done,open:rows.length-done,firstDrop:drops[0]||'',lastDrop:drops[drops.length-1]||'',lastPick:picks[picks.length-1]||'',shops,stored};
+}
+/* All groups: every set + the unassigned pool (if it has rows). */
+function refurbGroups(){
+  const groups=DB.refurbSets.map(s=>{ const rows=setRows(s.id); return {key:s.id,set:s,name:s.team||'',label:s.label||'',closed:!!s.closed,closedDate:s.closedDate||'',rows,...refurbSetStats(rows)}; });
+  const pool=DB.refurbs.filter(r=>!r.setId);
+  if(pool.length){ const st=refurbSetStats(pool); groups.push({key:'__none',set:null,name:'',label:'',closed:st.open===0,closedDate:'',rows:pool,...st}); }
+  return groups.sort((a,b)=>{
+    const au=!a.set&&!a.closed, bu=!b.set&&!b.closed; if(au!==bu) return au?-1:1;   // unassigned w/ open work first
+    if(a.closed!==b.closed) return a.closed?1:-1;                                    // closed sets last
+    if(a.closed) return (b.closedDate||'').localeCompare(a.closedDate||'');         // newest closed first
     if((a.prog>0)!==(b.prog>0)) return a.prog>0?-1:1;
-    const ac=a.done===a.rows.length, bc=b.done===b.rows.length;
-    if(ac!==bc) return ac?1:-1;
-    return (b.lastDrop||'').localeCompare(a.lastDrop||'');
+    return (b.lastDrop||b.set&&b.set.created||'').localeCompare(a.lastDrop||a.set&&a.set.created||'');
   });
 }
-function renameTeam(oldKey,newName){
-  DB.refurbs.forEach(r=>{ if(teamKey(r)===oldKey) r.team=newName; });
-  const nk=newName.trim().toLowerCase();
-  if(UI.teamOpen[oldKey]!==undefined){ UI.teamOpen[nk]=UI.teamOpen[oldKey]; delete UI.teamOpen[oldKey]; }
+function setTitle(g){ if(!g.set) return 'Not in a set'; return g.name?(g.name+(g.label?(' · '+g.label):'')):(g.label||'Untitled set')+' (no team)'; }
+function setRefurbClosed(id,closed){
+  const s=findSet(id); if(!s) return;
+  if(closed){ s.closed=true; s.closedDate=todayISO(); UI.teamOpen[id]=false; }
+  else { delete s.closed; delete s.closedDate; UI.teamOpen[id]=true; }
+}
+function renameSetTeam(id,newName){
+  const s=findSet(id); if(!s) return;
+  s.team=newName; DB.refurbs.forEach(r=>{ if(r.setId===id) r.team=newName; });
 }
 function storedLocSelect(r){
   const opts=['',...DB.inv.locations.map(l=>l.name)];
@@ -2016,114 +2304,229 @@ function storedLocSelect(r){
   return opsSelect(r.location||'',opts,v=>{r.location=v;save();});
 }
 function shortMdy(k){ return k?fmtDate(k):''; }
+function dateRange(a,b){ if(!a) return '—'; return shortMdy(a)+(b&&b!==a?('–'+shortMdy(b).slice(0,5)):''); }
+function refreshTeamList(){
+  const dl=document.getElementById('rf-teams'); if(!dl) return;
+  const names=[...new Set(DB.refurbSets.map(s=>(s.team||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+  dl.innerHTML=names.map(n=>'<option value="'+esc(n)+'"></option>').join('');
+  const shops=document.getElementById('rf-shops');
+  if(shops){ const sh=[...new Set(DB.refurbs.map(r=>(r.dropTo||'').trim()).filter(Boolean))].sort(); shops.innerHTML=sh.map(n=>'<option value="'+esc(n)+'"></option>').join(''); }
+}
+function renderRefurbKpi(groups){
+  const k=document.getElementById('refurb-kpi'); if(!k) return; k.innerHTML='';
+  const sets=groups.filter(g=>g.set);
+  const open=sets.filter(g=>!g.closed);
+  const prog=DB.refurbs.filter(r=>r.status==='In Progress').length;
+  const outstanding=open.reduce((s,g)=>s+g.open,0);
+  const done=DB.refurbs.filter(r=>r.status==='Completed').length;
+  k.appendChild(kpiTile('Benches sent out',DB.refurbs.length.toLocaleString()));
+  k.appendChild(kpiTile('Benches completed',done.toLocaleString()));
+  const outNow=DB.refurbs.filter(r=>outState(r)==='out').length;
+  k.appendChild(kpiTile('Out now',outNow,outNow>0));
+  k.appendChild(kpiTile('In progress',prog,prog>0));
+  k.appendChild(kpiTile('Open sets',open.length,open.length>0));
+  k.appendChild(kpiTile('Closed sets',sets.length-open.length));
+}
 function renderRefurbs(){
   const body=document.getElementById('refurb-body');if(!body)return;body.innerHTML='';
-  document.getElementById('refurb-count').textContent=DB.refurbs.length?(' ('+DB.refurbs.length+')'):'';
+  if(!Array.isArray(DB.refurbSets)) shapeRefurbSets();
   const fsel=document.getElementById('refurb-filter');
-  if(fsel && !fsel.dataset.built){ ['All statuses',...REFURB_STATUSES,'Not started'].forEach(o=>{const op=document.createElement('option');op.value=(o==='All statuses'?'':o);op.textContent=o;fsel.appendChild(op);}); fsel.dataset.built='1'; fsel.onchange=()=>renderRefurbs(); }
+  if(fsel && !fsel.dataset.built){ ['All statuses',...REFURB_STATUSES,'Not started','Out now','Back'].forEach(o=>{const op=document.createElement('option');op.value=(o==='All statuses'?'':o);op.textContent=o;fsel.appendChild(op);}); fsel.dataset.built='1'; fsel.onchange=()=>renderRefurbs(); }
   const q=(document.getElementById('refurb-search').value||'').trim().toLowerCase();
   const fstat=fsel?fsel.value:'';
-  const counts={}; REFURB_STATUSES.forEach(s=>counts[s]=0);
-  DB.refurbs.forEach(r=>{ if(counts[r.status]!==undefined)counts[r.status]++; });
-  const allGroups=refurbGroups(DB.refurbs);
-  const teamsActive=allGroups.filter(g=>g.key&&g.prog>0).length;
-  document.getElementById('refurb-meta').textContent=allGroups.length+' teams · '+DB.refurbs.length+' benches';
-  const kpiWrap=document.getElementById('refurb-kpi');
-  if(kpiWrap){
-    kpiWrap.innerHTML='';
-    kpiWrap.appendChild(kpiTile('Total benches',DB.refurbs.length));
-    kpiWrap.appendChild(kpiTile('In progress',counts['In Progress']||0,(counts['In Progress']||0)>0));
-    kpiWrap.appendChild(kpiTile('Completed',counts['Completed']||0));
-    kpiWrap.appendChild(kpiTile('Teams',allGroups.filter(g=>g.key).length));
-    kpiWrap.appendChild(kpiTile('Teams with work open',teamsActive,teamsActive>0));
-  }
+  const allGroups=refurbGroups();
+  const openSets=allGroups.filter(g=>g.set&&!g.closed).length;
+  document.getElementById('refurb-count').textContent=openSets?String(openSets):'';
+  const nSets=allGroups.filter(g=>g.set).length;
+  document.getElementById('refurb-meta').textContent=nSets+' set'+(nSets===1?'':'s')+' · '+DB.refurbs.length+' benches';
+  renderRefurbKpi(allGroups);
+  refreshTeamList();
+  const view=UI.rfView||'open';
+  document.querySelectorAll('#refurb-view button').forEach(b=>{
+    b.classList.toggle('on',b.dataset.v===view);
+    const n=b.dataset.v==='open'?allGroups.filter(g=>!g.closed).length:(b.dataset.v==='closed'?allGroups.filter(g=>g.closed).length:allGroups.length);
+    b.innerHTML=esc(b.dataset.v==='open'?'Open':(b.dataset.v==='closed'?'Closed':'All'))+' <span class="seg-n">'+n+'</span>';
+  });
   const filtering=!!(q||fstat);
   const matches=r=>{
     if(fstat==='Not started'){ if(r.status==='In Progress'||r.status==='Completed') return false; }
+    else if(fstat==='Out now'){ if(outState(r)!=='out') return false; }
+    else if(fstat==='Back'){ if(outState(r)!=='back') return false; }
     else if(fstat && r.status!==fstat) return false;
-    if(q){ const hay=((r.benchId||'')+' '+(r.team||'')+' '+(r.dropTo||'')+' '+(r.location||'')+' '+(r.notes||'')).toLowerCase(); if(!hay.includes(q)) return false; }
+    if(q){ const s=findSet(r.setId); const hay=((r.benchId||'')+' '+(r.team||'')+' '+(s?s.label:'')+' '+(r.dropTo||'')+' '+(r.location||'')+' '+(r.notes||'')).toLowerCase(); if(!hay.includes(q)) return false; }
     return true;
   };
-  let any=false;
+  // a search looks across every set (open and closed) so a asset # is always findable
+  const inView=g=>q||view==='all'||(view==='closed'?g.closed:!g.closed);
+  let any=false, closedDivider=false;
   allGroups.forEach(g=>{
+    if(!inView(g)) return;
     const shown=g.rows.filter(matches);
     if(filtering&&!shown.length) return;
+    if(!g.set&&!shown.length) return;
     any=true;
-    const key=g.key;
-    const unassigned=!key;
-    const titleNode=unassigned?(()=>{const s=document.createElement('span');s.className='grp-name';s.textContent='No team assigned';return s;})()
-      :grpNameInput(g.name,'Team name',(v,inp)=>{ if(!v){inp.value=g.name;return;} if(v===g.name) return; renameTeam(key,v); save(); renderRefurbs(); });
-    const sub=document.createElement('div');sub.style.marginTop='3px';
-    Object.keys(g.shops).forEach(s=>{const t=document.createElement('span');t.className='tag';t.innerHTML='Shop: <b>'+esc(s)+'</b> '+g.shops[s];sub.appendChild(t);});
-    Object.keys(g.stored).forEach(s=>{const t=document.createElement('span');t.className='tag green';t.innerHTML='Stored: <b>'+esc(s)+'</b> '+g.stored[s];sub.appendChild(t);});
-    const total=g.rows.length;
-    const prog=progBar([{val:g.done/total,cls:'done'},{val:g.prog/total,cls:'amber'}],g.done+' of '+total+' done'+(g.prog?(' · '+g.prog+' in progress'):''));
-    const stats=document.createElement('div');stats.className='grp-stats';
-    stats.appendChild(grpStat('Benches',total));
-    stats.appendChild(grpStat('In progress',g.prog,g.prog?'amber':''));
-    stats.appendChild(grpStat('Completed',g.done,g.done===total?'good':''));
-    const ds=grpStat('Dropped off',g.firstDrop?(shortMdy(g.firstDrop)+(g.lastDrop!==g.firstDrop?('–'+shortMdy(g.lastDrop).slice(0,5)):'')):'—');ds.classList.add('wide');stats.appendChild(ds);
-    const allDone=g.done===total;
-    const sec=grpSection({key:key||'__none',store:UI.teamOpen,defaultOpen:filtering||g.prog>0||(!allDone&&g.notStarted>0),
-      eyebrow:unassigned?'Needs a team':'Team',titleNode,subNode:sub,right:[prog,stats],cls:unassigned?'g-alert':(g.prog>0?'g-active':(allDone?'g-done':''))});
-    if(filtering) { sec.el.classList.add('open'); }
+    if(g.closed&&!closedDivider&&(view==='all'||q)){ closedDivider=true; const d=document.createElement('div');d.className='rf-divider';d.textContent='Closed sets';body.appendChild(d); }
+    body.appendChild(refurbSetSection(g,shown,filtering));
+  });
+  if(!any){
+    let msg;
+    if(!DB.refurbs.length&&!DB.refurbSets.length) msg='No refurb sets yet. Start one with “+ Add set” above.';
+    else if(filtering) msg='No benches match your search/filter.';
+    else msg=view==='closed'?'No closed sets yet.':'No open sets — everything is closed out. Start a new set above, or switch to Closed / All.';
+    body.innerHTML='<div class="card"><div class="ops-empty">'+msg+'</div></div>';
+  }
+}
+function refurbSetSection(g,shown,filtering){
+  const key=g.key, unassigned=!g.set, total=g.rows.length;
+  let titleNode,subWrap;
+  if(unassigned){ titleNode=document.createElement('span');titleNode.className='grp-name';titleNode.textContent='Not in a set'; }
+  else titleNode=grpNameInput(g.name,'No team',(v)=>{ if(v===g.name) return; renameSetTeam(key,v); save(); renderRefurbs(); });
+  subWrap=document.createElement('div');subWrap.className='rf-sub';
+  if(!unassigned){ const li=grpNameInput(g.label,'Set name (e.g. Feb 2026)',(v)=>{ g.set.label=v; save(); renderRefurbs(); },true); li.classList.add('rf-label'); subWrap.appendChild(li); }
+  const tags=document.createElement('div');tags.className='rf-tags';
+  Object.keys(g.shops).forEach(s=>{const t=document.createElement('span');t.className='tag';t.innerHTML='Shop: <b>'+esc(s)+'</b> '+g.shops[s];tags.appendChild(t);});
+  Object.keys(g.stored).forEach(s=>{const t=document.createElement('span');t.className='tag green';t.innerHTML='Stored: <b>'+esc(s)+'</b> '+g.stored[s];tags.appendChild(t);});
+  if(tags.childNodes.length) subWrap.appendChild(tags);
+  const outLine=document.createElement('div');outLine.className='rf-outline';subWrap.appendChild(outLine);
+  const prog=total?progBar([{val:g.done/total,cls:'done'},{val:g.prog/total,cls:'amber'}],g.done+' of '+total+' done'+(g.prog?(' · '+g.prog+' in progress'):'')):progBar([],'No benches yet');
+  const stats=document.createElement('div');stats.className='grp-stats';
+  stats.appendChild(grpStat('Benches',total));
+  stats.appendChild(grpStat('In progress',g.prog,g.prog?'amber':''));
+  stats.appendChild(grpStat('Completed',g.done,total&&g.done===total?'good':''));
+  const obStat=grpStat('Out \u00b7 Back','');stats.appendChild(obStat);
+  const ds=grpStat('Dropped off',dateRange(g.firstDrop,g.lastDrop));ds.classList.add('wide');stats.appendChild(ds);
+  const refreshOut=()=>{
+    const o=outList(g.rows);
+    obStat.querySelector('b').innerHTML='<em class="'+(o.n?'ob-o':'')+'">'+o.n+'</em><i class="ob-dot">\u00b7</i><em class="'+(o.back&&o.back===total?'ob-b':'')+'">'+o.back+'</em>';
+    const txt=outListText(o);
+    outLine.innerHTML=txt?('<div class="rf-out"><span>Still out</span><b>'+esc(txt)+'</b></div>'):(total&&o.back===total?'<span class="tag green">All back</span>':'');
+  };
+  refreshOut();
+  const right=[prog,stats];
+  if(g.closed&&g.set){ const bd=document.createElement('span');bd.className='po-badge';bd.textContent='✓ Closed'+(g.closedDate?(' '+fmtDate(g.closedDate)):'');right.unshift(bd); }
+  const eyebrow=unassigned?'Needs a set':((g.name?'Refurb set':'Refurb set \u00b7 no team')+(g.lastPick?(' · last pick up '+shortMdy(g.lastPick)):''));
+  const cls=unassigned?(g.closed?'g-done':'g-alert'):(g.closed?'g-done g-closed':(g.prog>0?'g-active':(total&&g.done===total?'g-done':'')));
+  const sec=grpSection({key,store:UI.teamOpen,defaultOpen:!g.closed&&(g.prog>0||g.notStarted>0||!total),eyebrow,titleNode,subNode:subWrap,right,cls});
+  if(filtering) sec.el.classList.add('open');
+  if(shown.length){
     const scroll=document.createElement('div');scroll.className='ops-scroll';
     const table=document.createElement('table');table.className='ops-table';
-    table.innerHTML='<thead><tr><th>Bench ID</th>'+(unassigned?'<th>Team</th>':'')+'<th>Stored location</th><th>Dropped off to</th><th>Drop off</th><th>Pick up</th><th>Status</th><th>Notes</th><th></th></tr></thead>';
+    table.innerHTML='<thead><tr><th>Asset #</th>'+(unassigned?'<th>Team</th>':'')+'<th>Stored location</th><th>Dropped off to</th><th>Drop off</th><th>Pick up</th><th>Out / Back</th><th>Status</th><th>Notes</th><th></th></tr></thead>';
     const tb=document.createElement('tbody');
     shown.forEach(r=>{
       const tr=document.createElement('tr');
-      const cells=[tdWrap(opsInput(r.benchId,v=>{r.benchId=v;save();}))];
-      if(unassigned){ const ti=opsInput(r.team,v=>{r.team=v;save();}); ti.onchange=()=>{ if((r.team||'').trim()){ UI.teamOpen[teamKey(r)]=true; renderRefurbs(); } }; cells.push(tdWrap(ti)); }
+      const ob=outTag(outState(r));
+      const updOb=()=>{ outTagSet(ob,outState(r)); refreshOut(); };
+      const assetIn=opsInput(r.benchId,v=>{r.benchId=v;save();refreshOut();});assetIn.setAttribute('aria-label','Asset #');
+      const cells=[tdWrap(assetIn)];
+      if(unassigned){ const ti=opsInput(r.team,v=>{r.team=v;save();}); ti.onchange=()=>{ if((r.team||'').trim()){ const s=attachToSet(r); if(s) UI.teamOpen[s.id]=true; save(); renderRefurbs(); } }; cells.push(tdWrap(ti)); }
       cells.push(
         tdWrap(storedLocSelect(r)),
         tdWrap(opsInput(r.dropTo,v=>{r.dropTo=v;save();})),
-        tdWrap(opsInput(r.dropOff,v=>{r.dropOff=v;save();},{ph:'MM/DD/YY'})),
-        tdWrap(opsInput(r.pickUp,v=>{r.pickUp=v;save();},{ph:'MM/DD/YY'})),
+        tdWrap(opsInput(r.dropOff,v=>{r.dropOff=v;save();updOb();},{ph:'MM/DD/YY'})),
+        tdWrap(opsInput(r.pickUp,v=>{r.pickUp=v;save();updOb();},{ph:'MM/DD/YY'})),
+        tdWrap(ob),
         tdWrap(refurbStatusSelect(r)),
         tdWrap(opsInput(r.notes,v=>{r.notes=v;save();})),
-        tdWrap(confirmDelBtn(()=>{DB.refurbs=DB.refurbs.filter(x=>x!==r);save();renderRefurbs();},'Remove job'))
+        tdWrap(confirmDelBtn(()=>{DB.refurbs=DB.refurbs.filter(x=>x!==r);save();renderRefurbs();renderDash();},'Remove bench'))
       );
       tr.append(...cells);
       tb.appendChild(tr);
     });
     table.appendChild(tb);scroll.appendChild(table);sec.body.appendChild(scroll);
-    const act=document.createElement('div');act.className='grp-actions';
-    const add=document.createElement('button');add.className='ghost-btn';add.textContent=unassigned?'+ Add job':'+ Add bench to '+(g.name||'team');
+  } else {
+    const e=document.createElement('div');e.className='ops-empty';e.textContent='No benches in this set yet. Use “+ Add bench”.';sec.body.appendChild(e);
+  }
+  const act=document.createElement('div');act.className='grp-actions';
+  const sp=document.createElement('div');sp.className='spacer';
+  if(unassigned){
+    const add=document.createElement('button');add.className='ghost-btn';add.textContent='+ Add job';
+    add.onclick=()=>{ DB.refurbs.push({id:uid(),setId:'',benchId:'',location:'',team:'',dropTo:'',dropOff:'',pickUp:'',status:'',notes:''}); UI.teamOpen.__none=true; save(); clearRefurbFilters(); renderRefurbs(); };
+    const hint=document.createElement('span');hint.className='hint';hint.textContent='Type a team on a row to move it into that team’s open set, or start a new set above.';
+    act.append(add,hint);
+  } else if(g.closed){
+    const exp=refurbSetExportBtn(key);
+    const hint=document.createElement('span');hint.className='hint';hint.textContent='Closed '+fmtDate(g.closedDate)+' · locked'+(g.open?(' · closed with '+g.open+' not completed'):'');
+    const reo=confirmTextBtn('Reopen set',()=>{ setRefurbClosed(key,false); save(); renderRefurbs(); },'Reopen this set so its benches can be edited again');
+    const del=confirmTextBtn('Remove set',()=>{ removeRefurbSet(key); save(); renderRefurbs(); renderDash(); },'Remove this set and all its benches');
+    act.append(exp,hint,sp,reo,del);
+    sec.el.querySelectorAll('input,select,textarea').forEach(i=>{i.disabled=true;});
+    sec.el.querySelectorAll('.ops-table .icon-btn').forEach(b=>b.remove());
+  } else {
+    const add=document.createElement('button');add.className='ghost-btn';add.textContent='+ Add bench';
     add.onclick=()=>{
       const shop=Object.keys(g.shops).sort((a,b)=>g.shops[b]-g.shops[a])[0]||'';
-      DB.refurbs.push({id:uid(),benchId:'',location:'',team:g.name||'',dropTo:unassigned?'':shop,dropOff:'',pickUp:'',status:'',notes:''});
-      UI.teamOpen[key||'__none']=true;save();clearRefurbFilters();renderRefurbs();
+      DB.refurbs.push({id:uid(),setId:key,benchId:'',location:'',team:g.name||'',dropTo:shop,dropOff:'',pickUp:'',status:'',notes:''});
+      UI.teamOpen[key]=true;save();clearRefurbFilters();renderRefurbs();renderDash();
     };
-    const sp=document.createElement('div');sp.className='spacer';
-    act.append(add,sp);
-    if(!unassigned&&g.prog>0){
-      const markAll=confirmTextBtn('Mark all completed',()=>{ g.rows.forEach(r=>{ if(r.status==='In Progress') r.status='Completed'; }); save(); renderRefurbs(); },'Set every In Progress bench on this team to Completed');
-      act.appendChild(markAll);
-    }
-    sec.body.appendChild(act);
-    body.appendChild(sec.el);
-  });
-  if(!any) body.innerHTML='<div class="card"><div class="ops-empty">'+(DB.refurbs.length?'No jobs match your filter.':'No refurb jobs yet. Use “+ Add job” above.')+'</div></div>';
+    const exp=refurbSetExportBtn(key);
+    const hint=document.createElement('span');hint.className='hint';hint.textContent=g.open?(g.open+' not completed yet'):(total?'All benches completed — ready to close out':'');
+    act.append(add,exp,hint,sp);
+    if(g.prog>0) act.appendChild(confirmTextBtn('Mark all benches completed',()=>{ g.rows.forEach(r=>{ if(r.status==='In Progress') r.status='Completed'; }); save(); renderRefurbs(); renderDash(); },'Set every In Progress bench in this set to Completed'));
+    const doneB=confirmTextBtn('✓ Mark set complete',()=>{ setRefurbClosed(key,true); save(); renderRefurbs(); renderDash(); },g.open?('Close out this set with '+g.open+' bench'+(g.open===1?'':'es')+' not completed'):'Close out this set officially');
+    doneB.classList.add('po-complete');
+    const del=confirmTextBtn('Remove set',()=>{ removeRefurbSet(key); save(); renderRefurbs(); renderDash(); },'Remove this set and all its benches');
+    act.append(doneB,del);
+  }
+  sec.body.appendChild(act);
+  return sec.el;
+}
+function removeRefurbSet(id){ DB.refurbs=DB.refurbs.filter(r=>r.setId!==id); DB.refurbSets=DB.refurbSets.filter(s=>s.id!==id); delete UI.teamOpen[id]; }
+function refurbSetExportBtn(id){ const b=document.createElement('button');b.className='mini-btn';b.textContent='Export PDF';b.title='Export just this set as a PDF';b.onclick=(e)=>{e.stopPropagation();withPdf(b,()=>exportRefurbSetPDF(id));};return b; }
+function addRefurbSetFromForm(){
+  const btn=document.getElementById('add-refurb');
+  const tEl=document.getElementById('rf-team'),lEl=document.getElementById('rf-label'),shEl=document.getElementById('rf-shop'),dEl=document.getElementById('rf-drop'),nEl=document.getElementById('rf-n');
+  const team=(tEl.value||'').trim();
+  const s=newRefurbSet(team,lEl.value);
+  const n=Math.min(200,Math.max(0,parseInt(nEl.value,10)||0));
+  const drop=(dEl.value||'').trim();
+  for(let i=0;i<n;i++) DB.refurbs.push({id:uid(),setId:s.id,benchId:'',location:'',team:s.team,dropTo:(shEl.value||'').trim(),dropOff:drop?fmtDate(drop):'',pickUp:'',status:'',notes:''});
+  UI.teamOpen[s.id]=true; UI.rfView=UI.rfView==='closed'?'open':(UI.rfView||'open');
+  [tEl,lEl,shEl,dEl,nEl].forEach(e=>e.value='');
+  save();clearRefurbFilters();renderRefurbs();renderDash();flashBtn(btn,'Added ✓');
 }
 function clearRefurbFilters(){const s=document.getElementById('refurb-search');if(s)s.value='';const f=document.getElementById('refurb-filter');if(f)f.value='';}
 function setAllGroups(store,keys,open){ keys.forEach(k=>store[k]=open); }
+function refurbStatusText(g){ return g.closed?('Closed'+(g.closedDate?(' '+fmtDate(g.closedDate)):'')):(g.open?'Open':'Open · all benches completed'); }
+function refurbRowsPDF(rows){ return rows.map(r=>{const o=outState(r);return [r.benchId||'',r.location||'',r.dropTo||'',r.dropOff||'',r.pickUp||'',o==='out'?'Out':(o==='back'?'Back':''),r.status||'',r.notes||''];}); }
+const RF_PDF_HEAD=[['Asset #','Stored location','Dropped to','Drop off','Pick up','Out/Back','Status','Notes']];
+function exportRefurbSetPDF(id){
+  if(!pdfReady())return;
+  const g=refurbGroups().find(x=>x.key===id); if(!g) return;
+  const doc=newPdf();const M=40;let y=50;
+  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Refurb Set  '+setTitle(g),M,y);
+  doc.setFontSize(11);y+=18;
+  if(g.closed) doc.setTextColor(30,120,60); else doc.setTextColor(170,2,1);
+  doc.text('Status: '+refurbStatusText(g),M,y);doc.setTextColor(90);doc.setFont('helvetica','normal');doc.setFontSize(9);y+=14;
+  doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
+  doc.autoTable({startY:y+14,margin:{left:M,right:M},head:[['Benches','Out','Back','In progress','Completed','Dropped off','Last pick up']],
+    body:[[String(g.rows.length),String(outList(g.rows).n),String(outList(g.rows).back),String(g.prog),String(g.done),dateRange(g.firstDrop,g.lastDrop),shortMdy(g.lastPick)||'—']],
+    styles:{font:'helvetica',fontSize:10,cellPadding:6,halign:'center'},headStyles:Object.assign({},PDF_HEAD,{halign:'center'})});
+  y=doc.lastAutoTable.finalY+24;
+  doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Benches',M,y);
+  const ol=outListText(outList(g.rows)); if(ol){ doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(154,101,18);const ln=doc.splitTextToSize('Still out: '+ol,doc.internal.pageSize.getWidth()-2*M);doc.text(ln,M,y+13);y+=13*ln.length;doc.setTextColor(0); }
+  const rows=refurbRowsPDF(g.rows);
+  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:RF_PDF_HEAD,body:rows.length?rows:[['No benches','','','','','','','']],
+    styles:{font:'helvetica',fontSize:8,cellPadding:4},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
+  stampWatermark(doc);
+  const safe=setTitle(g).replace(/[^A-Za-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'')||'set';
+  doc.save('refurb-set-'+safe+'-'+stampForFile(new Date().toISOString())+'.pdf');
+}
 function exportRefurbsPDF(){
   if(!pdfReady())return;
   const doc=newPdf();const M=40;const PH=doc.internal.pageSize.getHeight();let y=50;
   doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Refurb Jobs',M,y);
   doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(90);y+=18;doc.text('Generated '+new Date().toLocaleString(),M,y);doc.setTextColor(0);
-  const groups=refurbGroups(DB.refurbs);
-  doc.autoTable({startY:y+16,margin:{left:M,right:M},head:[['Team','Benches','In progress','Completed','Not started']],
-    body:groups.map(g=>[g.name||'(no team)',String(g.rows.length),String(g.prog),String(g.done),String(g.notStarted)]),
-    foot:[['TOTAL',String(DB.refurbs.length),String(groups.reduce((s,g)=>s+g.prog,0)),String(groups.reduce((s,g)=>s+g.done,0)),String(groups.reduce((s,g)=>s+g.notStarted,0))]],
-    styles:{font:'helvetica',fontSize:9,cellPadding:4},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{1:{halign:'right'},2:{halign:'right'},3:{halign:'right'},4:{halign:'right'}}});
+  const groups=refurbGroups();
+  doc.autoTable({startY:y+16,margin:{left:M,right:M},head:[['Set','Status','Benches','In progress','Completed','Not started']],
+    body:groups.map(g=>[setTitle(g),g.set?(g.closed?('Closed '+fmtDate(g.closedDate)):'Open'):'—',String(g.rows.length),String(g.prog),String(g.done),String(g.notStarted)]),
+    foot:[['TOTAL','',String(DB.refurbs.length),String(groups.reduce((s,g)=>s+g.prog,0)),String(groups.reduce((s,g)=>s+g.done,0)),String(groups.reduce((s,g)=>s+g.notStarted,0))]],
+    styles:{font:'helvetica',fontSize:9,cellPadding:4},headStyles:PDF_HEAD,footStyles:PDF_FOOT,alternateRowStyles:PDF_ALT,columnStyles:{2:{halign:'right'},3:{halign:'right'},4:{halign:'right'},5:{halign:'right'}}});
   y=doc.lastAutoTable.finalY;
   groups.forEach(g=>{
     if(y+70>PH-46){doc.addPage();y=40;}
-    y+=24;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text((g.name||'No team assigned')+'  ·  '+g.done+' of '+g.rows.length+' done',M,y);
-    const rows=g.rows.map(r=>[r.benchId||'',r.location||'',r.dropTo||'',r.dropOff||'',r.pickUp||'',r.status||'',r.notes||'']);
-    doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Bench ID','Stored location','Dropped to','Drop off','Pick up','Status','Notes']],body:rows,styles:{font:'helvetica',fontSize:8,cellPadding:4},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
+    y+=24;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text(setTitle(g)+'  ·  '+g.done+' of '+g.rows.length+' done'+(g.set&&g.closed?('  ·  CLOSED '+fmtDate(g.closedDate)):''),M,y);
+    doc.autoTable({startY:y+8,margin:{left:M,right:M},head:RF_PDF_HEAD,body:g.rows.length?refurbRowsPDF(g.rows):[['No benches','','','','','','','']],styles:{font:'helvetica',fontSize:8,cellPadding:4},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
     y=doc.lastAutoTable.finalY;
   });
   stampWatermark(doc);doc.save('refurb-jobs-'+stampForFile(new Date().toISOString())+'.pdf');
@@ -2136,12 +2539,21 @@ const EQ_PALETTE=['#AA0201','#4B4E53','#2F6B4F','#9A6512','#6B4E9A','#1F6F78'];
 const EQ_STALE_DAYS=90;
 function eqPrefix(type){ if(EQ_PREFIX[type]) return EQ_PREFIX[type]; const w=(type||'EQ').trim().split(/\s+/).filter(Boolean); const p=(w.length>1?w.map(x=>x[0]).join(''):(w[0]||'EQ').slice(0,3)).toUpperCase().replace(/[^A-Z0-9]/g,''); return p||'EQ'; }
 function nextUnitTag(type){ const p=eqPrefix(type)+'-'; let n=0; (DB.equipUnits||[]).forEach(u=>{ const t=(u.tag||''); if(t.startsWith(p)){ const k=parseInt(t.slice(p.length),10); if(k>n) n=k; } }); return p+String(n+1).padStart(3,'0'); }
-function newUnit(type,locId){ return {id:uid(),tag:nextUnitTag(type),type,locId:locId||'',condition:'In service',lastChecked:'',notes:''}; }
+function newUnit(type,locId,tag){ return {id:uid(),tag:(tag===undefined?nextUnitTag(type):String(tag).trim()),type,locId:locId||'',condition:'In service',lastChecked:'',notes:''}; }
 function locNameById(id){ if(id==='External') return 'External'; if(!id) return ''; const l=DB.equip.locations.find(x=>x.id===id)||DB.inv.locations.find(x=>x.id===id); return l?(l.name||'—'):''; }
 function locIdByName(n){ if(n==='External') return 'External'; const l=DB.equip.locations.find(x=>x.name===n); return l?l.id:''; }
 function syncEquipCounts(){
   if(!DB||!DB.equip||!Array.isArray(DB.equipUnits)) return;
   DB.equip.locations.forEach(loc=>{ const vals={}; DB.equip.columns.forEach(c=>vals[c]=0); DB.equipUnits.forEach(u=>{ if(u.locId===loc.id&&vals[u.type]!==undefined) vals[u.type]++; }); loc.vals=vals; });
+}
+function unitByTag(tag,exceptId){ const k=String(tag||'').trim().toLowerCase(); if(!k) return null; return (DB.equipUnits||[]).find(u=>u.id!==exceptId&&String(u.tag||'').trim().toLowerCase()===k)||null; }
+function isAutoTag(u){ return /^[A-Z0-9]{1,6}-\d{3,}$/.test(u.tag||'')&&(u.tag||'').startsWith(eqPrefix(u.type)+'-'); }
+/* Validate a list of typed asset #s: returns {ok:[...], err:'msg'} */
+function checkNewTags(tags){
+  if(!tags.length) return {ok:[],err:'Enter an asset #'};
+  const dup=tags.map(t=>({t,u:unitByTag(t)})).filter(x=>x.u);
+  if(dup.length) return {ok:[],err:dup.map(x=>x.t+' already exists ('+(locNameById(x.u.locId)||'no location')+')').join('; ')};
+  return {ok:tags,err:''};
 }
 function unitStale(u){ if(!u.lastChecked) return true; const d=new Date(u.lastChecked+'T00:00:00'); if(isNaN(d)) return true; return (Date.now()-d.getTime())/86400000>EQ_STALE_DAYS; }
 function addEquipType(){
@@ -2202,7 +2614,7 @@ function renderEquipGrid(){
   if(!Array.isArray(DB.equipUnits)) DB.equipUnits=[];
   syncEquipCounts();
   const units=DB.equipUnits;
-  const ec=document.getElementById('equip-count'); if(ec) ec.textContent=units.length?(' ('+units.length+')'):'';
+  const ec=document.getElementById('equip-count'); if(ec) ec.textContent=units.length?String(units.length):'';
   // KPIs
   const kpi=document.createElement('div');kpi.className='kpi-strip';
   const nRep=units.filter(u=>u.condition==='Needs repair').length, nOut=units.filter(u=>u.condition==='Out of service').length;
@@ -2240,8 +2652,9 @@ function renderEquipGrid(){
   // add units form
   const form=document.createElement('div');form.className='newpo';
   form.innerHTML='<div class="newpo-title">Add equipment units</div>';
-  const fQty=document.createElement('label');fQty.className='tf-field';fQty.style.flex='0 1 90px';fQty.innerHTML='<span>How many</span>';
-  const qIn=document.createElement('input');qIn.type='number';qIn.min='1';qIn.value='1';qIn.className='ops-input num field-box';qIn.id='eq-add-qty';fQty.appendChild(qIn);
+  const fQty=document.createElement('label');fQty.className='tf-field';fQty.style.flex='2 1 260px';fQty.innerHTML='<span>Asset # <i>(several? separate with commas)</i></span>';
+  const qIn=document.createElement('input');qIn.type='text';qIn.placeholder='e.g. 1042, 1043';qIn.className='ops-input field-box';qIn.style.fontFamily="'JetBrains Mono',monospace";qIn.id='eq-add-tags';qIn.setAttribute('autocomplete','off');fQty.appendChild(qIn);
+  const errMsg=document.createElement('div');errMsg.className='eq-err';errMsg.style.flex='1 1 100%';errMsg.id='eq-add-err';
   const fType=document.createElement('label');fType.className='tf-field';fType.innerHTML='<span>Type</span>';
   const tSel=opsSelect(DB.equip.columns[0]||'',DB.equip.columns,()=>{});tSel.classList.add('field-box');tSel.id='eq-add-type';fType.appendChild(tSel);
   const fLoc=document.createElement('label');fLoc.className='tf-field';fLoc.innerHTML='<span>Location</span>';
@@ -2250,17 +2663,21 @@ function renderEquipGrid(){
   fLoc.appendChild(lSel);
   const addBtn=document.createElement('button');addBtn.className='btn accent';addBtn.id='eq-add-btn';addBtn.style.height='38px';addBtn.textContent='+ Add units';
   addBtn.onclick=()=>{
-    const n=Math.min(200,Math.max(1,parseInt(qIn.value,10)||1)); const type=tSel.value; if(!type){flashBtn(addBtn,'Add a type first');return;}
-    for(let i=0;i<n;i++){ const u=newUnit(type,lSel.value); u.lastChecked=todayISO(); DB.equipUnits.push(u); }
-    UI.eqOpen[lSel.value]=true; save(); renderEquipGrid(); renderDash(); flashBtn(document.getElementById('eq-add-btn'),'Added '+n+' ✓');
+    const type=tSel.value; if(!type){flashBtn(addBtn,'Add a type first');return;}
+    const chk=checkNewTags(parseAssets(qIn.value));
+    if(chk.err){ errMsg.textContent=chk.err; qIn.focus(); return; }
+    chk.ok.forEach(t=>{ const u=newUnit(type,lSel.value,t); u.lastChecked=todayISO(); DB.equipUnits.push(u); });
+    UI.eqOpen[lSel.value]=true; save(); renderEquipGrid(); renderDash(); flashBtn(document.getElementById('eq-add-btn'),'Added '+chk.ok.length+' ✓');
   };
+  qIn.oninput=()=>{errMsg.textContent='';};
+  qIn.onkeydown=e=>{ if(e.key==='Enter'){ e.preventDefault(); addBtn.click(); } };
   const hint=document.createElement('div');hint.className='page-note';hint.style.flex='1 1 100%';hint.style.margin='0';
-  hint.innerHTML='Each unit gets its own ID automatically (e.g. HTR-004) — you can overwrite it with your own asset tag. Locations are shared with <b>Bench Counts</b>; add or rename them there.';
-  form.append(fQty,fType,fLoc,addBtn,hint);
+  hint.innerHTML='Type your own asset numbers — each one becomes a unit. Locations are shared with <b>Bench Counts</b>; add or rename them there.';
+  form.append(fQty,fType,fLoc,addBtn,errMsg,hint);
   wrap.appendChild(form);
   // filters
   const bar=document.createElement('div');bar.className='sec-toolbar';
-  const sIn=document.createElement('input');sIn.className='ref-input';sIn.placeholder='Search unit ID, notes…';sIn.value=UI.eqQ||'';sIn.setAttribute('autocomplete','off');sIn.id='eq-search';
+  const sIn=document.createElement('input');sIn.className='ref-input';sIn.placeholder='Search asset #, notes…';sIn.value=UI.eqQ||'';sIn.setAttribute('autocomplete','off');sIn.id='eq-search';
   const fT=opsSelect(UI.eqType||'',['',...DB.equip.columns],v=>{UI.eqType=v;renderEquipList();});fT.classList.add('field-box');fT.style.maxWidth='170px';fT.options[0].textContent='All types';
   const fC=opsSelect(UI.eqCond||'',['',...EQ_CONDITIONS,'Not checked recently'],v=>{UI.eqCond=v;renderEquipList();});fC.classList.add('field-box');fC.style.maxWidth='190px';fC.options[0].textContent='Any condition';
   sIn.oninput=()=>{UI.eqQ=sIn.value;renderEquipList();};
@@ -2277,6 +2694,37 @@ function renderEquipGrid(){
   wrap.appendChild(bar);
   const list=document.createElement('div');list.id='eq-list';wrap.appendChild(list);
   renderEquipList();
+}
+function equipEditRow(u,locOpts){
+  const tr=document.createElement('tr');const td=document.createElement('td');td.colSpan=6;td.className='eq-edit-cell';tr.appendChild(td);
+  td.onclick=e=>e.stopPropagation();
+  const box=document.createElement('div');box.className='eq-edit';
+  const fld=(label,node,cls)=>{const l=document.createElement('label');l.className='tf-field'+(cls?' '+cls:'');l.innerHTML='<span>'+label+'</span>';l.appendChild(node);return l;};
+  const err=document.createElement('div');err.className='eq-err';err.style.flex='1 1 100%';
+  const tagIn=document.createElement('input');tagIn.className='ops-input field-box';tagIn.value=u.tag||'';tagIn.setAttribute('autocomplete','off');tagIn.style.fontFamily="'JetBrains Mono',monospace";tagIn.style.fontWeight='600';tagIn.id='eq-edit-tag';
+  if(isAutoTag(u)) tagIn.placeholder=u.tag;
+  tagIn.onchange=()=>{ const v=tagIn.value.trim(); if(!v){err.textContent='Asset # can’t be blank';tagIn.value=u.tag||'';return;} const d=unitByTag(v,u.id); if(d){err.textContent=v+' already exists ('+(locNameById(d.locId)||'no location')+')';tagIn.value=u.tag||'';return;} err.textContent=''; u.tag=v; save(); };
+  tagIn.onkeydown=e=>{ if(e.key==='Enter'){ e.preventDefault(); tagIn.blur(); } };
+  const typeSel=opsSelect(u.type,DB.equip.columns.includes(u.type)?DB.equip.columns:[...DB.equip.columns,u.type],v=>{u.type=v;save();});typeSel.classList.add('field-box');
+  const cond=condSelect(u);cond.classList.add('field-box');
+  const chk=document.createElement('div');chk.className='chk-wrap';
+  const dIn=opsInput(u.lastChecked,v=>{u.lastChecked=v;save();},{type:'date'});dIn.classList.add('field-box');
+  const tBtn=document.createElement('button');tBtn.className='mini-btn';tBtn.textContent='✓ Today';tBtn.title='Mark checked today';
+  tBtn.onclick=()=>{u.lastChecked=todayISO();dIn.value=u.lastChecked;save();};
+  chk.append(dIn,tBtn);
+  const locSel=document.createElement('select');locSel.className='ops-sel field-box';
+  locOpts.forEach(o=>{const op=document.createElement('option');op.value=o.v;op.textContent=o.t;if(o.v===(u.locId||''))op.selected=true;locSel.appendChild(op);});
+  locSel.onchange=()=>{u.locId=locSel.value;save();};
+  const notes=opsInput(u.notes,v=>{u.notes=v;save();});notes.classList.add('field-box');
+  const btns=document.createElement('div');btns.className='eq-edit-btns';
+  const del=confirmTextBtn('Remove unit',()=>{DB.equipUnits=DB.equipUnits.filter(x=>x!==u);UI.eqEdit=null;save();renderEquipGrid();renderDash();renderBenchCounts();},'Delete this unit');
+  const done=document.createElement('button');done.className='btn accent btn-sm';done.textContent='Done';done.id='eq-edit-done';
+  done.onclick=()=>{ if(document.activeElement===tagIn) tagIn.onchange(); UI.eqEdit=null; save(); renderEquipGrid(); renderDash(); renderBenchCounts(); };
+  btns.append(del,done);
+  box.append(fld('Asset #',tagIn),fld('Type',typeSel),fld('Condition',cond),fld('Last checked',chk,'chkf'),fld('Location',locSel),fld('Notes',notes,'wide'),btns,err);
+  td.appendChild(box);
+  setTimeout(()=>{ if(isAutoTag(u)&&document.body.contains(tagIn)){ tagIn.focus(); tagIn.select(); } },0);
+  return tr;
 }
 function eqLocKeys(){ const k=DB.equip.locations.map(l=>l.id); k.push('External',''); return k; }
 function renderEquipList(){
@@ -2314,37 +2762,45 @@ function renderEquipList(){
     else {
       const scroll=document.createElement('div');scroll.className='ops-scroll';
       const table=document.createElement('table');table.className='ops-table';
-      table.innerHTML='<thead><tr><th>Unit ID</th><th>Type</th><th>Condition</th><th>Last checked</th><th>Location</th><th>Notes</th><th></th></tr></thead>';
+      table.innerHTML='<thead><tr><th>Asset #</th><th>Type</th><th>Condition</th><th>Last checked</th><th>Notes</th><th></th></tr></thead>';
       const tb=document.createElement('tbody');
       shown.slice().sort((a,b)=>(a.type||'').localeCompare(b.type||'')||(a.tag||'').localeCompare(b.tag||'',undefined,{numeric:true})).forEach(u=>{
-        const tr=document.createElement('tr');
-        const tagIn=opsInput(u.tag,v=>{u.tag=v;save();});tagIn.style.fontFamily="'JetBrains Mono',monospace";tagIn.style.fontWeight='600';
-        const tagTd=tdWrap(tagIn);tagTd.style.width='120px';
-        const typeSel=opsSelect(u.type,DB.equip.columns.includes(u.type)?DB.equip.columns:[...DB.equip.columns,u.type],v=>{u.type=v;save();renderEquipGrid();renderDash();});
-        const chk=document.createElement('div');chk.className='chk-wrap';
-        const dIn=opsInput(u.lastChecked,v=>{u.lastChecked=v;save();},{type:'date'});
-        const tBtn=document.createElement('button');tBtn.className='mini-btn';tBtn.textContent='✓ Today';tBtn.title='Mark checked today';
-        tBtn.onclick=()=>{u.lastChecked=todayISO();save();renderEquipGrid();};
-        chk.append(dIn,tBtn);
-        if(unitStale(u)){ const st=document.createElement('span');st.className='stale';st.textContent=u.lastChecked?'OVERDUE':'NEVER';chk.appendChild(st); }
-        const locSel=document.createElement('select');locSel.className='ops-sel';
-        locOpts.forEach(o=>{const op=document.createElement('option');op.value=o.v;op.textContent=o.t;if(o.v===(u.locId||''))op.selected=true;locSel.appendChild(op);});
-        locSel.onchange=()=>{u.locId=locSel.value;save();renderEquipGrid();renderDash();renderBenchCounts();};
-        tr.append(tagTd,tdWrap(typeSel),tdWrap(condSelect(u,()=>renderEquipGrid())),tdWrap(chk),tdWrap(locSel),
-          tdWrap(opsInput(u.notes,v=>{u.notes=v;save();})),
-          tdWrap(confirmDelBtn(()=>{DB.equipUnits=DB.equipUnits.filter(x=>x!==u);save();renderEquipGrid();renderDash();},'Remove unit')));
+        const editing=UI.eqEdit===u.id;
+        const tr=document.createElement('tr');tr.className='eq-row'+(editing?' editing':'');tr.title='Click to edit';
+        const tg=document.createElement('span');tg.className='eq-tag'+(isAutoTag(u)||!u.tag?' auto':'');tg.textContent=u.tag||'(no asset #)';
+        if(isAutoTag(u)){ const an=document.createElement('span');an.className='auto-note';an.textContent='temp ID';an.title='Placeholder ID from the old count grid — click to enter the real asset #';tg.appendChild(an); }
+        const cp=document.createElement('span');const c=u.condition||'In service';cp.className='cond-pill '+(c==='Needs repair'?'c-rep':(c==='Out of service'?'c-out':'c-ok'));cp.textContent=c;
+        const dt=document.createElement('span');dt.className='eq-date';dt.textContent=u.lastChecked?fmtDate(u.lastChecked):'—';
+        const dtw=document.createElement('div');dtw.className='chk-wrap';dtw.appendChild(dt);
+        if(unitStale(u)){ const st=document.createElement('span');st.className='stale';st.textContent=u.lastChecked?'OVERDUE':'NEVER';dtw.appendChild(st); }
+        const nt=document.createElement('div');nt.className='eq-notes';nt.textContent=u.notes||'';nt.title=u.notes||'';
+        const eb=document.createElement('button');eb.className='mini-btn';eb.textContent=editing?'Close':'Edit';
+        const tyS=document.createElement('span');tyS.textContent=u.type||'';
+        tr.append(tdWrap(tg),tdWrap(tyS),tdWrap(cp),tdWrap(dtw),tdWrap(nt),tdWrap(eb));
+        tr.lastChild.style.textAlign='right';
+        tr.onclick=()=>{ UI.eqEdit=editing?null:u.id; renderEquipGrid(); renderDash(); renderBenchCounts(); };
         tb.appendChild(tr);
+        if(editing) tb.appendChild(equipEditRow(u,locOpts));
       });
       table.appendChild(tb);scroll.appendChild(table);sec.body.appendChild(scroll);
       if(!shown.length){ const e=document.createElement('div');e.className='ops-empty';e.textContent='No units here match the filter.';sec.body.appendChild(e); }
     }
     if(bk.id!==''&&bk.id!=='External'){
       const act=document.createElement('div');act.className='grp-actions';
-      const add=document.createElement('button');add.className='ghost-btn';add.textContent='+ Add unit here';
-      add.onclick=()=>{ const type=UI.eqType||DB.equip.columns[0]; if(!type) return; const u=newUnit(type,bk.id); u.lastChecked=todayISO(); DB.equipUnits.push(u); UI.eqOpen[bk.id]=true; save(); renderEquipGrid(); renderDash(); };
+      const add=document.createElement('div');add.className='eq-add-inline';
+      const aIn=document.createElement('input');aIn.className='ops-input field-box';aIn.placeholder='Asset #';aIn.setAttribute('autocomplete','off');aIn.dataset.loc=bk.id;
+      const aT=opsSelect(UI.eqType||DB.equip.columns[0]||'',DB.equip.columns,()=>{});aT.classList.add('field-box');
+      const aB=document.createElement('button');aB.className='ghost-btn';aB.textContent='+ Add unit here';
+      const aE=document.createElement('span');aE.className='eq-err';
+      aB.onclick=()=>{ const type=aT.value; if(!type){flashBtn(aB,'Add a type first');return;} const chk=checkNewTags(parseAssets(aIn.value)); if(chk.err){aE.textContent=chk.err;aIn.focus();return;}
+        chk.ok.forEach(t=>{ const u=newUnit(type,bk.id,t); u.lastChecked=todayISO(); DB.equipUnits.push(u); }); UI.eqOpen[bk.id]=true; save(); renderEquipGrid(); renderDash();
+        const again=document.querySelector('#eq-list input[data-loc="'+bk.id+'"]'); if(again) again.focus(); };
+      aIn.oninput=()=>{aE.textContent='';};
+      aIn.onkeydown=e=>{ if(e.key==='Enter'){ e.preventDefault(); aB.click(); } };
+      add.append(aIn,aT,aB,aE);
       const sp=document.createElement('div');sp.className='spacer';
       const allChk=confirmTextBtn('Mark all checked today',()=>{ all.forEach(u=>u.lastChecked=todayISO()); save(); renderEquipGrid(); },'Set Last checked to today for every unit at this location');
-      const hint=document.createElement('span');hint.className='hint';hint.textContent='Moving units between sites? Log it on Transfers so there’s a record.';
+      const hint=document.createElement('span');hint.className='hint';hint.textContent='Click a unit to edit it. Moving units between sites? Log it on Transfers.';
       act.append(add,hint,sp,allChk);
       sec.body.appendChild(act);
     }
@@ -2376,7 +2832,7 @@ function exportEquipInventoryPDF(){
   y=doc.lastAutoTable.finalY;
   const sorted=DB.equipUnits.slice().sort((a,b)=>locNameById(a.locId).localeCompare(locNameById(b.locId))||(a.type||'').localeCompare(b.type||'')||(a.tag||'').localeCompare(b.tag||'',undefined,{numeric:true}));
   y=room(y,90);y+=26;doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text('Unit list',M,y);
-  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Unit ID','Type','Location','Condition','Last checked','Notes']],
+  doc.autoTable({startY:y+8,margin:{left:M,right:M},head:[['Asset #','Type','Location','Condition','Last checked','Notes']],
     body:sorted.map(u=>[u.tag||'',u.type||'',locNameById(u.locId)||'(none)',u.condition||'',u.lastChecked?fmtDate(u.lastChecked):'never',u.notes||'']),
     styles:{font:'helvetica',fontSize:8,cellPadding:4},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
   stampWatermark(doc);
@@ -2440,7 +2896,7 @@ function renderTransferEquip(){
     if(isExt){
       const row=document.createElement('div');row.className='eq-move-row';row.style.marginTop='5px';
       const lb=document.createElement('span');lb.className='eq-move-label';lb.textContent='New units arriving';
-      const inp=document.createElement('input');inp.type='number';inp.min='0';inp.className='ops-input num tf-new-units';inp.dataset.type=c;inp.placeholder='0';inp.style.flex='0 0 80px';
+      const inp=document.createElement('input');inp.type='text';inp.className='ops-input tf-new-units';inp.dataset.type=c;inp.placeholder='Asset #s, comma-separated';inp.setAttribute('autocomplete','off');inp.style.flex='1 1 160px';inp.style.fontFamily="'JetBrains Mono',monospace";
       row.append(lb,inp);box.appendChild(row);
     }
     w.appendChild(box);
@@ -2453,7 +2909,7 @@ function updateTfSummary(){
   let benches=0,lines=0;
   document.querySelectorAll('#tf-items-wrap .eq-move-qty').forEach(i=>{const q=parseFloat(i.value)||0;if(q>0){benches+=q;lines++;}});
   const units=document.querySelectorAll('#tf-items-wrap input.tf-unit:checked').length;
-  let fresh=0;document.querySelectorAll('#tf-items-wrap .tf-new-units').forEach(i=>fresh+=Math.max(0,parseInt(i.value,10)||0));
+  let fresh=0;document.querySelectorAll('#tf-items-wrap .tf-new-units').forEach(i=>fresh+=parseAssets(i.value).length);
   const od=document.querySelector('#tf-items-wrap .eq-move-other-desc');const other=od&&od.value.trim()?1:0;
   const from=(document.getElementById('tf-from')||{}).value||'', to=(document.getElementById('tf-to')||{}).value||'';
   if(!benches&&!units&&!fresh&&!other){ el.textContent='Nothing selected yet.'; return; }
@@ -2476,6 +2932,8 @@ function logTransfer(){
   const to=document.getElementById('tf-to').value;
   const date=document.getElementById('tf-date').value||todayISO();
   const notes=(document.getElementById('tf-notes').value||'').trim();
+  const assetsEl=document.getElementById('tf-assets');
+  const assets=parseAssets(assetsEl?assetsEl.value:'');
   if(from===to){flashBtn(btn,'From = To');return;}
   const fromId=locIdByName(from), toId=locIdByName(to);
   const items=[];
@@ -2492,11 +2950,13 @@ function logTransfer(){
     (byType[u.type]||(byType[u.type]=[])).push({u,from:u.locId||''});
   });
   const fresh={};
-  document.querySelectorAll('#tf-items-wrap .tf-new-units').forEach(inp=>{const n=Math.min(200,Math.max(0,parseInt(inp.value,10)||0));if(n)fresh[inp.dataset.type]=n;});
+  let freshErr='';const freshAll=[];
+  document.querySelectorAll('#tf-items-wrap .tf-new-units').forEach(inp=>{const tags=parseAssets(inp.value);if(!tags.length)return;tags.forEach(t=>{if(freshAll.some(x=>x.toLowerCase()===t.toLowerCase()))freshErr=t+' entered twice';freshAll.push(t);});const ck=checkNewTags(tags);if(ck.err&&!freshErr)freshErr=ck.err;fresh[inp.dataset.type]=tags;});
+  if(freshErr){flashBtn(btn,'Asset # in use');const se=document.getElementById('tf-summary');if(se)se.innerHTML='<span class="stale">'+esc(freshErr)+'</span>';return;}
   const eqItems=[];
   new Set([...Object.keys(byType),...Object.keys(fresh)]).forEach(type=>{
     const moved=(byType[type]||[]).map(x=>({id:x.u.id,tag:x.u.tag,from:x.from}));
-    eqItems.push({kind:'equip',column:type,item:type,qty:moved.length+(fresh[type]||0),units:moved,newCount:fresh[type]||0,_moving:byType[type]||[]});
+    eqItems.push({kind:'equip',column:type,item:type,qty:moved.length+((fresh[type]||[]).length),units:moved,newTags:fresh[type]||[],_moving:byType[type]||[]});
   });
   const oDescEl=document.querySelector('#tf-items-wrap .eq-move-other-desc');
   const oQtyEl=document.querySelector('#tf-items-wrap .eq-move-other-qty');
@@ -2511,15 +2971,17 @@ function logTransfer(){
   items.forEach(it=>applyTransferToGrid({from,to,column:it.column,qty:it.qty,kind:'bench'},1));
   eqItems.forEach(it=>{
     it._moving.forEach(x=>{ x.u.locId=toId; x.u.lastMoved=date; });
-    for(let i=0;i<it.newCount;i++){ const u=newUnit(it.column,toId); u.lastChecked=date; u.lastMoved=date; DB.equipUnits.push(u); it.units.push({id:u.id,tag:u.tag,from:'__new'}); }
-    delete it._moving; delete it.newCount;
+    it.newTags.forEach(t=>{ const u=newUnit(it.column,toId,t); u.lastChecked=date; u.lastMoved=date; DB.equipUnits.push(u); it.units.push({id:u.id,tag:u.tag,from:'__new'}); });
+    delete it._moving; delete it.newTags;
     it.item=it.column; items.push(it);
   });
   if(other) items.push(other);
   syncEquipCounts();
-  DB.transfers.unshift({id:uid(),date,from,to,notes,items});
+  const rec={id:uid(),date,from,to,notes,items}; if(assets.length) rec.assets=assets;
+  DB.transfers.unshift(rec);
   // clear form
   document.getElementById('tf-notes').value='';
+  if(assetsEl) assetsEl.value='';
   document.querySelectorAll('#tf-items-wrap .eq-move-qty,#tf-items-wrap .tf-new-units').forEach(i=>i.value='');
   if(oDescEl){oDescEl.value='';oQtyEl.value='';}
   save();
@@ -2545,6 +3007,10 @@ function reverseTransfer(t){
   });
   syncEquipCounts();
 }
+/* asset numbers on a transfer: free text split on commas / semicolons / new lines; stored as t.assets[] (absent = none) */
+function parseAssets(txt){ const seen=new Set(); return String(txt||'').split(/[,;\n]+/).map(x=>x.trim().replace(/\.0+$/,'')).filter(x=>{ if(!x||seen.has(x.toLowerCase())) return false; seen.add(x.toLowerCase()); return true; }); }
+function tfAssets(t){ return Array.isArray(t.assets)?t.assets:[]; }
+function tfMonthLabel(m){ if(!m) return 'No date'; const d=new Date(m+'-01T00:00:00'); return isNaN(d)?m:d.toLocaleDateString(undefined,{month:'long',year:'numeric'}); }
 function tfItemTags(t){
   return (t.items||[]).map(it=>{
     const q=(it.qty===''||it.qty==null||it.qty===0)?'':(' <b>×'+Number(it.qty).toLocaleString()+'</b>');
@@ -2568,48 +3034,69 @@ function renderTransfers(){
   refreshTransferForm();
   renderTransfersKpi();
   const body=document.getElementById('tf-body');if(!body)return;body.innerHTML='';
-  document.getElementById('transfers-count').textContent=DB.transfers.length?(' ('+DB.transfers.length+')'):'';
+  document.getElementById('transfers-count').textContent=DB.transfers.length?String(DB.transfers.length):'';
   document.getElementById('tf-meta').textContent=DB.transfers.length?(DB.transfers.length+' logged'):'';
   document.querySelectorAll('#tf-dir-seg button').forEach(b=>b.classList.toggle('on',(b.dataset.dir||'')===(UI.tfDir||'')));
   if(!DB.transfers.length){ body.innerHTML='<div class="ops-empty">No transfers logged yet. Use the form above to record a move.</div>'; return; }
   const q=(UI.tfQ||'').trim().toLowerCase();
   const shown=DB.transfers.filter(t=>{
     if(UI.tfDir&&transferDir(t)!==UI.tfDir) return false;
-    if(q){ const h=((t.from||'')+' '+(t.to||'')+' '+(t.notes||'')+' '+(t.items||[]).map(it=>(it.item||'')+' '+((it.units||[]).map(u=>u.tag).join(' '))).join(' ')).toLowerCase(); if(!h.includes(q)) return false; }
+    if(q){ const h=((t.from||'')+' '+(t.to||'')+' '+(t.notes||'')+' '+(t.items||[]).map(it=>(it.item||'')+' '+((it.units||[]).map(u=>u.tag).join(' '))).join(' ')+' '+tfAssets(t).join(' ')).toLowerCase(); if(!h.includes(q)) return false; }
     return true;
   }).map((t,i)=>({t,i})).sort((a,b)=>((b.t.date||'').localeCompare(a.t.date||''))||(a.i-b.i)).map(x=>x.t);
   if(!shown.length){ body.innerHTML='<div class="ops-empty">No transfers match your filter.</div>'; return; }
-  const scroll=document.createElement('div');scroll.className='ops-scroll';
-  const table=document.createElement('table');table.className='ops-table';
-  table.innerHTML='<thead><tr><th>Date</th><th>Direction</th><th>Route</th><th>Items</th><th>Notes</th><th></th></tr></thead>';
-  const tb=document.createElement('tbody');
-  const months={};shown.forEach(t=>{const m=(t.date||'').slice(0,7);months[m]=(months[m]||0)+1;});
-  let curMonth=null;
-  shown.forEach(t=>{
-    const m=(t.date||'').slice(0,7);
-    if(m!==curMonth){
-      curMonth=m;
-      const mr=document.createElement('tr');mr.className='tf-month';
-      let label='No date';
-      if(m){ const d=new Date(m+'-01T00:00:00'); label=isNaN(d)?m:d.toLocaleDateString(undefined,{month:'long',year:'numeric'}); }
-      mr.innerHTML='<td colspan="6">'+esc(label)+'<span>'+months[m]+' transfer'+(months[m]===1?'':'s')+'</span></td>';
-      tb.appendChild(mr);
-    }
-    const tr=document.createElement('tr');
-    const dir=transferDir(t);const dirLabel={in:'IN',out:'OUT',move:'MOVE'}[dir];
-    const cells=['<span class="mono">'+esc(fmtDate(t.date||''))+'</span>','<span class="tf-dir '+dir+'">'+dirLabel+'</span>',
-      '<span class="tf-route-cell">'+esc(t.from||'')+'<span class="arr">→</span>'+esc(t.to||'')+'</span>',
-      tfItemTags(t), '<span style="color:var(--ink-soft)">'+esc(t.notes||'')+'</span>'];
-    cells.forEach(c=>{const td=document.createElement('td');td.innerHTML=c;tr.appendChild(td);});
-    const dtd=document.createElement('td');
-    dtd.appendChild(confirmDelBtn(()=>{
-      reverseTransfer(t);
-      DB.transfers=DB.transfers.filter(x=>x!==t); save(); renderTransfers(); renderDash(); renderEquipGrid(); renderBenchCounts();
-    },'Remove transfer (reverses counts and unit moves)'));
-    tr.appendChild(dtd);
-    tb.appendChild(tr);
+  // one collapsible section per month (newest first); newest month open by default, the rest folded.
+  // While a search or direction filter is active, every matching month opens so nothing is hidden.
+  const filtering=!!(q||UI.tfDir);
+  const order=[];const byMonth={};
+  shown.forEach(t=>{const m=(t.date||'').slice(0,7);if(!byMonth[m]){byMonth[m]=[];order.push(m);}byMonth[m].push(t);});
+  const wrap=document.createElement('div');wrap.className='tf-months';wrap.id='tf-months';
+  order.forEach((m,idx)=>{
+    const list=byMonth[m];
+    let b=0,e=0,inn=0,out=0,mv=0,assetN=0;
+    list.forEach(t=>{const d=transferDir(t);if(d==='in')inn++;else if(d==='out')out++;else mv++;assetN+=tfAssets(t).length;(t.items||[]).forEach(it=>{const qn=Number(it.qty)||0;if(it.kind==='bench')b+=qn;else if(it.kind==='equip')e+=qn;});});
+    const key=m||'__nodate';
+    const store=filtering?{}:UI.tfOpen;
+    const name=document.createElement('span');name.className='grp-name';name.textContent=tfMonthLabel(m);
+    const sub=document.createElement('span');sub.className='grp-eyebrow';sub.style.letterSpacing='.04em';sub.textContent=[inn?inn+' in':'',out?out+' out':'',mv?mv+' move'+(mv===1?'':'s'):''].filter(Boolean).join(' · ');
+    const stats=document.createElement('div');stats.className='grp-stats';
+    stats.append(grpStat('Transfers',String(list.length)),grpStat('Benches',b.toLocaleString()),grpStat('Equipment',e.toLocaleString()),grpStat('Asset #s',String(assetN)));
+    const sec=grpSection({key,store,defaultOpen:filtering||idx===0,eyebrow:'Transfers',titleNode:name,subNode:sub,right:[stats],cls:'tf-mgroup'});
+    sec.el.dataset.month=key;
+    const scroll=document.createElement('div');scroll.className='ops-scroll';
+    const table=document.createElement('table');table.className='ops-table';
+    table.innerHTML='<thead><tr><th>Date</th><th>Direction</th><th>Route</th><th>Items</th><th>Asset #s</th><th>Notes</th><th></th></tr></thead>';
+    const tb=document.createElement('tbody');
+    list.forEach(t=>{
+      const tr=document.createElement('tr');
+      const dir=transferDir(t);const dirLabel={in:'IN',out:'OUT',move:'MOVE'}[dir];
+      const cells=['<span class="mono">'+esc(fmtDate(t.date||''))+'</span>','<span class="tf-dir '+dir+'">'+dirLabel+'</span>',
+        '<span class="tf-route-cell">'+esc(t.from||'')+'<span class="arr">→</span>'+esc(t.to||'')+'</span>',
+        tfItemTags(t)];
+      cells.forEach(c=>{const td=document.createElement('td');td.innerHTML=c;tr.appendChild(td);});
+      // asset #s: editable after the fact (comma-separated), saved on change
+      const ain=opsInput(tfAssets(t).join(', '),()=>{});ain.classList.add('tf-asset-in');ain.setAttribute('aria-label','Asset numbers');ain.setAttribute('spellcheck','false');ain.placeholder='—';
+      ain.oninput=null;
+      ain.onchange=()=>{ const a=parseAssets(ain.value); if(a.length) t.assets=a; else delete t.assets; ain.value=a.join(', '); save(); renderTransfersKpi(); };
+      ain.onkeydown=(ev)=>{ if(ev.key==='Enter') ain.blur(); };
+      tr.appendChild(tdWrap(ain));
+      const ntd=document.createElement('td');ntd.innerHTML='<span style="color:var(--ink-soft)">'+esc(t.notes||'')+'</span>';tr.appendChild(ntd);
+      const dtd=document.createElement('td');
+      dtd.appendChild(confirmDelBtn(()=>{
+        reverseTransfer(t);
+        DB.transfers=DB.transfers.filter(x=>x!==t); save(); renderTransfers(); renderDash(); renderEquipGrid(); renderBenchCounts();
+      },'Remove transfer (reverses counts and unit moves)'));
+      tr.appendChild(dtd);
+      tb.appendChild(tr);
+    });
+    table.appendChild(tb);scroll.appendChild(table);sec.body.appendChild(scroll);
+    wrap.appendChild(sec.el);
   });
-  table.appendChild(tb);scroll.appendChild(table);body.appendChild(scroll);
+  body.appendChild(wrap);
+}
+function tfSetAllOpen(open){
+  document.querySelectorAll('#tf-months .tf-mgroup').forEach(g=>{ UI.tfOpen[g.dataset.month]=open; });
+  renderTransfers();
 }
 function exportTransfersPDF(){
   if(!pdfReady())return;
@@ -2622,9 +3109,11 @@ function exportTransfersPDF(){
       const ids=(it.kind==='equip'&&Array.isArray(it.units)&&it.units.length)?(' ('+it.units.map(u=>u.tag).join(', ')+')'):'';
       return (it.item||'')+qtyTxt+ids;
     }).join(', ');
-    return [fmtDate(t.date||''),{in:'IN',out:'OUT',move:'MOVE'}[transferDir(t)],itemsTxt,t.from||'',t.to||'',t.notes||''];
+    return {m:(t.date||'').slice(0,7),row:[fmtDate(t.date||''),{in:'IN',out:'OUT',move:'MOVE'}[transferDir(t)],itemsTxt,t.from||'',t.to||'',tfAssets(t).join(', '),t.notes||'']};
   });
-  doc.autoTable({startY:y+18,margin:{left:M,right:M},head:[['Date','Dir','Items','From','To','Notes']],body:rows,styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
+  const body=[];let cur=null;
+  rows.forEach(r=>{ if(r.m!==cur){ cur=r.m; const n=rows.filter(x=>x.m===cur).length; body.push([{content:tfMonthLabel(cur)+'  ('+n+' transfer'+(n===1?'':'s')+')',colSpan:7,styles:{fontStyle:'bold',fillColor:[236,234,230],textColor:[23,24,26]}}]); } body.push(r.row); });
+  doc.autoTable({startY:y+18,margin:{left:M,right:M},head:[['Date','Dir','Items','From','To','Asset #s','Notes']],body:body,styles:{font:'helvetica',fontSize:9,cellPadding:5},headStyles:PDF_HEAD,alternateRowStyles:PDF_ALT});
   stampWatermark(doc);doc.save('transfers-'+stampForFile(new Date().toISOString())+'.pdf');
 }
 
@@ -2709,6 +3198,7 @@ function renderBenchCounts(){
 /* ---------- tabs ---------- */
 const ALL_TABS=['dash','builds','refurb','transfers','equip','benchcounts','settings'];
 const TAB_LABELS={dash:'Dashboard',builds:'New Builds',refurb:'Refurb Jobs',transfers:'Transfers',equip:'Equipment',benchcounts:'Bench Counts',settings:'Settings'};
+const TAB_SUBS={dash:'Bench operations overview',builds:'Purchase orders and bench pickups',refurb:'Refurb sets \u2014 close each set out when it\u2019s dropped off',transfers:'Move benches and equipment between locations',equip:'Every unit, where it is and its condition',benchcounts:'Benches on hand by location and type',settings:'Backup, import and reset'};
 function setTab(which){
   ALL_TABS.forEach(t=>{
     const tb=document.getElementById('tab-'+t), pn=document.getElementById('panel-'+t);
@@ -2718,6 +3208,7 @@ function setTab(which){
     pn.classList.toggle('active',on);
   });
   const pt=document.getElementById('page-title'); if(pt) pt.textContent=TAB_LABELS[which]||'';
+  const ps=document.getElementById('page-sub'); if(ps) ps.textContent=TAB_SUBS[which]||'';
   if(which==='dash'){renderDash();}
   if(which==='builds'){renderBuilds();}
   if(which==='refurb'){renderRefurbs();}
@@ -2755,18 +3246,23 @@ async function init(){
   document.getElementById('tab-settings').onclick=()=>setTab('settings');
   document.getElementById('add-build').onclick=addPOFromForm;
   ['np-po','np-man','np-ord'].forEach(id=>{const el=document.getElementById(id);if(el)el.onkeydown=e=>{if(e.key==='Enter')addPOFromForm();};});
+  document.querySelectorAll('#builds-view button').forEach(b=>{b.onclick=()=>{UI.poView=b.dataset.v;renderBuilds();};});
   document.getElementById('builds-expand').onclick=()=>{poGroups().forEach(g=>UI.poOpen[g.po]=true);renderBuilds();};
   document.getElementById('builds-collapse').onclick=()=>{poGroups().forEach(g=>UI.poOpen[g.po]=false);renderBuilds();};
-  document.getElementById('refurb-expand').onclick=()=>{refurbGroups(DB.refurbs).forEach(g=>UI.teamOpen[g.key||'__none']=true);renderRefurbs();};
-  document.getElementById('refurb-collapse').onclick=()=>{refurbGroups(DB.refurbs).forEach(g=>UI.teamOpen[g.key||'__none']=false);renderRefurbs();};
+  document.getElementById('refurb-expand').onclick=()=>{refurbGroups().forEach(g=>UI.teamOpen[g.key]=true);renderRefurbs();};
+  document.getElementById('refurb-collapse').onclick=()=>{refurbGroups().forEach(g=>UI.teamOpen[g.key]=false);renderRefurbs();};
+  document.querySelectorAll('#refurb-view button').forEach(b=>{b.onclick=()=>{UI.rfView=b.dataset.v;renderRefurbs();};});
+  ['rf-team','rf-label','rf-shop','rf-drop','rf-n'].forEach(id=>{const el=document.getElementById(id);if(el)el.onkeydown=e=>{if(e.key==='Enter')addRefurbSetFromForm();};});
   document.getElementById('tf-from').onchange=renderTransferEquip;
   document.getElementById('tf-to').onchange=updateTfSummary;
   document.getElementById('tf-swap').onclick=()=>{const f=document.getElementById('tf-from'),t=document.getElementById('tf-to');const a=f.value;f.value=t.value;t.value=a;renderTransferEquip();};
   document.querySelectorAll('#tf-dir-seg button').forEach(b=>b.onclick=()=>{UI.tfDir=b.dataset.dir||'';renderTransfers();});
   document.getElementById('tf-search').oninput=(e)=>{UI.tfQ=e.target.value;renderTransfers();};
-  document.getElementById('add-refurb').onclick=()=>{ DB.refurbs.push({id:uid(),benchId:'',location:'',team:'',dropTo:'',dropOff:'',pickUp:'',status:'',notes:''});UI.teamOpen['__none']=true;save();clearRefurbFilters();renderRefurbs(); };
+  document.getElementById('add-refurb').onclick=addRefurbSetFromForm;
   document.getElementById('refurb-search').oninput=()=>renderRefurbs();
   document.getElementById('tf-log').onclick=logTransfer;
+  document.getElementById('tf-expand-all').onclick=()=>tfSetAllOpen(true);
+  document.getElementById('tf-collapse-all').onclick=()=>tfSetAllOpen(false);
   document.getElementById('export-builds').onclick=()=>{ const btn=document.getElementById('export-builds'); if(!DB.newBuilds.length){flashBtn(btn,'Nothing to export');return;} withPdf(btn,()=>exportBuildsPDF()); };
   document.getElementById('export-refurb').onclick=()=>{ const btn=document.getElementById('export-refurb'); if(!DB.refurbs.length){flashBtn(btn,'Nothing to export');return;} withPdf(btn,()=>exportRefurbsPDF()); };
   document.getElementById('export-transfers').onclick=()=>{ const btn=document.getElementById('export-transfers'); if(!DB.transfers.length){flashBtn(btn,'Nothing to export');return;} withPdf(btn,()=>exportTransfersPDF()); };
