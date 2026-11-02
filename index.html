@@ -1721,9 +1721,18 @@ function renderDash(){
 
   function card(title,rowsArr){const c=document.createElement('div');c.className='dash-card';let html='<h3>'+esc(title)+'</h3>';rowsArr.forEach(([l,v,acc])=>{html+='<div class="stat-row"><span class="stat-lbl">'+esc(l)+'</span><span class="stat-val'+(acc?' accent':'')+'">'+v+'</span></div>';});c.innerHTML=html;return c;}
   const nbRows=[['Total pickups logged',nbCount],['Total benches picked up',nbQty.toLocaleString(),true]];
-  poGroups().forEach(g=>{ if(!g.rows.length&&!g.ordered) return; nbRows.push(['PO '+(g.po||'(none)')+(g.manufacturer?(' \u00b7 '+g.manufacturer):'')+(g.closed?' \u00b7 closed':''),g.ordered?(g.picked.toLocaleString()+' / '+g.ordered.toLocaleString()):g.picked.toLocaleString()]); });
+  // Active POs only (not marked complete). Closed POs live on the New Builds tab.
+  const poAll=poGroups().filter(g=>g.rows.length||g.ordered), poActive=poAll.filter(g=>!g.closed), poClosedN=poAll.length-poActive.length;
+  nbRows.push(['Active POs',poActive.length,poActive.length>0]);
+  poActive.forEach(g=>{ nbRows.push(['PO '+(g.po||'(none)')+(g.manufacturer?(' \u00b7 '+g.manufacturer):''),g.ordered?(g.picked.toLocaleString()+' / '+g.ordered.toLocaleString()):g.picked.toLocaleString()]); });
+  const nbCard=card('New Builds',nbRows);
+  if(!poActive.length){ const e=document.createElement('div');e.className='note';e.style.marginTop='8px';e.textContent='No active POs.';nbCard.appendChild(e); }
+  { const v=document.createElement('button');v.className='btn outline';v.id='dash-view-pos';v.style.marginTop='10px';
+    v.textContent=poClosedN?('View all POs ('+poClosedN+' closed) \u2192'):'View New Builds \u2192';
+    v.onclick=()=>{ if(poClosedN) UI.poView='all'; setTab('builds'); };
+    nbCard.appendChild(v); }
   const row=document.createElement('div');row.className='dash-row';
-  row.appendChild(card('New Builds',nbRows));
+  row.appendChild(nbCard);
   row.appendChild(refurbStatusCard(rfCount,rfProg,rfDone,rfNotStarted));
   body.appendChild(row);
 
